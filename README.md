@@ -1,6 +1,13 @@
 PythonFinance
 =============
 
+Requirements
+--------
+
+1. Python 3.2
+2. pandas (requires numpy)
+
+
 Features
 --------
 
