@@ -1,4 +1,7 @@
 PythonFinance
 =============
 
-Python Finance Package
+Data Management
+---------------
+
+Look at example.py
