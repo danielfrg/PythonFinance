@@ -2,7 +2,7 @@ import os
 import hashlib
 import pandas as pd
 from datetime import datetime
-from finance.data.FileManager import FileManager
+from finance.utils.FileManager import FileManager
 
 class DataAccess(object):
     def __init__(self, dir_path='./data/'):
@@ -26,31 +26,32 @@ class DataAccess(object):
     def get_dir(self):
         return self.dir
 
-    def empty_dir(self):
+    def empty_dir(self, delete=False):
         '''
         Empty the directory of .CSV files, do not delete the cache files
         '''
-        list_files = os.listdir(self.dir) # Get the list of files
-        for f in list_files:
-            try:
-                os.remove(os.path.join(self.dir, f))
-            except:
-                pass
+        self.fm.empty_dir(delete)
 
-    def empty_cache(self):
+    def empty_cache(self, delete=False):
         '''
         Empty the directory of cached files, do not delete the csv files
         '''
         list_files = os.listdir(self.cache_dir) # Get the list of files
         for f in list_files:
-            os.remove(os.path.join(self.cache_dir, f))
+            try:
+                os.remove(os.path.join(self.cache_dir, f))
+            except:
+                pass
 
-    def empty_dirs(self):
+        if delete:
+            os.rmdir(self.cache_dir)
+
+    def empty_dirs(self, delete=False):
         '''
         Empty both directories, cached files and csv files
         '''
-        self.empty_cache()
-        self.empty_dir()
+        self.empty_cache(delete)
+        self.empty_dir(delete)
 
     def get_data(self, symbol_s, start_date, end_date, field_s, save=True, useCache=True,
                                 downloadMissing=True):
@@ -123,10 +124,10 @@ class DataAccess(object):
         data_dic = {}
         # 1.1 Save the Indexes of the data
         indexes = None
+
         # 2. Get the file names with the info
         files = self.fm.get_data(symbol_s, start_date, end_date, downloadMissing)
         n_data = None # New Data for the iterations
-
         for f, symbol in zip(files, symbol_s):
             # for each file in files and symbol in symbol_s
             n_data = pd.read_csv(os.path.join(self.dir, f))
@@ -157,11 +158,13 @@ class DataAccess(object):
         return df.ix[start_date:end_date] # Slice by date
 
 if __name__ == "__main__":
-    da = DataAccess("../../data")
+    da = DataAccess("./data")
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
     start_date = datetime(2007, 6, 6)
     end_date = datetime(2009, 12, 31)
     fields = "Close"
     a = da.get_data(symbols, start_date, end_date, fields, useCache=False)
     print(a)
+
+    #da.empty_dirs(delete=True)
 

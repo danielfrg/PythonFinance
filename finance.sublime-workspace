@@ -247,6 +247,46 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "utils/FileManager.py",
+			"settings":
+			{
+				"buffer_size": 5034,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "utils/test/FileManagerTest.py",
+			"settings":
+			{
+				"buffer_size": 3550,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Daniel/Desktop/t.py",
+			"settings":
+			{
+				"buffer_size": 113,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "utils/DataAccess.py",
+			"settings":
+			{
+				"buffer_size": 6142,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "utils/test/DataAccessTest.py",
+			"settings":
+			{
+				"buffer_size": 4215,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -332,6 +372,12 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/DataManagement.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/README.md",
 		"/C/Users/Daniel/Documents/projects/packages/finance/.gitignore",
 		"/C/Users/Daniel/Documents/projects/packages/finance/finance.sublime-project",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
@@ -453,13 +499,7 @@
 		"/C/Users/Daniel/Desktop/t.py",
 		"/C/Python27/Lib/site-packages/rpy2/rinterface/__init__.py",
 		"/C/Users/Daniel/Documents/projects/comp-investing/README.md",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/EP.csv",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/ISRG.csv",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/CMD.csv",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/OKE.csv",
-		"/C/Users/Daniel/.ssh/id_rsa.pub",
-		"/C/Users/Daniel/.ssh/id_rsa",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/stockutils.py"
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/EP.csv"
 	],
 	"find":
 	{
@@ -622,8 +662,147 @@
 	"groups":
 	[
 		{
+			"selected": 4,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "utils/FileManager.py",
+					"settings":
+					{
+						"buffer_size": 5034,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4626,
+								4626
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "utils/test/FileManagerTest.py",
+					"settings":
+					{
+						"buffer_size": 3550,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								100,
+								100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Daniel/Desktop/t.py",
+					"settings":
+					{
+						"buffer_size": 113,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								94,
+								94
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "utils/DataAccess.py",
+					"settings":
+					{
+						"buffer_size": 6142,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								124,
+								124
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "utils/test/DataAccessTest.py",
+					"settings":
+					{
+						"buffer_size": 4215,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2795,
+								2795
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1897.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

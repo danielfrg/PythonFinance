@@ -1,16 +1,15 @@
+# Test imports
+import unittest
+
 # General imports
 from datetime import datetime
-from finance.data.FileManager import FileManager
-
-# Test imports
-import os
-import unittest
+from finance.utils import FileManager
 
 class TestFileManager(unittest.TestCase):
 
     def setUp1(self):
         self.fm = FileManager('./data')
-        self.fm.emptyDir()
+        self.fm.empty_dir(delete=False)
 
     def testGetData(self):
         '''
@@ -86,3 +85,6 @@ if __name__ == '__main__':
     #unittest.main()
     suite = unittest.TestLoader().loadTestsFromTestCase(TestFileManager)
     unittest.TextTestRunner(verbosity=2).run(suite)
+
+    fm = FileManager('./data')
+    fm.empty_dir(delete=True)

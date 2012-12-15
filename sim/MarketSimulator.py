@@ -1,5 +1,5 @@
 import pandas as pd
-from finance.data import DataAccess
+from finance.utils import DataAccess
 from datetime import datetime
 from datetime import date
 
@@ -120,7 +120,7 @@ class MarketSimulator(object):
 if __name__ == "__main__":
     sim = MarketSimulator('../examples/data')
     sim.set_initial_cash(1000000)
-    sim.load_trades("../examples/orders.csv")
+    sim.load_trades("../examples/MarketSimulator_orders.csv")
     sim.simulate()
 
 

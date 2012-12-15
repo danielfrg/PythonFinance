@@ -1,6 +1,5 @@
 import math
 import pandas as pd
-from finance.sim import MarketSimulator
 
 def total_return(df, field=None):
     if field is None:

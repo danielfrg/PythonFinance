@@ -1,8 +1,8 @@
 import os
 import sys
-from datetime import datetime
-import urllib.request
 import urllib.parse
+import urllib.request
+from datetime import datetime
 
 class FileManager(object):
     '''
@@ -22,10 +22,16 @@ class FileManager(object):
     def get_dir(self):
         return self.dir
 
-    def empty_dir(self):
+    def empty_dir(self, delete=False):
         list_files = os.listdir(self.dir) # Get the list of files
         for f in list_files:
-            os.remove(os.path.join(self.dir, f))
+            try:
+                os.remove(os.path.join(self.dir, f))
+            except:
+                pass
+
+        if delete:
+            os.rmdir(self.dir)
 
     def get_data(self, symbol_s, start_date, end_date, downloadMissing=True):
         '''
@@ -123,9 +129,10 @@ class FileManager(object):
             return False
 
 if __name__ == "__main__":
-    fm = FileManager("../../data/")
+    fm = FileManager("./data/")
     symbols = ["AAPL","GLD","GOOG","SPY","XOM", "FAKE1"]
     start_date = datetime(2008, 1, 1)
     end_date = datetime(2009, 12, 31)
-    a = fm.get_data(symbols, start_date, end_date, downloadMissing=False)
+    a = fm.get_data(symbols, start_date, end_date, downloadMissing=True)
     print (a)
+    fm.empty_dir(delete=True)
