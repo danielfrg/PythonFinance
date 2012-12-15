@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/Users/Daniel/Documents/projects/packages",
+            "file_exclude_patterns": ["*.sublime*"],
+            "folder_exclude_patterns": ["__pycache__"]
+		}
+	]
+}

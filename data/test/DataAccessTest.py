@@ -123,7 +123,7 @@ def benchmark():
     da.empty_dirs()
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestDataAccess)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    #suite = unittest.TestLoader().loadTestsFromTestCase(TestDataAccess)
+    #unittest.TextTestRunner(verbosity=2).run(suite)
 
     benchmark()

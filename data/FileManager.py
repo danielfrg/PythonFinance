@@ -59,11 +59,11 @@ class FileManager(object):
                 if fi_start_date <= start_date and fi_end_date >= end_date:
                     return fi
 
-        # Saw al files and didnt found the information, so download it
+        # Saw all files and didnt found the information, so download it
         if downloadMissing:
             success = self.yahoo_download(symbol, start_date, end_date)
             if success:
-                # If download was susccesfull returns (run again to get file path)
+                # If download was susccesfull returns run again to get file path
                 return self.get_data_single(symbol, start_date, end_date, downloadMissing)
         return None
 

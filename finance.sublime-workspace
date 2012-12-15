@@ -1,0 +1,712 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ex",
+				"extraAnswers"
+			],
+			[
+				"por",
+				"portfolio"
+			],
+			[
+				"port",
+				"get_portfolio"
+			],
+			[
+				"valu",
+				"value_equities"
+			],
+			[
+				"num",
+				"num_of_shares"
+			],
+			[
+				"ow",
+				"own_each_stock"
+			],
+			[
+				"cas",
+				"cash_change"
+			],
+			[
+				"init",
+				"initial_cash"
+			],
+			[
+				"date",
+				"date"
+			],
+			[
+				"fir",
+				"first_row"
+			],
+			[
+				"clo",
+				"close_loaded"
+			],
+			[
+				"set",
+				"setUp0"
+			],
+			[
+				"ca",
+				"cache_dir"
+			],
+			[
+				"fiel",
+				"field"
+			],
+			[
+				"sym",
+				"symbols"
+			],
+			[
+				"get_",
+				"get_data"
+			],
+			[
+				"sy",
+				"symbol_s"
+			],
+			[
+				"down",
+				"downloadMissing"
+			],
+			[
+				"en",
+				"end_date"
+			],
+			[
+				"symbol_s",
+				"symbol_s"
+			],
+			[
+				"start",
+				"start_date"
+			],
+			[
+				"dow",
+				"downloadMissing"
+			],
+			[
+				"do",
+				"downloadMissing"
+			],
+			[
+				"fi",
+				"field_s"
+			],
+			[
+				"da",
+				"data_dic"
+			],
+			[
+				"n",
+				"n_data"
+			],
+			[
+				"field",
+				"field_s"
+			],
+			[
+				"dir",
+				"dir_path"
+			],
+			[
+				"star",
+				"start_date"
+			],
+			[
+				"exis",
+				"exists_single"
+			],
+			[
+				"exi",
+				"exists_single"
+			],
+			[
+				"stock",
+				"stock_file"
+			],
+			[
+				"get",
+				"get_data"
+			],
+			[
+				"ya",
+				"yahoo_pull_single"
+			],
+			[
+				"tur",
+				"turn_it"
+			],
+			[
+				"turn",
+				"turn_stdout"
+			],
+			[
+				"s",
+				"start_date"
+			],
+			[
+				"eve",
+				"eventMatrix"
+			],
+			[
+				"m",
+				"m"
+			],
+			[
+				"wi",
+				"weight"
+			],
+			[
+				"perce",
+				"Percentage"
+			],
+			[
+				"wei",
+				"weight"
+			],
+			[
+				"we",
+				"weight"
+			],
+			[
+				"prin",
+				"printPercentValue"
+			],
+			[
+				"cum",
+				"cumulative_return"
+			],
+			[
+				"op",
+				"open_val"
+			],
+			[
+				"mos",
+				"most_recent"
+			],
+			[
+				"debu",
+				"debugWinners"
+			],
+			[
+				"debug",
+				"debugWinners"
+			],
+			[
+				"yahoo",
+				"yahoo_pull"
+			],
+			[
+				"pro",
+				"process"
+			],
+			[
+				"anu",
+				"anual_return"
+			],
+			[
+				"dai",
+				"daily_ret"
+			],
+			[
+				"fun",
+				"fund_inv"
+			],
+			[
+				"sharpe",
+				"sharpe_ratio"
+			],
+			[
+				"cumu",
+				"cumulative"
+			],
+			[
+				"com",
+				"combination"
+			],
+			[
+				"w",
+				"weight"
+			],
+			[
+				"p",
+				"p"
+			],
+			[
+				"av",
+				"avg_daily_ret"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"conver",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"CONVER",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"packagre",
+				"Package Control: Discover Packages"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"disabl",
+				"Package Control: Disable Package"
+			],
+			[
+				"pac",
+				"Package Control: Enable Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 386.0
+	},
+	"console":
+	{
+		"height": 155.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Daniel/Documents/projects/packages/finance/.gitignore",
+		"/C/Users/Daniel/Documents/projects/packages/finance/finance.sublime-project",
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils.py",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/utils/stock.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/datamanager/test/DataAccessTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/orders.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/data/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/data/AAPL_1-10-2011_12-20-2011.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/data/FileManager.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/HW3.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/Simulator.py",
+		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-build",
+		"/C/Users/Daniel/Documents/projects/packages/finance/data/test/DataAccessTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/example.py",
+		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Daniel/Documents/projects/packages/financ.sublime-workspace",
+		"/C/Users/Daniel/Documents/projects/packages/financ.sublime-project",
+		"/C/Python32/Lib/site-packages/pandas/__init__.py",
+		"/C/Users/Daniel/Documents/projects/modules/test.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/FileManager.py",
+		"/C/Users/Daniel/Documents/projects/modules/log/verbose.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/test/DataAccessTest.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/utils",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/test/FileManagerTest.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/test/FileManager.py",
+		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/__init__.py",
+		"/C/Users/Daniel/Documents/projects/modules/log/test/verbose.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/NYSE_dates.txt",
+		"/C/Users/Daniel/Desktop/a.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/modules/log/__init__.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/pull.py",
+		"/C/Users/Daniel/Documents/projects/modules/log/tutorial/verbose.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/dataaccess.py",
+		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Daniel/Desktop/FP FN",
+		"/C/Users/Daniel/Desktop/dt_output.txt",
+		"/C/Users/Daniel/Desktop/lr_output.txt",
+		"/C/Users/Daniel/Desktop/comparison_output.txt",
+		"/C/Users/Daniel/Desktop/nn_output.txt",
+		"/C/Users/Daniel/Desktop/mbr_output.txt",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/Data_Dictionary.txt",
+		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/Neural/EMOUTPUT.out",
+		"/C/Users/Daniel/Desktop/testing_scores_dt - Copy.txt",
+		"/C/Users/Daniel/Desktop/testing_scores_dt.csv",
+		"/C/Users/Daniel/Documents/projects/modules/finance/log/__init__.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/log/verbose.py",
+		"/C/Users/Daniel/Downloads/t.py",
+		"/C/Users/Daniel/Desktop/readme.txt",
+		"/C/Users/Daniel/Desktop/testing_scores_dt.txt",
+		"/C/Users/Daniel/Desktop/nn_output",
+		"/C/Users/Daniel/Desktop/scores.out",
+		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/EMCODE/EMOUTPUT.out",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/qsdateutil.py",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/results/model_comparison.txt",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/clean.py",
+		"/C/Users/Daniel/Downloads/clean2.csv",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/Carvana_Data_Dictionary.txt",
+		"/C/Users/Daniel/Downloads/table.csv",
+		"/C/Users/Daniel/Desktop/test.py",
+		"/C/Users/Daniel/Documents/projects/modules/financ.sublime-project",
+		"/C/Users/Daniel/Documents/projects/modules/finance/__init__.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/print/__init__.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/print/verbose.py",
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/verbose.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/__init__.py",
+		"/C/Python27/Lib/logging/handlers.py",
+		"/C/Python27/Lib/logging/config.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
+		"/C/Users/Daniel/Documents/projects/modules/stocks/stock.py",
+		"/C/Users/Daniel/Documents/projects/newtask/newtask.sublime-project",
+		"/C/Users/Daniel/Documents/projects/test.py",
+		"/C/Users/Daniel/Documents/projects/modules/stocks/__init__.py",
+		"/C/Python27/Scripts/f2py.py",
+		"/C/Python27/Scripts/easy_install-script.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/Examples/EventProfiler/tutorial.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/sp5002008 - Copy.txt",
+		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/sp5002008.txt",
+		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/SPY.csv",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/pull.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/AAPL.csv",
+		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/index.txt",
+		"/C/Users/Daniel/Downloads/Sublime Text 2/Read Me.txt",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment 2/events.py",
+		"/C/Users/Daniel/Videos/Coursera/Computational Investing/Index.txt",
+		"/C/Users/Daniel/Downloads/make.tsv",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/cars.csv",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/training.csv",
+		"/C/Users/Daniel/Downloads/cars.csv",
+		"/C/Users/Daniel/Desktop/data.sql",
+		"/C/Users/Daniel/AppData/Local/Temp/7zE83F5.tmp/data.sql",
+		"/C/Users/Daniel/AppData/Local/Temp/7zO4069.tmp/current_list.txt",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/example_entry.csv",
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project 3/Carvana_Data_Dictionary.txt",
+		"/C/Users/Daniel/Documents/projects/QSTK/Examples/Basic/tutorial1.py",
+		"/C/Users/Daniel/Documents/projects/.bashrc",
+		"/C/cygwin/home/Daniel/.bashrc",
+		"/C/Users/Daniel/Documents/projects/QSTK/local.sh",
+		"/C/Users/Daniel/Documents/projects/QSTK/__init__.py",
+		"/C/Python27/Lib/site-packages/pylab.py",
+		"/C/Python27/Lib/site-packages/easy_install.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/Bin/__init__.py",
+		"/C/Users/Daniel/Documents/projects/comp-investing/QSTK/config.sh",
+		"/C/cygwin/home/Daniel/.bash_profile",
+		"/C/cygwin/home/Daniel/.profile",
+		"/C/Users/Daniel/Downloads/Windows 8 AIO 16-in-1 (Final Build 9200) + Permanent Activator/README.txt",
+		"/C/Users/Daniel/Desktop/scores_gb.txt",
+		"/C/Users/Daniel/Desktop/scores_nn.txt",
+		"/C/Users/Daniel/Desktop/GB_scores.txt",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/portfolio.py",
+		"/C/Users/Daniel/Desktop/ass.py",
+		"/C/Users/Daniel/Desktop/t.py",
+		"/C/Python27/Lib/site-packages/rpy2/rinterface/__init__.py",
+		"/C/Users/Daniel/Documents/projects/comp-investing/README.md",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/EP.csv",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/ISRG.csv",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/CMD.csv",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/OKE.csv",
+		"/C/Users/Daniel/.ssh/id_rsa.pub",
+		"/C/Users/Daniel/.ssh/id_rsa",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/stockutils.py"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"porfolio_value",
+			"portfolio_value",
+			"ammount_each_stock",
+			"orders",
+			"value_equities",
+			"print",
+			"generate",
+			"self.data",
+			"path",
+			"csv",
+			"get_filename",
+			"load=True",
+			"load",
+			"print",
+			"symbols",
+			"None",
+			"print",
+			"self.dir_path",
+			"pull.yahoo_pull(symbols, start_date, end_date, self.dir_path",
+			"self.dir_path",
+			"self.dir",
+			"pandas.",
+			"pull",
+			"yahoo_pull_single",
+			"yahoo_pull_multiple",
+			"self.dir_path",
+			"data_path",
+			"dt.",
+			"dt",
+			"pd",
+			"NYSE",
+			"pd",
+			"	 ",
+			"	  ",
+			"	   ",
+			"      ",
+			"       ",
+			"	  ",
+			"      ",
+			"       ",
+			"        ",
+			"         ",
+			"	 ",
+			"	  ",
+			"      ",
+			"       ",
+			"	 ",
+			"	  ",
+			"	   ",
+			"      ",
+			"       ",
+			"        ",
+			"	 ",
+			"  ",
+			"    ",
+			"      ",
+			"       ",
+			"        ",
+			"         ",
+			" ",
+			"		",
+			"	  ",
+			"	 ",
+			"		 ",
+			"    ",
+			"      ",
+			"    ",
+			"      ",
+			"       ",
+			" ",
+			"  ",
+			"	  ",
+			"    ",
+			"	    ",
+			"		",
+			"         ",
+			"            ",
+			"                     ",
+			"                                     ",
+			"    ",
+			"	 ",
+			"	  ",
+			"	 ",
+			"      ",
+			"       ",
+			"        ",
+			"  ",
+			"	7",
+			"	6",
+			"	5",
+			"5",
+			"	4",
+			"	3",
+			"	2",
+			"	1",
+			"	 ",
+			"		",
+			"    ",
+			"           ",
+			"  Obs           RefId      Buy1",
+			"  Obs           RefId    BadBuy1",
+			" ",
+			"  Obs           RefId      Buy1",
+			"  Obs           RefId    BadBuy1",
+			"                          P_Is",
+			"GTS_DATES",
+			"NYSE",
+			"symbol_name",
+			"mktneutDM",
+			", ",
+			"ï",
+			"^[\\x00-\\x7F]+",
+			"-",
+			"[^[:print:]]",
+			"[^\\x00-\\x7F]+",
+			"'",
+			"é",
+			"citroen",
+			"Citroën",
+			"BMW",
+			"'",
+			"       ",
+			"        ",
+			"         ",
+			"	 ",
+			"        ",
+			"         ",
+			"posterior"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 159.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"oke",
+				"assignment1/data/OKE.csv"
+			],
+			[
+				"cmd",
+				"assignment1/data/CMD.csv"
+			],
+			[
+				"isr",
+				"assignment1/data/ISRG.csv"
+			],
+			[
+				"ep",
+				"assignment1/data/EP.csv"
+			],
+			[
+				"isrg",
+				"assignment1/data/ISRG.csv"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 224.0,
+	"status_bar_visible": true
+}

@@ -9,6 +9,10 @@ class DataAccess(object):
         self.set_dir(dir_path)
 
     def set_dir(self, dir_path):
+        '''
+        Create global class names and creates the directories for .csv
+        files and cache files
+        '''
         self.dir = os.path.realpath(dir_path) # Absolute Path
         self.cache_dir = os.path.join(self.dir, 'cached')
         self.fm = FileManager(dir_path)
@@ -23,6 +27,9 @@ class DataAccess(object):
         return self.dir
 
     def empty_dir(self):
+        '''
+        Empty the directory of .CSV files, do not delete the cache files
+        '''
         list_files = os.listdir(self.dir) # Get the list of files
         for f in list_files:
             try:
@@ -31,11 +38,17 @@ class DataAccess(object):
                 pass
 
     def empty_cache(self):
+        '''
+        Empty the directory of cached files, do not delete the csv files
+        '''
         list_files = os.listdir(self.cache_dir) # Get the list of files
         for f in list_files:
             os.remove(os.path.join(self.cache_dir, f))
 
     def empty_dirs(self):
+        '''
+        Empty both directories, cached files and csv files
+        '''
         self.empty_cache()
         self.empty_dir()
 
@@ -53,24 +66,28 @@ class DataAccess(object):
             useCache=True - True if want to load a cached version, if available
             downloadMissing=True - True if want to download unavailable data
         '''
-
-
-        name = self.generate_filename(symbol_s, start_date, end_date, field_s)
-        data = self.load(name)
+        # 1. Generate and string which represents the data requested
+        filename_large = "%s_%s_%s_%s" % ('_'.join(symbol_s), start_date.strftime('%m-%d-%Y'),
+                            end_date.strftime('%m-%d-%Y'), '-'.join(field_s))
+        # 2. Generates hash key of the string to reduce filename
+        h = hashlib.md5()
+        h.update(filename_large.encode('utf8'))
+        filename = h.hexdigest() + ".data"
+        # 3. Load the Data
+        data = self.load(filename)
         if data is not None and useCache == True:
-            # Data was cached so return it
+            # 4. Data was cached so return it
             return data
         else:
-            # Data was not cached need to load the data from csv files
+            # 4. Data was not cached need to load the data from csv files
             df = self.get_data_file(symbol_s, start_date, end_date, field_s, downloadMissing)
             if save == True:
-                name = self.generate_filename(symbol_s, start_date, end_date, field_s)
-                self.save(df, name)
+                self.save(df, filename)
             return df
 
     def load(self, name):
         '''
-        Checks for an existing file name and if exists load the data
+        Checks for an existing file name and if exists loads the cache version
         '''
         f = os.path.join(self.cache_dir, name)
         if os.access(f, os.F_OK):
@@ -85,17 +102,6 @@ class DataAccess(object):
         f = os.path.join(self.cache_dir, name)
         data.save(f)
 
-    def generate_filename(self, symbol_s, start_date, end_date, field_s):
-        '''
-        Hash funcion used to compress the filename of the cached files
-        '''
-        string = "%s_%s_%s_%s" % ('_'.join(symbol_s), start_date.strftime('%m-%d-%Y'),
-                            end_date.strftime('%m-%d-%Y'), '-'.join(field_s))
-        h = hashlib.md5()
-        h.update(string.encode('utf8'))
-        filename = h.hexdigest() + ".data"
-        return filename
-
     def get_data_file(self, symbol_s, start_date, end_date, field_s, downloadMissing=True):
         '''
         Gets the data directly from the csv files
@@ -107,21 +113,25 @@ class DataAccess(object):
         Returs:
             Pandas.DataFrame - with the information requested
         '''
-        # If ask for only one symbols or field convert it to a lists
+        # 0. If ask for only one symbols or field convert it to a lists
         if type(symbol_s) == str:
             symbol_s = [symbol_s]
         if type(field_s) == str:
             field_s = [field_s]
 
-        # We are going to create a pd.DataFrame from a dictionary of pd.Series
+        # 1. We are going to create a pd.DataFrame from a dictionary of pd.Series
         data_dic = {}
-        # Get the file names with the info
+        # 1.1 Save the Indexes of the data
+        indexes = None
+        # 2. Get the file names with the info
         files = self.fm.get_data(symbol_s, start_date, end_date, downloadMissing)
+        n_data = None # New Data for the iterations
 
         for f, symbol in zip(files, symbol_s):
             # for each file in files and symbol in symbol_s
             n_data = pd.read_csv(os.path.join(self.dir, f))
-            n_data = n_data.set_index('Date') # Index of the DataFrame is the date
+            # Needs to convert the string to datetime so the index of the DataFrame is DatetimeIndex
+            n_data = n_data.set_index(pd.to_datetime(n_data['Date']))
 
             for field in field_s:
                 # For each field in fields
@@ -142,7 +152,9 @@ class DataAccess(object):
                 data_dic[colname] = n_data[field]
 
         # Return the pd.DataFrame from the dictionary of pd.Series
-        return pd.DataFrame(data_dic)
+        df = pd.DataFrame(data_dic)
+        df = df.sort() # Sort because Yahoo Finance data comes reverse
+        return df.ix[start_date:end_date] # Slice by date
 
 if __name__ == "__main__":
     da = DataAccess("../../data")
@@ -151,5 +163,5 @@ if __name__ == "__main__":
     end_date = datetime(2009, 12, 31)
     fields = "Close"
     a = da.get_data(symbols, start_date, end_date, fields, useCache=False)
-    print (a)
+    print(a)
 
