@@ -7,14 +7,17 @@ from finance.utils import DataAccess
 from finance.sim import MarketSimulator
 
 
-class TestMarketSimulator(unittest.TestCase):
-    def setUp0(self):
-        self.da = DataAccess('./data')
-        self.da.empty_dirs()
-        self.sim = MarketSimulator('./data')
+class MarketSimulatorTest(unittest.TestCase):
 
     def setUp1(self):
+        DataAccess('./data').empty_dirs()
         self.sim = MarketSimulator('./data')
+
+
+    def suite(self):
+        suite = unittest.TestSuite()
+        suite.addTest(MarketSimulatorTest('test_values'))
+        return suite
 
     def dfCompare(self, df1, df2):
         c = df1 == df2
@@ -23,15 +26,17 @@ class TestMarketSimulator(unittest.TestCase):
                 return False
         return True
 
-    def testSimulationValues(self):
+    def test_values(self):
         self.setUp1()
 
         self.sim.initial_cash = 1000000
         self.sim.simulate("orders.csv")
 
-        # Test the length of the DataFrame, Also the name of columns
+        # Test: Length of the DataFrame
         self.assertEqual(len(self.sim.portfolio), 240)
         self.assertEqual(len(self.sim.portfolio.columns), 1)
+
+        # Test: Name of columns
         self.assertEqual(self.sim.portfolio.columns, 'Portfolio')
         self.assertEqual(self.sim.portfolio.index.name, 'Date')
 
@@ -40,51 +45,48 @@ class TestMarketSimulator(unittest.TestCase):
         testdf.index.name = 'Date'
 
         # ========================== HEAD TEST ==============================================
-
-        # Portfolio: Test True Positive
         testdf.columns = ['Portfolio']
         testdf.index = [datetime(2011, 1, 10), datetime(2011, 1, 11), datetime(2011, 1, 12),
                         datetime(2011, 1, 13), datetime(2011, 1, 14)]
+
+        # Portfolio: Test True Positive
         testdf['Portfolio'] = [1000000, 998785, 1002925, 1004800, 1009360]
-        self.assertEqual(self.dfCompare(testdf, self.sim.portfolio.head()), True)
+        self.assertTrue(self.dfCompare(testdf, self.sim.portfolio.head()))
         # Portfolio: Test True Negative
         testdf['Portfolio'] = [11000000, 998785, 1002925, 1004800, 1009360]
-        self.assertEqual(self.dfCompare(testdf, self.sim.portfolio.head()), False)
-        # Portfolio: Test True Negative
-        testdf['Portfolio'] = [1000000, 1998785, 1002925, 1004800, 1009360]
-        self.assertEqual(self.dfCompare(testdf, self.sim.portfolio.head()), False)
+        self.assertFalse(self.dfCompare(testdf, self.sim.portfolio.head()))
 
         # Cash: Test True Positive
         testdf.columns = ['Cash']
         testdf['Cash'] = [490840, 490840, 490840, 429120, 429120]
-        self.assertEqual(self.dfCompare(testdf, self.sim.cash.head()), True)
+        self.assertTrue(self.dfCompare(testdf, self.sim.cash.head()))
         # Cash: Test True Negative
         testdf['Cash'] = [490840, 490840, 490840, 429120, 1429120]
-        self.assertEqual(self.dfCompare(testdf, self.sim.cash.head()), False)
+        self.assertFalse(self.dfCompare(testdf, self.sim.cash.head()))
 
         # ========================== TAIL TEST ==============================================
-
-        # Portfolio: Test True Positive
         testdf.columns = ['Portfolio']
         testdf.index = [datetime(2011, 12, 14), datetime(2011, 12, 15), datetime(2011, 12, 16),
                         datetime(2011, 12, 19), datetime(2011, 12, 20)]
+
+        # Portfolio: Test True Positive
         testdf['Portfolio'] = [1114519, 1113031, 1115515, 1116931, 1133263]
-        self.assertEqual(self.dfCompare(testdf, self.sim.portfolio.tail()), True)
+        self.assertTrue(self.dfCompare(testdf, self.sim.portfolio.tail()))
         # Portfolio: Test True Negative
         testdf['Portfolio'] = [1114519, 1113031, 1115515, 1116931, 1133264]
-        self.assertEqual(self.dfCompare(testdf, self.sim.portfolio.tail()), False)
+        self.assertFalse(self.dfCompare(testdf, self.sim.portfolio.tail()))
 
         # Cash: Test True Positive
         testdf.columns = ['Cash']
         testdf['Cash'] = [662311, 662311, 662311, 662311, 1133263]
-        self.assertEqual(self.dfCompare(testdf, self.sim.cash.tail()), True)
+        self.assertTrue(self.dfCompare(testdf, self.sim.cash.tail()))
         # Cash: Test True Negative
         testdf['Cash'] = [662311, 662311, 662311, 662311, 1133264]
-        self.assertEqual(self.dfCompare(testdf, self.sim.cash.tail()), False)
+        self.assertFalse(self.dfCompare(testdf, self.sim.cash.tail()))
 
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestMarketSimulator)
+    suite = MarketSimulatorTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess('./data').empty_dirs(delete=True)
+    DataAccess('./data').empty_dirs()

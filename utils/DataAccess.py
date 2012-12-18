@@ -149,6 +149,8 @@ class DataAccess(object):
 
         # 2. Get the file names with the information needed from the FileManager
         files = self.file_manager.get_data(symbol_s, start_date, end_date, downloadMissing)
+        if type(files) == str:
+            files = [files]
 
         for f, symbol in zip(files, symbol_s):
             # for each file in files and symbol in symbol_s
@@ -185,7 +187,7 @@ if __name__ == "__main__":
     start_date = datetime(2007, 6, 6)
     end_date = datetime(2009, 12, 31)
     fields = "Close"
-    a = da.get_data(symbols, start_date, end_date, fields, useCache=False)
+    a = da.get_data('AAPL', start_date, end_date, fields, useCache=False)
     print(a)
 
     #da.empty_dirs(delete=True)

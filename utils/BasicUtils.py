@@ -1,3 +1,4 @@
+import os, inspect
 import math
 import pandas as pd
 
@@ -29,7 +30,6 @@ def daily_returns(df, field=None):
 
     i = 0
     for idx, row in df.iterrows():
-
         if i == 0:
             first_it = False
         else:
@@ -63,3 +63,7 @@ def sharpe_ratio(df, field=None, extraAnswers=False):
         return {'sharpe_ratio': sr, 'mean': mean, 'std': std}
     else:
         return sr
+
+def get_nyse_dates():
+    d = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    f = 'NYSE_dates.txt'

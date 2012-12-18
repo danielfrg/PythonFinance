@@ -1,19 +1,21 @@
-# Test imports
 import unittest
-
-# General imports
 from datetime import datetime
+
 from finance.utils import DataAccess
 
-class TestDataAccess(unittest.TestCase):
-    def setUp0(self):
-        self.da = DataAccess('./data')
-        self.da.empty_dirs()
+class DataAccessTest(unittest.TestCase):
 
     def setUp1(self):
+        DataAccess('./data').empty_dirs()
         self.da = DataAccess('./data')
 
-    def testGetData(self):
+    def suite(self):
+        suite = unittest.TestSuite()
+        suite.addTest(DataAccessTest('test_get_data'))
+        suite.addTest(DataAccessTest('test_save_load_custom_name'))
+        return suite
+
+    def test_get_data(self):
         '''
         Tests the length of row and columns and their names
 
@@ -64,8 +66,7 @@ class TestDataAccess(unittest.TestCase):
                     'GOOG Volume', 'SPY Close', 'SPY Volume', 'XOM Close', 'XOM Volume']
         self.assertEqual(list(df.columns), names)
 
-    def testSaveAndLoad(self):
-        self.setUp0()
+    def test_save_load_custom_name(self):
         self.setUp1()
 
         symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]
@@ -85,7 +86,7 @@ class TestDataAccess(unittest.TestCase):
 def benchmark():
     from time import clock, time
     da = DataAccess('./data')
-    da.empty_dirs()
+    da.empty_dirs(delete=False)
 
     print ('Directory empty: Download and save 5 stocks')
     t1, t2 = clock(), time()
@@ -118,9 +119,9 @@ def benchmark():
     print ("   ", t1_f - t1, t2_f - t2)
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestDataAccess)
+    suite = DataAccessTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    #benchmark()
+    benchmark()
 
     DataAccess('./data').empty_dirs(delete=True)

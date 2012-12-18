@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"id",
+				"idx_end_date"
+			],
+			[
+				"idx",
+				"idx_starts_date"
+			],
+			[
+				"lo",
+				"lookforward_days"
+			],
+			[
+				"sym",
+				"symbol_s"
+			],
+			[
+				"evt",
+				"evt"
+			],
+			[
+				"set",
+				"setUp1"
+			],
+			[
+				"shar",
+				"sharpe"
+			],
+			[
 				"order",
 				"ordersIsFile"
 			],
@@ -56,20 +84,12 @@
 				"close_loaded"
 			],
 			[
-				"set",
-				"setUp0"
-			],
-			[
 				"ca",
 				"cache_dir"
 			],
 			[
 				"fiel",
 				"field"
-			],
-			[
-				"sym",
-				"symbols"
 			],
 			[
 				"get_",
@@ -256,26 +276,26 @@
 	"buffers":
 	[
 		{
-			"file": "sim/test/MarketSimulatorTest.py",
+			"file": "events/SimpleEvent.py",
 			"settings":
 			{
-				"buffer_size": 2984,
+				"buffer_size": 1539,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "sim/MarketSimulator.py",
+			"file": "/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
 			"settings":
 			{
-				"buffer_size": 4740,
-				"line_ending": "Windows"
+				"buffer_size": 6779,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "utils/test/DataAccessTest.py",
+			"file": "utils/DataAccess.py",
 			"settings":
 			{
-				"buffer_size": 4171,
+				"buffer_size": 7465,
 				"line_ending": "Windows"
 			}
 		}
@@ -364,17 +384,25 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/tsutil.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/FileManagerTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/events/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/Events.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/README.md",
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/MarketSimulatorTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/BasicUtilsTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/BasicUtilsTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/DataManagement.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/README.md",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
 		"/C/Users/Daniel/Desktop/t.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/.gitignore",
@@ -434,7 +462,6 @@
 		"/C/Users/Daniel/Desktop/scores.out",
 		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/EMCODE/EMOUTPUT.out",
 		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/qsdateutil.py",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/results/model_comparison.txt",
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/clean.py",
 		"/C/Users/Daniel/Downloads/clean2.csv",
@@ -449,7 +476,6 @@
 		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/__init__.py",
 		"/C/Python27/Lib/logging/handlers.py",
 		"/C/Python27/Lib/logging/config.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
 		"/C/Users/Daniel/Documents/projects/modules/stocks/stock.py",
 		"/C/Users/Daniel/Documents/projects/newtask/newtask.sublime-project",
 		"/C/Users/Daniel/Documents/projects/test.py",
@@ -485,13 +511,7 @@
 		"/C/Users/Daniel/Documents/projects/QSTK/Bin/__init__.py",
 		"/C/Users/Daniel/Documents/projects/comp-investing/QSTK/config.sh",
 		"/C/cygwin/home/Daniel/.bash_profile",
-		"/C/cygwin/home/Daniel/.profile",
-		"/C/Users/Daniel/Downloads/Windows 8 AIO 16-in-1 (Final Build 9200) + Permanent Activator/README.txt",
-		"/C/Users/Daniel/Desktop/scores_gb.txt",
-		"/C/Users/Daniel/Desktop/scores_nn.txt",
-		"/C/Users/Daniel/Desktop/GB_scores.txt",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/portfolio.py",
-		"/C/Users/Daniel/Desktop/ass.py"
+		"/C/cygwin/home/Daniel/.profile"
 	],
 	"find":
 	{
@@ -509,6 +529,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"datetime",
+			"py",
+			"datetime",
+			"returnize0",
+			"fi",
+			"symbols",
+			"get_data_file",
+			"self.fm",
+			",s",
 			".all()",
 			" sim.",
 			"(sim.",
@@ -627,16 +656,7 @@
 			", ",
 			"ï",
 			"^[\\x00-\\x7F]+",
-			"-",
-			"[^[:print:]]",
-			"[^\\x00-\\x7F]+",
-			"'",
-			"é",
-			"citroen",
-			"Citroën",
-			"BMW",
-			"'",
-			"       "
+			"-"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -659,18 +679,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "sim/test/MarketSimulatorTest.py",
+					"file": "events/SimpleEvent.py",
 					"settings":
 					{
-						"buffer_size": 2984,
+						"buffer_size": 1539,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2202,
-								2204
+								129,
+								129
 							]
 						],
 						"settings":
@@ -680,25 +700,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 773.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "sim/MarketSimulator.py",
+					"file": "/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
 					"settings":
 					{
-						"buffer_size": 4740,
+						"buffer_size": 6779,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								995,
-								995
+								712,
+								671
 							]
 						],
 						"settings":
@@ -708,25 +728,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 314.0,
+						"translation.y": 240.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "utils/test/DataAccessTest.py",
+					"file": "utils/DataAccess.py",
 					"settings":
 					{
-						"buffer_size": 4171,
+						"buffer_size": 7465,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								973,
-								1014
+								6035,
+								6035
 							]
 						],
 						"settings":
@@ -736,7 +756,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 480.0,
+						"translation.y": 2844.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -824,6 +844,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 224.0,
+	"side_bar_width": 177.0,
 	"status_bar_visible": true
 }

@@ -5,13 +5,19 @@ import unittest
 from datetime import datetime
 from finance.utils import FileManager
 
-class TestFileManager(unittest.TestCase):
+class FileManagerTest(unittest.TestCase):
 
     def setUp1(self):
+        FileManager('./data').empty_dir()
         self.fm = FileManager('./data')
-        self.fm.empty_dir(delete=False)
 
-    def testGetData(self):
+    def suite(self):
+        suite = unittest.TestSuite()
+        suite.addTest(FileManagerTest('test_get_data'))
+        suite.addTest(FileManagerTest('test_exists'))
+        return suite
+
+    def test_get_data(self):
         '''
         Mainly tets the name of the files, more test for fm.get_data() on testExists()
         '''
@@ -60,7 +66,7 @@ class TestFileManager(unittest.TestCase):
                 "XOM_1-1-2005_1-1-2010.csv"]
         self.assertEqual(ans, sol)
 
-    def testExists(self):
+    def test_exists(self):
         '''
         Since fm.exists() calls fm.get_data() tests works for it too
         '''
@@ -97,7 +103,7 @@ class TestFileManager(unittest.TestCase):
         self.assertEqual(ans, True)
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestFileManager)
+    suite = FileManagerTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
     FileManager('./data').empty_dir(delete=True)

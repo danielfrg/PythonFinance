@@ -1,7 +1,6 @@
 import pandas as pd
 from finance.utils import DataAccess
 from datetime import datetime
-from datetime import date
 
 class MarketSimulator(object):
     '''
