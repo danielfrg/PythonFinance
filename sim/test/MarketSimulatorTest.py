@@ -1,10 +1,8 @@
-# Test imports
 import unittest
 import numpy as np
 import pandas as pd
 from datetime import datetime
 
-# General imports
 from finance.utils import DataAccess
 from finance.sim import MarketSimulator
 
