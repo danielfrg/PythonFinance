@@ -15,9 +15,9 @@ class TestDataAccess(unittest.TestCase):
 
     def testGetData(self):
         '''
-        Tests the number and names of columns
+        Tests the length of row and columns and their names
 
-        Note 1: File downloads are managed by finance.data.FileManager
+        Note 1: File downloads are managed by finance.utils.FileManager
                 Test for that on FileManagerTest.py
         Note 2: Other tests were done on the benchmark
         '''
@@ -60,12 +60,13 @@ class TestDataAccess(unittest.TestCase):
         df = self.da.get_data(symbols, start_date, end_date, field_s)
         self.assertEqual(len(df), 505)
         self.assertEqual(len(df.columns), 10)
-        names = ['AAPL_Close', 'AAPL_Volume', 'GLD_Close', 'GLD_Volume', 'GOOG_Close',
-                    'GOOG_Volume', 'SPY_Close', 'SPY_Volume', 'XOM_Close', 'XOM_Volume']
+        names = ['AAPL Close', 'AAPL Volume', 'GLD Close', 'GLD Volume', 'GOOG Close',
+                    'GOOG Volume', 'SPY Close', 'SPY Volume', 'XOM Close', 'XOM Volume']
         self.assertEqual(list(df.columns), names)
 
     def testSaveAndLoad(self):
         self.setUp0()
+        self.setUp1()
 
         symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]
         start_date = datetime(2008, 1, 1)
@@ -122,5 +123,4 @@ if __name__ == '__main__':
 
     #benchmark()
 
-    da = DataAccess('./data')
-    da.empty_dirs(delete=True)
+    DataAccess('./data').empty_dirs(delete=True)

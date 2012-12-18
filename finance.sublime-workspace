@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"order",
+				"ordersIsFile"
+			],
+			[
+				"load",
+				"load_trades"
+			],
+			[
 				"ex",
 				"extraAnswers"
 			],
@@ -248,34 +256,18 @@
 	"buffers":
 	[
 		{
-			"file": "utils/FileManager.py",
+			"file": "sim/test/MarketSimulatorTest.py",
 			"settings":
 			{
-				"buffer_size": 5034,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "utils/test/FileManagerTest.py",
-			"settings":
-			{
-				"buffer_size": 3550,
+				"buffer_size": 2984,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/Daniel/Desktop/t.py",
+			"file": "sim/MarketSimulator.py",
 			"settings":
 			{
-				"buffer_size": 113,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "utils/DataAccess.py",
-			"settings":
-			{
-				"buffer_size": 6142,
+				"buffer_size": 4740,
 				"line_ending": "Windows"
 			}
 		},
@@ -283,7 +275,7 @@
 			"file": "utils/test/DataAccessTest.py",
 			"settings":
 			{
-				"buffer_size": 4215,
+				"buffer_size": 4171,
 				"line_ending": "Windows"
 			}
 		}
@@ -372,20 +364,24 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/FileManagerTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/BasicUtilsTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/DataManagement.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/README.md",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
+		"/C/Users/Daniel/Desktop/t.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/.gitignore",
 		"/C/Users/Daniel/Documents/projects/packages/finance/finance.sublime-project",
-		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils.py",
 		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/utils/stock.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/datamanager/test/DataAccessTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/orders.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/data/DataAccess.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/data/AAPL_1-10-2011_12-20-2011.csv",
@@ -495,11 +491,7 @@
 		"/C/Users/Daniel/Desktop/scores_nn.txt",
 		"/C/Users/Daniel/Desktop/GB_scores.txt",
 		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/portfolio.py",
-		"/C/Users/Daniel/Desktop/ass.py",
-		"/C/Users/Daniel/Desktop/t.py",
-		"/C/Python27/Lib/site-packages/rpy2/rinterface/__init__.py",
-		"/C/Users/Daniel/Documents/projects/comp-investing/README.md",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/data/EP.csv"
+		"/C/Users/Daniel/Desktop/ass.py"
 	],
 	"find":
 	{
@@ -517,6 +509,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			".all()",
+			" sim.",
+			"(sim.",
+			"p1",
+			"self.equities_value",
+			"self.porfolio",
 			"porfolio_value",
 			"portfolio_value",
 			"ammount_each_stock",
@@ -638,13 +636,7 @@
 			"Citroën",
 			"BMW",
 			"'",
-			"       ",
-			"        ",
-			"         ",
-			"	 ",
-			"        ",
-			"         ",
-			"posterior"
+			"       "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -662,23 +654,23 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "utils/FileManager.py",
+					"file": "sim/test/MarketSimulatorTest.py",
 					"settings":
 					{
-						"buffer_size": 5034,
+						"buffer_size": 2984,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4626,
-								4626
+								2202,
+								2204
 							]
 						],
 						"settings":
@@ -688,25 +680,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 773.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "utils/test/FileManagerTest.py",
+					"file": "sim/MarketSimulator.py",
 					"settings":
 					{
-						"buffer_size": 3550,
+						"buffer_size": 4740,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								100,
-								100
+								995,
+								995
 							]
 						],
 						"settings":
@@ -716,79 +708,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 314.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/C/Users/Daniel/Desktop/t.py",
-					"settings":
-					{
-						"buffer_size": 113,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								94,
-								94
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "utils/DataAccess.py",
-					"settings":
-					{
-						"buffer_size": 6142,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								124,
-								124
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "utils/test/DataAccessTest.py",
 					"settings":
 					{
-						"buffer_size": 4215,
+						"buffer_size": 4171,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2795,
-								2795
+								973,
+								1014
 							]
 						],
 						"settings":
@@ -798,7 +736,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1897.0,
+						"translation.y": 480.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

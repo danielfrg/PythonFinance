@@ -17,18 +17,18 @@ class TestFileManager(unittest.TestCase):
         '''
         self.setUp1()
 
-        # Test return None on missing
+        # Test: return None on missing and downloadMissing=False
         symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
         start_date = datetime(2008, 1, 1)
         end_date = datetime(2009, 12, 31)
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=False)
         self.assertEqual(ans, None)
 
-        # Test name on non-missing
+        # Test: Download file and test name
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
         self.assertEqual(ans, "AAPL_1-1-2008_12-31-2009.csv")
 
-        # Test smaller dates gives the same file, dont download un-necessary files
+        # Test: smaller dates so gives the same file, dont download un-necessary files
         start_date = datetime(2008, 6, 6)
         end_date = datetime(2009, 12, 31)
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
@@ -39,11 +39,26 @@ class TestFileManager(unittest.TestCase):
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
         self.assertEqual(ans, "AAPL_1-1-2008_12-31-2009.csv")
 
-        # Test bigger dates, download necessary files
+        # Test: bigger dates, download another file
         start_date = datetime(2007, 1, 1) # Bigger
         end_date = datetime(2009, 6, 6) # Smaller
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
         self.assertEqual(ans, "AAPL_1-1-2007_6-6-2009.csv")
+
+        # Test: bigger dates, download another file
+        start_date = datetime(2007, 1, 1) # Bigger
+        end_date = datetime(2010, 6, 6) # Smaller
+        ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
+        self.assertEqual(ans, "AAPL_1-1-2007_6-6-2010.csv")
+
+        # Test: Download multiple files
+        start_date = datetime(2005, 1, 1)
+        end_date = datetime(2010, 1, 1)
+        ans = self.fm.get_data(symbols, start_date, end_date, downloadMissing=True)
+        sol = ["AAPL_1-1-2005_1-1-2010.csv", "GLD_1-1-2005_1-1-2010.csv",
+                "GOOG_1-1-2005_1-1-2010.csv", "SPY_1-1-2005_1-1-2010.csv",
+                "XOM_1-1-2005_1-1-2010.csv"]
+        self.assertEqual(ans, sol)
 
     def testExists(self):
         '''
@@ -82,9 +97,7 @@ class TestFileManager(unittest.TestCase):
         self.assertEqual(ans, True)
 
 if __name__ == '__main__':
-    #unittest.main()
     suite = unittest.TestLoader().loadTestsFromTestCase(TestFileManager)
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    fm = FileManager('./data')
-    fm.empty_dir(delete=True)
+    FileManager('./data').empty_dir(delete=True)
