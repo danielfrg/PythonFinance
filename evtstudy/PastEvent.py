@@ -22,6 +22,7 @@ class PastEvent(SimpleEvent):
         self.market = "SPY"
 
         # Results
+        self.evt_window_data = None
         self.er = None
         self.ar = None
         self.car = None
@@ -30,16 +31,18 @@ class PastEvent(SimpleEvent):
 
 
     def run(self):
-        dates = DateUtils.get_nyse_dates_event(self.date, self.lookback_days + self.estimation_period,
-                                                self.lookforward_days, list=True)
+        dates = DateUtils.nyse_dates_event(self.date,
+                            self.lookback_days + self.estimation_period,
+                            self.lookforward_days, list=True)
         start_date = dates[0]
         end_date = dates[-1]
 
-        # Data to the general event
+        # Data to the General market_return Study
         self.data = self.da.get_data(self.symbol, start_date, end_date, self.field)
+        evt_window_dates = dates[- self.lookforward_days - self.lookback_days - 1:]
+        self.evt_window_data = self.data[evt_window_dates[0]:dates[-1]]
         self.market = self.da.get_data(self.market, start_date, end_date, self.field)
-
-        # Parameters of the General Event
+        # Parameters of the General market_return Study
         self.start_period = dates[0]
         self.end_period = dates[self.estimation_period]
         self.start_window = dates[self.estimation_period]
@@ -49,7 +52,7 @@ class PastEvent(SimpleEvent):
         super().market_return()
 
 if __name__ == "__main__":
-    pevt = PastEvent('./test/data')
+    pevt = PastEvent('./data')
     pevt.symbol = 'AAPL'
     pevt.market = "^gspc"
     pevt.lookback_days = 10
@@ -57,3 +60,4 @@ if __name__ == "__main__":
     pevt.estimation_period = 252
     pevt.date = datetime(2009, 1, 5)
     pevt.run()
+    print(pevt.er)

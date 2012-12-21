@@ -85,42 +85,54 @@ class DataAccess(object):
             pandas.DataFrame - with the data of the symbols and fields requested
                                 index:
         '''
-        # 0. Generate and string which represents the data requested
-        filename_large = "%s_%s_%s_%s" % ('_'.join(symbol_s), start_date.strftime('%m-%d-%Y'),
-                            end_date.strftime('%m-%d-%Y'), '-'.join(field_s))
-        # 0. Generates hash key of the string to reduce filename length
-        h = hashlib.md5()
-        h.update(filename_large.encode('utf8'))
-        filename = h.hexdigest() + ".data"
         # 1. Load the Data
-        data = self.load(filename)
-        if data is not None and useCache == True:
-            # 1.1 Data was cached so return it
-            return data
-        else:
-            # 1.2 Data was not cached before need to load the data from csv files
-            df = self.get_data_from_files(symbol_s, start_date, end_date, field_s, downloadMissing)
-            if save == True:
-                # 1.2.1 Saves the cache version
-                self.save(df, filename)
-            return df
+        if useCache == True:
+            data = self.load(self.generate_filename(symbol_s, start_date, end_date, field_s))
+            if data is not None:
+                # 1.1 Data was cached so return it
+                return data
 
-    def load(self, name):
+        # 1.2 Data was not cached before need to load the data from csv files
+        df = self.get_data_from_files(symbol_s, start_date, end_date, field_s, downloadMissing)
+        if save == True:
+            # 1.2.1 Saves the cache version
+            self.save(df, self.generate_filename(symbol_s, start_date, end_date, field_s))
+        return df
+
+    def load(self, name, extension='.data'):
         '''
         Checks for an existing file name and if exists returns the data saved
         '''
-        f = os.path.join(self.cache_dir, name)
+        h = hashlib.md5()
+        h.update(name.encode('utf8'))
+        filename = h.hexdigest() + extension
+
+        f = os.path.join(self.cache_dir, filename)
         if os.access(f, os.F_OK):
             return pd.load(f)
         else:
             return None
 
-    def save(self, data, name):
+    def save(self, data, name, extension='.data'):
         '''
         Save a serialized (pickle) version of the data to the cache directory
         '''
-        f = os.path.join(self.cache_dir, name)
+        h = hashlib.md5()
+        h.update(name.encode('utf8'))
+        filename = h.hexdigest() + extension
+
+        f = os.path.join(self.cache_dir, filename)
         data.save(f)
+
+    def generate_filename(self, symbol_s, start_date, end_date, field_s, extension='.data'):
+        filename_large = "%s_%s_%s_%s" % ('_'.join(symbol_s),
+                                            start_date.strftime('%m-%d-%Y'),
+                                            end_date.strftime('%m-%d-%Y'),
+                                            '-'.join(field_s))
+        # 0.1 Generates hash key of the string to reduce filename length
+        h = hashlib.md5()
+        h.update(filename_large.encode('utf8'))
+        return h.hexdigest() + extension
 
     def get_data_from_files(self, symbol_s, start_date, end_date, field_s, downloadMissing=True):
         '''

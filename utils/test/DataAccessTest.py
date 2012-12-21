@@ -55,7 +55,6 @@ class DataAccessTest(unittest.TestCase):
         names = ['Close', 'Volume']
         self.assertEqual(list(df.columns), names)
 
-
         # Multiple symbol, multiple fields
         symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
         field_s = ["Close", "Volume"]
@@ -75,9 +74,9 @@ class DataAccessTest(unittest.TestCase):
         fields = "Close"
 
         close = self.da.get_data(symbols, start_date, end_date, fields, save=False)
-        self.da.save(close, "customName.data")
+        self.da.save(close, "customName", extension='.custom')
 
-        close_loaded = self.da.load("customName.data")
+        close_loaded = self.da.load("customName", extension='.custom')
 
         self.assertEqual(list(close.columns), list(close_loaded.columns))
         self.assertEqual(len(close), len(close_loaded))

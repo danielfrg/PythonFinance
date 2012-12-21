@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from finance.utils import DataAccess
 from datetime import datetime
@@ -51,23 +52,24 @@ class MarketSimulator(object):
         # 0.1 if trades is not None load them
         if trades is not None:
             if ordersIsDataFrame:
-                self.set_trades(trades)
+                self.trades = trades
             else:
-                # If there is no DataFrame then is a file to be loaded
+                # If orders no DataFrame then is a file to be loaded
                 self.load_trades(trades)
         # 0.2 Load/Download required data
         symbols = list(set(self.trades['symbol']))
         start_date = self.trades.index[0].to_pydatetime()  # Convert from TimeStamp to datetime
         end_date = self.trades.index[-1].to_pydatetime()
         self.prices = self.da.get_data(symbols, start_date, end_date, "Adj Close")
-        # 0.3 Init other DataFrames, dictionaries
-        self.cash = pd.DataFrame(index=self.prices.index, columns=['Cash'])
-        self.own = pd.DataFrame(index=self.prices.index, columns=self.prices.columns)
-        current_stocks = dict([(symbol, 0) for symbol in list(set(self.trades['symbol']))])
-        # 0.3 Set the current cash to the initial cash before star the simulation
-        self.current_cash = self.initial_cash
+        # 0.3 Init other DataFrames
+        self.cash = pd.DataFrame(index=self.prices.index, columns=['Cash'], dtype=np.float64)
+        self.own = pd.DataFrame(index=self.prices.index, columns=self.prices.columns, dtype=np.float64)
 
         # 1. Fill the DataFrames
+        # 1.1 current_stocks e.g.: [('AAPL', 0), ('GOOG', 0)]
+        current_stocks = dict([(symbol, 0) for symbol in list(set(self.trades['symbol']))])
+        # 1.1 Set the current cash to the initial cash before star the simulation
+        self.current_cash = self.initial_cash
         for idx, row in self.trades.iterrows():
             # For each order
             # Note: idx is Timestamp, row is Series
@@ -78,8 +80,8 @@ class MarketSimulator(object):
             action = row['action'].lower()[0:1]
             num_of_shares = row['num_of_shares']
 
-            # 1.1 Fill the cash DataFrame
-            # Get the change of cash on the order
+            # 1.1 Fill the self.cash DataFrame - ammount of cash on each date
+            # change of cash on the order
             cash_change = self.prices[symbol][idx] * num_of_shares
             if action == 'b':
                 self.current_cash = self.current_cash - cash_change
@@ -88,7 +90,7 @@ class MarketSimulator(object):
             # Modify self.cash DataFrame
             self.cash.ix[idx] = self.current_cash
 
-            # 1.2 Fill the own DataFrame - num of stocks on each date
+            # 1.2 Fill the self.own DataFrame - num of each stocks on each date
             if action == 'b':
                 current_stocks[symbol] = current_stocks[symbol] + num_of_shares
             elif action == 's':
@@ -104,18 +106,19 @@ class MarketSimulator(object):
 
         # 2. Get the value of the equitues
         self.equities = self.own * self.prices
-        self.equities = self.equities.sum(1)
+        self.equities = self.equities.sum(axis=1)
+        self.equities.columns = ['Equities']
 
         # 3. Get the value of the porfolio = cash + equities_value
         self.portfolio = self.cash + self.equities
         self.portfolio.columns = ['Portfolio']
 
 if __name__ == "__main__":
-    sim = MarketSimulator('./test/data2')
+    sim = MarketSimulator('./test/data')
     sim.initial_cash = 1000000
-    sim.load_trades("../examples/MarketSimulator_orders.csv")
+    sim.load_trades("./test/orders.csv")
     sim.simulate()
-    print(sim.portfolio.tail())
+    print(sim.portfolio['Portfolio'].dtype)
 
 
 

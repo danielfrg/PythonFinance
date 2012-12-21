@@ -70,8 +70,8 @@ class FileManager(object):
                 if file_name.startswith(symbol):
                     # Check if the dates of the file are greater or equal than the requested
                     # Note: split to get each date and file_name[:-4] to remove the .csv
-                    fi_start_date = datetime.strptime(file_name[:-4].split('_')[1], "%m-%d-%Y")
-                    fi_end_date = datetime.strptime(file_name[:-4].split('_')[2], "%m-%d-%Y")
+                    fi_start_date = datetime.strptime(file_name[:-4].split('_')[1], "%Y-%m-%d")
+                    fi_end_date = datetime.strptime(file_name[:-4].split('_')[2], "%Y-%m-%d")
                     if fi_start_date <= start_date and fi_end_date >= end_date:
                         f = file_name
 
@@ -79,8 +79,8 @@ class FileManager(object):
                 success = self.yahoo_download(symbol, start_date, end_date)
                 if success:
                     # If download was susccesfull add the path to the new file
-                    f = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.month, start_date.day,
-                        start_date.year, end_date.month, end_date.day, end_date.year)
+                    f = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.year, start_date.month,
+                        start_date.day, end_date.year, end_date.month, end_date.day)
             ans.append(f)
 
         if len(ans) == 1:
@@ -128,8 +128,8 @@ class FileManager(object):
                             })
 
             webFile = urllib.request.urlopen("http://ichart.finance.yahoo.com/table.csv?%s" % params)
-            filename = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.month, start_date.day,
-                        start_date.year, end_date.month, end_date.day, end_date.year)
+            filename = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.year, start_date.month,
+                        start_date.day, end_date.year, end_date.month, end_date.day)
             localFile = open( os.path.join(self.dir, filename), 'w')
             localFile.write(webFile.read().decode('utf-8'))
             webFile.close()

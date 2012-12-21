@@ -1,7 +1,7 @@
 from datetime import datetime
 from finance.data import DataAccess
 
-da = DataAccess()
+da = DataAccess('./data')
 symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]
 start_date = datetime(2008, 1, 1)
 end_date = datetime(2009, 12, 31)

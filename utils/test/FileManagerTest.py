@@ -1,7 +1,4 @@
-# Test imports
 import unittest
-
-# General imports
 from datetime import datetime
 from finance.utils import FileManager
 
@@ -19,11 +16,11 @@ class FileManagerTest(unittest.TestCase):
 
     def test_get_data(self):
         '''
-        Mainly tets the name of the files, more test for fm.get_data() on testExists()
+        Mainly tets the name of the files, more test on testExists()
         '''
         self.setUp1()
 
-        # Test: return None on missing and downloadMissing=False
+        # Test: return None on missing file with downloadMissing=False
         symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
         start_date = datetime(2008, 1, 1)
         end_date = datetime(2009, 12, 31)
@@ -32,38 +29,39 @@ class FileManagerTest(unittest.TestCase):
 
         # Test: Download file and test name
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
-        self.assertEqual(ans, "AAPL_1-1-2008_12-31-2009.csv")
+        self.assertEqual(ans, "AAPL_2008-1-1_2009-12-31.csv")
 
-        # Test: smaller dates so gives the same file, dont download un-necessary files
-        start_date = datetime(2008, 6, 6)
+        # Test: smaller dates so gives the same file: dont download un-necessary files
+        start_date = datetime(2008, 6, 6) # Smaller
         end_date = datetime(2009, 12, 31)
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
-        self.assertEqual(ans, "AAPL_1-1-2008_12-31-2009.csv")
+        self.assertEqual(ans, "AAPL_2008-1-1_2009-12-31.csv")
 
+        # Test: smaller dates so gives the same file: dont download un-necessary files
         start_date = datetime(2008, 1, 1)
-        end_date = datetime(2009, 6, 6)
+        end_date = datetime(2009, 6, 6) # Smaller
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
-        self.assertEqual(ans, "AAPL_1-1-2008_12-31-2009.csv")
+        self.assertEqual(ans, "AAPL_2008-1-1_2009-12-31.csv")
 
         # Test: bigger dates, download another file
         start_date = datetime(2007, 1, 1) # Bigger
-        end_date = datetime(2009, 6, 6) # Smaller
+        end_date = datetime(2009, 6, 6)  # Smaller
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
-        self.assertEqual(ans, "AAPL_1-1-2007_6-6-2009.csv")
+        self.assertEqual(ans, "AAPL_2007-1-1_2009-6-6.csv")
 
         # Test: bigger dates, download another file
         start_date = datetime(2007, 1, 1) # Bigger
         end_date = datetime(2010, 6, 6) # Smaller
         ans = self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
-        self.assertEqual(ans, "AAPL_1-1-2007_6-6-2010.csv")
+        self.assertEqual(ans, "AAPL_2007-1-1_2010-6-6.csv")
 
         # Test: Download multiple files
         start_date = datetime(2005, 1, 1)
         end_date = datetime(2010, 1, 1)
         ans = self.fm.get_data(symbols, start_date, end_date, downloadMissing=True)
-        sol = ["AAPL_1-1-2005_1-1-2010.csv", "GLD_1-1-2005_1-1-2010.csv",
-                "GOOG_1-1-2005_1-1-2010.csv", "SPY_1-1-2005_1-1-2010.csv",
-                "XOM_1-1-2005_1-1-2010.csv"]
+        sol = ["AAPL_2005-1-1_2010-1-1.csv", "GLD_2005-1-1_2010-1-1.csv",
+                "GOOG_2005-1-1_2010-1-1.csv", "SPY_2005-1-1_2010-1-1.csv",
+                "XOM_2005-1-1_2010-1-1.csv"]
         self.assertEqual(ans, sol)
 
     def test_exists(self):

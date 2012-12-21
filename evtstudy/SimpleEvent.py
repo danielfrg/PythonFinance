@@ -1,12 +1,11 @@
 import numpy as np
 import pandas as pd
 from scipy import stats
-import statsmodels.api as sm
 from datetime import datetime
-from finance.utils import BasicUtils as bu
+from finance.utils import BasicUtils
 
 class SimpleEvent(object):
-    def __init__(self, path='./data'):
+    def __init__(self):
         self.data = None
         self.market = None
 
@@ -17,25 +16,21 @@ class SimpleEvent(object):
 
 
     def market_return(self):
-        # 1. Regression: On the period before the window
-        dr_data = bu.daily_returns(self.data)
-        dr_market = bu.daily_returns(self.market)
-        dr_market['intercept'] = 1
-        reg_results = sm.OLS(dr_data[self.start_period:self.end_period],
-                        dr_market[self.start_period:self.end_period]).fit()
-        del dr_market['intercept']
-        # Solution to the regresion
-        slope = reg_results.params[0]
-        intercept = reg_results.params[1]
-        std_error = dr_market[self.start_period:self.end_period].std()['Daily Return']
+        # 1. Linear Regression: On the estimation_period
+        dr_data = BasicUtils.daily_returns(self.data)
+        dr_market = BasicUtils.daily_returns(self.market)
+        c_name = dr_data.columns[0]
+        x =  dr_market[c_name][self.start_period:self.end_period]
+        y = dr_data[c_name][self.start_period:self.end_period]
+        slope, intercept, r_value, p_value, std_error = stats.linregress(x, y)
         expected_return = lambda x: x * slope + intercept
 
         # 2. Analysis on the event window
         # Expexted Return:
-        self.er = dr_market['Daily Return'][self.start_window:self.end_window].apply(expected_return)
+        self.er = dr_market[self.start_window:self.end_window].apply(expected_return)[c_name]
         self.er.name = 'Expected Return'
         # Abnormal return: Return of the data - expected return
-        self.ar = dr_data['Daily Return'][self.start_window:self.end_window] - self.er
+        self.ar = dr_data[c_name][self.start_window:self.end_window] - self.er
         self.ar.name = 'Abnormal Return'
         # Cumulative abnormal return
         self.car = self.ar.apply(np.cumsum)
@@ -47,3 +42,14 @@ class SimpleEvent(object):
         self.prob = self.t_test.apply(stats.norm.cdf)
         self.prob.name = 'Probability'
 
+if __name__ == "__main__":
+    from finance.evtstudy import PastEvent
+    pevt = PastEvent('./data')
+    pevt.symbol = 'AAPL'
+    pevt.market = "^gspc"
+    pevt.lookback_days = 10
+    pevt.lookforward_days = 10
+    pevt.estimation_period = 252
+    pevt.date = datetime(2009, 1, 5)
+    pevt.run()
+    print(pevt.er)

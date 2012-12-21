@@ -1,69 +1,77 @@
-import os, inspect
 import math
+import numpy as np
 import pandas as pd
+from copy import deepcopy
 
-def total_return(df, field=None):
+def total_return(data):
     '''
     Calculates the total return
-    Parameters:
-        df - pandas.DataFrame or pandas.Series
-        field=None - optinal parameter with column name of the target
-    Returns:
-        int
-    '''
-    if field is None:
-        return df.values[-1][0] / df.values[0][0] - 1
-    else:
-        return df[field].values[-1] / df[field].values[0] - 1
 
-def daily_returns(df, field=None):
+    Parameters
+    ----------
+        data: numpy.array or pandas.Series
+
+    Returns
+    -------
+        total_return: int, with the total return
+    '''
+    if type(data) is np.ndarray:
+        return data[-1] / data[0] - 1
+    else:
+        return data.values[-1] / data.values[0] - 1
+
+def daily_returns(data):
     '''
     Calculates the daily returns
-    Parameters:
-        df - pandas.DataFrame or pandas.Series
-        field=None - optinal parameter with column name of the target
-    Returns:
-        pandas.dataFrame: index equal to the original - columns:['Daily Return']
+
+    Parameters
+    ----------
+        data: numpy.array or pandas.Series or pandas.DataFrame
+
+    Returns
+    -------
+        daily_return: same type as data
     '''
-    ans = pd.DataFrame(None, index=df.index, columns=['Daily Return'])
-    ans['Daily Return'][0] = 0
+    if type(data) is not np.ndarray:
+        values = data.values
+    else:
+        values = data
 
-    i = 0
-    for idx, row in df.iterrows():
-        if i == 0:
-            first_it = False
-        else:
-            ret = 0
-            if field is None:
-                ret = df.values[i][0] / df.values[i-1][0] - 1
-            else:
-                ret = df[field].values[i] / df[field].values[i-1] - 1
-            ans['Daily Return'][i] = ret
-        i = i + 1
+    dr = deepcopy(values)
+    dr[0] = 0
+    dr[1:] = (values[1:] / values[0:-1]) - 1
 
-    return ans
+    if type(data) is np.ndarray:
+        return dr
+    elif type(data) is pd.core.series.Series:
+        ans = pd.Series(dr, index=data.index)
+        ans.name = 'Daily Return'
+        return ans
+    elif type(data) is pd.core.frame.DataFrame:
+        ans = pd.DataFrame(dr, index=data.index, columns=data.columns)
+        ans.columns.name = 'Daily Return'
+        return ans
 
-def sharpe_ratio(df, field=None, extraAnswers=False):
+def sharpe_ratio(data, extraAnswers=False):
     '''
     Calculates the sharpe ratio
-    Parameters:
-        df - pandas.DataFrame or pandas.Series
-        field=None - optinal parameter with column name of the target
+
+    Parameters
+    ----------
+        data - pandas.DataFrame or pandas.Series
         extraAnswers=False - optional parameter if want more information than just the sharpe_ratio
                                 also retuns the mean and standard deviation
-    Returns:
-        int (if extraAnswers=False) - with the sharpe ratio
-        dictionary (if extraAnswers=True) - with {'sharpe_ratio', 'mean', 'std'}
+
+    Returns
+    -------
+        if extraAnswers=False -> int: sharpe ratio
+        if extraAnswers=True  -> dictionary: {'sharpe_ratio', 'mean', 'std'}
     '''
-    dr = daily_returns(df, field)
+    dr = daily_returns(data)
     mean = dr.mean(0)[0]
     std = dr.std(0)[0]
-    sr = math.sqrt(len(df)) * mean / std
+    sr = math.sqrt(len(data)) * mean / std
     if extraAnswers:
         return {'sharpe_ratio': sr, 'mean': mean, 'std': std}
     else:
         return sr
-
-def get_nyse_dates():
-    d = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-    f = 'NYSE_dates.txt'

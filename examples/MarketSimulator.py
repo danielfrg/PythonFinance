@@ -2,7 +2,7 @@ from datetime import datetime
 from finance.utils.BasicUtils import *
 from finance.sim import MarketSimulator
 
-sim = MarketSimulator('../sim/test/data')
+sim = MarketSimulator('./data')
 sim.initial_cash = 1000000
 sim.simulate("MarketSimulator_orders.csv")
 

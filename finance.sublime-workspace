@@ -4,24 +4,180 @@
 		"selected_items":
 		[
 			[
+				"loo",
+				"lookforwardDays"
+			],
+			[
+				"nt",
+				"nyse_dates"
+			],
+			[
+				"look",
+				"lookforwardDays"
+			],
+			[
 				"id",
-				"idx_end_date"
+				"idx_start_date"
 			],
 			[
-				"idx",
-				"idx_starts_date"
+				"date",
+				"datetime"
 			],
 			[
-				"lo",
-				"lookforward_days"
+				"all",
+				"all_dates"
 			],
 			[
-				"sym",
-				"symbol_s"
+				"get_",
+				"get_idx_date"
+			],
+			[
+				"test",
+				"testdf"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"ab",
+				"abnormal_return"
+			],
+			[
+				"dr_",
+				"dr_data_window"
+			],
+			[
+				"mar",
+				"market_window"
+			],
+			[
+				"slo",
+				"slope_std_error"
+			],
+			[
+				"data",
+				"data_estimation"
+			],
+			[
+				"ev",
+				"evt_idx"
+			],
+			[
+				"reg",
+				"reg_estimation"
+			],
+			[
+				"Data",
+				"DataFrame"
+			],
+			[
+				"dr",
+				"dr_market_estimation"
+			],
+			[
+				"col",
+				"col_name"
+			],
+			[
+				"pd",
+				"pd"
+			],
+			[
+				"dail",
+				"daily_returns"
 			],
 			[
 				"evt",
-				"evt"
+				"evt_window_data"
+			],
+			[
+				"e",
+				"end_date"
+			],
+			[
+				"return",
+				"return"
+			],
+			[
+				"sym",
+				"symbols"
+			],
+			[
+				"end",
+				"end_idx"
+			],
+			[
+				"en",
+				"evt_window_data"
+			],
+			[
+				"star",
+				"start_idx"
+			],
+			[
+				"get",
+				"get_idx_date"
+			],
+			[
+				"idx",
+				"idx_end_date"
+			],
+			[
+				"n",
+				"new_col"
+			],
+			[
+				"lo",
+				"lookback_days"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"sy",
+				"symbols"
+			],
+			[
+				"Mar",
+				"MarketSimulatorTest"
+			],
+			[
+				"BasicUtils",
+				"BasicUtilsTest"
+			],
+			[
+				"sta",
+				"start_window"
+			],
+			[
+				"sat",
+				"start_period"
+			],
+			[
+				"for",
+				"forward_days"
+			],
+			[
+				"ar",
+				"ar"
+			],
+			[
+				"excep",
+				"exception"
+			],
+			[
+				"estimi",
+				"estimation_period"
+			],
+			[
+				"es",
+				"estimation_period"
+			],
+			[
+				"st",
+				"std_error"
 			],
 			[
 				"set",
@@ -72,10 +228,6 @@
 				"initial_cash"
 			],
 			[
-				"date",
-				"date"
-			],
-			[
 				"fir",
 				"first_row"
 			],
@@ -92,20 +244,8 @@
 				"field"
 			],
 			[
-				"get_",
-				"get_data"
-			],
-			[
-				"sy",
-				"symbol_s"
-			],
-			[
 				"down",
 				"downloadMissing"
-			],
-			[
-				"en",
-				"end_date"
 			],
 			[
 				"symbol_s",
@@ -128,24 +268,12 @@
 				"field_s"
 			],
 			[
-				"da",
-				"data_dic"
-			],
-			[
-				"n",
-				"n_data"
-			],
-			[
 				"field",
 				"field_s"
 			],
 			[
 				"dir",
 				"dir_path"
-			],
-			[
-				"star",
-				"start_date"
 			],
 			[
 				"exis",
@@ -158,10 +286,6 @@
 			[
 				"stock",
 				"stock_file"
-			],
-			[
-				"get",
-				"get_data"
 			],
 			[
 				"ya",
@@ -275,30 +399,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "events/SimpleEvent.py",
-			"settings":
-			{
-				"buffer_size": 1539,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
-			"settings":
-			{
-				"buffer_size": 6779,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "utils/DataAccess.py",
-			"settings":
-			{
-				"buffer_size": 7465,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -384,27 +484,57 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/tsutil.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/FileManagerTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/__init__.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/events/__init__.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/Events.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/README.md",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/MarketSimulatorTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/BasicUtilsTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/BasicUtilsTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/DataManagement.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/tsutil.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/EventFinder.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/PastEvent.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/PastEventTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/BasicUtilsTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/MarketSimulatorTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/FileManagerTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DateUtils.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DateUtilsTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/NYSE_dates.txt",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/NYSE_dates.py",
+		"/C/Python32/Lib/site-packages/pandas/core/frame.py",
+		"/C/Python32/Lib/site-packages/pandas/core/api.py",
+		"/C/Python32/Lib/site-packages/pandas/__init__.py",
+		"/C/Python32/Lib/site-packages/pandas/core/__init__.py",
+		"/C/Python32/Lib/site-packages/pandas/core/series.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/qsdateutil.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/SimpleEvent.py",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/SPY_2008-10-7_2011-1-13.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-13.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/GOOG_2009-1-2_2010-12-30.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_17-12-2008_13-1-2011.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_11-7-2008_31-1-2011.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_3-9-2008_20-1-2011.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/XOM_1-1-2009_1-1-2011.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/EventStudy_finder.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/EventStudy_Past.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/SimpleEventTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_11-1-2007_2-20-2009.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/events/SimpleEvent.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/events/__init__.py",
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/Events.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/BasicUtilsTest.py",
 		"/C/Users/Daniel/Desktop/t.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/__init__.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/.gitignore",
 		"/C/Users/Daniel/Documents/projects/packages/finance/finance.sublime-project",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils.py",
@@ -423,7 +553,6 @@
 		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Daniel/Documents/projects/packages/financ.sublime-workspace",
 		"/C/Users/Daniel/Documents/projects/packages/financ.sublime-project",
-		"/C/Python32/Lib/site-packages/pandas/__init__.py",
 		"/C/Users/Daniel/Documents/projects/modules/test.py",
 		"/C/Users/Daniel/Documents/projects/modules/finance/data/DataAccess.py",
 		"/C/Users/Daniel/Documents/projects/modules/finance/data/FileManager.py",
@@ -437,7 +566,6 @@
 		"/C/Users/Daniel/Documents/projects/modules/log/test/verbose.py",
 		"/C/Users/Daniel/Documents/projects/modules/finance/data/NYSE_dates.txt",
 		"/C/Users/Daniel/Desktop/a.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/DataAccess.py",
 		"/C/Users/Daniel/Documents/projects/modules/log/__init__.py",
 		"/C/Users/Daniel/Documents/projects/modules/finance/data/pull.py",
 		"/C/Users/Daniel/Documents/projects/modules/log/tutorial/verbose.py",
@@ -461,7 +589,6 @@
 		"/C/Users/Daniel/Desktop/nn_output",
 		"/C/Users/Daniel/Desktop/scores.out",
 		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/EMCODE/EMOUTPUT.out",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/qsdateutil.py",
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/results/model_comparison.txt",
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/clean.py",
 		"/C/Users/Daniel/Downloads/clean2.csv",
@@ -484,34 +611,7 @@
 		"/C/Python27/Scripts/easy_install-script.py",
 		"/C/Users/Daniel/Documents/projects/QSTK/Examples/EventProfiler/tutorial.py",
 		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/sp5002008 - Copy.txt",
-		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/sp5002008.txt",
-		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/SPY.csv",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/pull.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/AAPL.csv",
-		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/index.txt",
-		"/C/Users/Daniel/Downloads/Sublime Text 2/Read Me.txt",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment 2/events.py",
-		"/C/Users/Daniel/Videos/Coursera/Computational Investing/Index.txt",
-		"/C/Users/Daniel/Downloads/make.tsv",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/cars.csv",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/training.csv",
-		"/C/Users/Daniel/Downloads/cars.csv",
-		"/C/Users/Daniel/Desktop/data.sql",
-		"/C/Users/Daniel/AppData/Local/Temp/7zE83F5.tmp/data.sql",
-		"/C/Users/Daniel/AppData/Local/Temp/7zO4069.tmp/current_list.txt",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/example_entry.csv",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project 3/Carvana_Data_Dictionary.txt",
-		"/C/Users/Daniel/Documents/projects/QSTK/Examples/Basic/tutorial1.py",
-		"/C/Users/Daniel/Documents/projects/.bashrc",
-		"/C/cygwin/home/Daniel/.bashrc",
-		"/C/Users/Daniel/Documents/projects/QSTK/local.sh",
-		"/C/Users/Daniel/Documents/projects/QSTK/__init__.py",
-		"/C/Python27/Lib/site-packages/pylab.py",
-		"/C/Python27/Lib/site-packages/easy_install.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/Bin/__init__.py",
-		"/C/Users/Daniel/Documents/projects/comp-investing/QSTK/config.sh",
-		"/C/cygwin/home/Daniel/.bash_profile",
-		"/C/cygwin/home/Daniel/.profile"
+		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/sp5002008.txt"
 	],
 	"find":
 	{
@@ -529,6 +629,62 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"get_nyse_dates",
+			"get_idx_nyse_date",
+			"get_nyse_dates(",
+			"get_nyse_dates",
+			"dateutil",
+			"GTS_DATES",
+			"df",
+			"assert_frame_equal",
+			"pd_test",
+			"self.assertEquals(",
+			"pd_test.assert_frame_equal",
+			"self.assertTrue(self.dfCompare",
+			"generate",
+			"reg_results",
+			"evt_estimation_data",
+			"evt_window_data",
+			"returnize0",
+			"deepcop",
+			"returnize0",
+			"AAPL_1-1-2007_6-6-2009.csv",
+			"AAPL_1-1-2008_12-31-2009",
+			"%d-%m-%Y",
+			"data_dic",
+			"evt_matrix",
+			"%d",
+			"True)",
+			"False)",
+			"1/5/2009",
+			"Series",
+			"BasicUtilsTest",
+			"FileManagerTest",
+			"TestFileManager",
+			"DataAccessTest",
+			"PastEventTest",
+			"pevt",
+			"start_window",
+			"start_period",
+			"GTS_DATES",
+			"nyse",
+			"Nyse",
+			"Nyst",
+			"str(x)",
+			"int(x)",
+			"int(",
+			"int",
+			"evt2.",
+			"None",
+			"list(e",
+			"list(",
+			"list(s",
+			"list(",
+			"evt.",
+			"e_r",
+			"results",
+			"idx_end_date",
+			"idx_start_date",
 			"datetime",
 			"py",
 			"datetime",
@@ -600,63 +756,7 @@
 			"  ",
 			"    ",
 			"      ",
-			"       ",
-			"        ",
-			"         ",
-			" ",
-			"		",
-			"	  ",
-			"	 ",
-			"		 ",
-			"    ",
-			"      ",
-			"    ",
-			"      ",
-			"       ",
-			" ",
-			"  ",
-			"	  ",
-			"    ",
-			"	    ",
-			"		",
-			"         ",
-			"            ",
-			"                     ",
-			"                                     ",
-			"    ",
-			"	 ",
-			"	  ",
-			"	 ",
-			"      ",
-			"       ",
-			"        ",
-			"  ",
-			"	7",
-			"	6",
-			"	5",
-			"5",
-			"	4",
-			"	3",
-			"	2",
-			"	1",
-			"	 ",
-			"		",
-			"    ",
-			"           ",
-			"  Obs           RefId      Buy1",
-			"  Obs           RefId    BadBuy1",
-			" ",
-			"  Obs           RefId      Buy1",
-			"  Obs           RefId    BadBuy1",
-			"                          P_Is",
-			"GTS_DATES",
-			"NYSE",
-			"symbol_name",
-			"mktneutDM",
-			", ",
-			"ï",
-			"^[\\x00-\\x7F]+",
-			"-"
+			"       "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -674,93 +774,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "events/SimpleEvent.py",
-					"settings":
-					{
-						"buffer_size": 1539,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								129,
-								129
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
-					"settings":
-					{
-						"buffer_size": 6779,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								712,
-								671
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 240.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "utils/DataAccess.py",
-					"settings":
-					{
-						"buffer_size": 7465,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6035,
-								6035
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2844.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -844,6 +859,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 177.0,
+	"side_bar_width": 273.0,
 	"status_bar_visible": true
 }
