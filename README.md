@@ -2,12 +2,12 @@ PythonFinance
 =============
 
 Requirements
---------
+------------
 
 1. Python 3.2
-2. pandas (requires numpy)
-3. statmodels (scipy)
-
+2. numpy
+3. scipy
+4. pandas
 
 Features
 --------

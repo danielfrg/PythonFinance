@@ -11,7 +11,6 @@ class FileManagerTest(unittest.TestCase):
     def suite(self):
         suite = unittest.TestSuite()
         suite.addTest(FileManagerTest('test_get_data'))
-        suite.addTest(FileManagerTest('test_exists'))
         return suite
 
     def test_get_data(self):
@@ -63,42 +62,6 @@ class FileManagerTest(unittest.TestCase):
                 "GOOG_2005-1-1_2010-1-1.csv", "SPY_2005-1-1_2010-1-1.csv",
                 "XOM_2005-1-1_2010-1-1.csv"]
         self.assertEqual(ans, sol)
-
-    def test_exists(self):
-        '''
-        Since fm.exists() calls fm.get_data() tests works for it too
-        '''
-        self.setUp1()
-
-        # Test without downloadMissing
-        symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-        start_date = datetime(2008, 1, 1)
-        end_date = datetime(2009, 12, 31)
-        # Single test
-        ans = self.fm.exists(symbols[0], start_date, end_date)
-        self.assertEqual(ans, False)
-        # Multiple Test
-        ans = self.fm.exists(symbols, start_date, end_date)
-        self.assertEqual(ans, [False, False, False, False, False])
-
-        # Test downloading
-        symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-        start_date = datetime(2008, 1, 1)
-        end_date = datetime(2009, 12, 31)
-        self.fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
-        ans = self.fm.exists(symbols[0], start_date, end_date)
-        self.assertEqual(ans, True)
-        # Already download first, now download all but last
-        self.fm.get_data(symbols[1:4], start_date, end_date, downloadMissing=True)
-        ans = self.fm.exists(symbols[1:4], start_date, end_date)
-        self.assertEqual(ans, [True, True, True])
-        # Last should be missing
-        ans = self.fm.exists(symbols[4], start_date, end_date)
-        self.assertEqual(ans, False)
-        # Download Last so shouldnt be missing
-        self.fm.get_data(symbols[4], start_date, end_date, downloadMissing=True)
-        ans = self.fm.exists(symbols[4], start_date, end_date)
-        self.assertEqual(ans, True)
 
 if __name__ == '__main__':
     suite = FileManagerTest().suite()

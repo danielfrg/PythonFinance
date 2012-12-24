@@ -32,14 +32,17 @@ class EventFinder(object):
                 self.num_events = self.matrix.count().sum(axis=0)
                 return
 
-        # 0. Get the dates, and Donwload/Import the data
+        # 0. Get the dates, and Download/Import the data
         nyse_dates = DateUtils.nyse_dates(start=self.start_date, end=self.end_date, list=True)
         data = self.data_access.get_data(self.symbols, nyse_dates[0], nyse_dates[-1], self.field)
-
+        # Special case
+        if len(data.columns) == 1:
+            data.columns = self.symbols
         # 1. Create and fill the matrix of events
         data = data[self.start_date:self.end_date]
-        self.matrix = pd.DataFrame(index=data.index, columns=data.columns)
-        for symbol in data.columns:
+        self.matrix = pd.DataFrame(index=data.index, columns=self.symbols)
+
+        for symbol in self.symbols:
             i = 0
             for item in data[symbol][1:]:
                 e = self.function(i, item, data[symbol][1:])
@@ -71,8 +74,11 @@ class EventFinder(object):
 if __name__ == '__main__':
     evtf = EventFinder('./data')
     evtf.symbols = ['AAPL', 'GOOG', 'XOM']
-    evtf.start_date = datetime(2009, 1, 1)
+    evtf.symbols = ['AMD']
+    evtf.start_date = datetime(2008, 1, 1)
     evtf.end_date = datetime(2011, 1, 1)
     evtf.function = evtf.increase(5)
+    evtf.function = evtf.went_below(3)
     evtf.search()
     print(evtf.num_events)
+    print(evtf.matrix)

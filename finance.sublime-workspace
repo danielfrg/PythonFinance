@@ -4,8 +4,44 @@
 		"selected_items":
 		[
 			[
+				"mar",
+				"market_estimation"
+			],
+			[
+				"end",
+				"end_date"
+			],
+			[
+				"star",
+				"start"
+			],
+			[
+				"equi",
+				"equities_window"
+			],
+			[
+				"asse",
+				"assertEqual"
+			],
+			[
 				"loo",
-				"lookforwardDays"
+				"lookforward_days"
+			],
+			[
+				"data",
+				"data_window"
+			],
+			[
+				"idx",
+				"idx_end"
+			],
+			[
+				"cus",
+				"customDates"
+			],
+			[
+				"NYSE",
+				"NYSE_dates"
 			],
 			[
 				"nt",
@@ -48,16 +84,8 @@
 				"dr_data_window"
 			],
 			[
-				"mar",
-				"market_window"
-			],
-			[
 				"slo",
 				"slope_std_error"
-			],
-			[
-				"data",
-				"data_estimation"
 			],
 			[
 				"ev",
@@ -104,24 +132,12 @@
 				"symbols"
 			],
 			[
-				"end",
-				"end_idx"
-			],
-			[
 				"en",
 				"evt_window_data"
 			],
 			[
-				"star",
-				"start_idx"
-			],
-			[
 				"get",
 				"get_idx_date"
-			],
-			[
-				"idx",
-				"idx_end_date"
 			],
 			[
 				"n",
@@ -484,24 +500,39 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/MultipleEventTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/EventFinder.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/PastEventTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AMD_2007-10-5_2010-1-15.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-14.csv",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/data/AMD_2008-1-1_2011-1-1.csv",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/FileManagerTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/ListUtils.py",
+		"/C/Users/Daniel/Documents/projects/comp-investing/assignment4/a.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/__init__.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DateUtils.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/lists/NYSE_dates.txt",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DateUtilsTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/BasicUtilsTest.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/NYSE_dates.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/SP500_2008.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/SP500_2012.py",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/lists/sp5002008.txt",
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/lists/sp5002012.txt",
+		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/index.txt",
 		"/C/Users/Daniel/Documents/projects/packages/finance/README.md",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/DataManagement.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py",
 		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/tsutil.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/EventFinder.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/PastEvent.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/PastEventTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/BasicUtilsTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/MarketSimulatorTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/FileManagerTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DateUtils.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DateUtilsTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/NYSE_dates.txt",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/NYSE_dates.py",
 		"/C/Python32/Lib/site-packages/pandas/core/frame.py",
 		"/C/Python32/Lib/site-packages/pandas/core/api.py",
 		"/C/Python32/Lib/site-packages/pandas/__init__.py",
@@ -511,14 +542,11 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/MarketSimulator.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/SimpleEvent.py",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/SPY_2008-10-7_2011-1-13.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-13.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/GOOG_2009-1-2_2010-12-30.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_17-12-2008_13-1-2011.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_11-7-2008_31-1-2011.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_3-9-2008_20-1-2011.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/XOM_1-1-2009_1-1-2011.csv",
@@ -599,19 +627,7 @@
 		"/C/Users/Daniel/Documents/projects/modules/finance/__init__.py",
 		"/C/Users/Daniel/Documents/projects/modules/finance/print/__init__.py",
 		"/C/Users/Daniel/Documents/projects/modules/finance/print/verbose.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/verbose.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/__init__.py",
-		"/C/Python27/Lib/logging/handlers.py",
-		"/C/Python27/Lib/logging/config.py",
-		"/C/Users/Daniel/Documents/projects/modules/stocks/stock.py",
-		"/C/Users/Daniel/Documents/projects/newtask/newtask.sublime-project",
-		"/C/Users/Daniel/Documents/projects/test.py",
-		"/C/Users/Daniel/Documents/projects/modules/stocks/__init__.py",
-		"/C/Python27/Scripts/f2py.py",
-		"/C/Python27/Scripts/easy_install-script.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/Examples/EventProfiler/tutorial.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/sp5002008 - Copy.txt",
-		"/C/Users/Daniel/Documents/projects/QSTK/QSData/Yahoo/Lists/sp5002008.txt"
+		"/C/Users/Daniel/Documents/projects/modules/finance/data/verbose.py"
 	],
 	"find":
 	{
@@ -629,6 +645,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"data_estimation",
+			"data_window",
+			"daily return",
+			"3.91",
 			"get_nyse_dates",
 			"get_idx_nyse_date",
 			"get_nyse_dates(",
@@ -752,11 +772,7 @@
 			"      ",
 			"       ",
 			"        ",
-			"	 ",
-			"  ",
-			"    ",
-			"      ",
-			"       "
+			"	 "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -812,7 +828,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 159.0
+		"height": 163.0
 	},
 	"replace":
 	{
@@ -824,6 +840,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"amd",
+				"finance/evtstudy/data/AMD_2007-10-5_2010-1-15.csv"
+			],
 			[
 				"oke",
 				"assignment1/data/OKE.csv"
@@ -859,6 +879,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 273.0,
+	"side_bar_width": 282.0,
 	"status_bar_visible": true
 }

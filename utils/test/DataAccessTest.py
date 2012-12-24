@@ -122,5 +122,4 @@ if __name__ == '__main__':
     unittest.TextTestRunner(verbosity=2).run(suite)
 
     benchmark()
-
     DataAccess('./data').empty_dirs(delete=True)

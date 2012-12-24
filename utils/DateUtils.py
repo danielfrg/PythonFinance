@@ -1,12 +1,12 @@
-import os, inspect
 import math
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
-from finance.utils import NYSE_dates
+from finance.utils import ListUtils
 
-def nyse_dates(start=None, end=None, insideSearch=True, list=False, useCache=True,
-                    lookbackDays=0, lookforwardDays=0):
+def nyse_dates(start=datetime(2000,1,1), end=datetime.today(),
+                insideSearch=True, list=False,
+                lookbackDays=0, lookforwardDays=0):
     '''
     Returns the NYSE open dates
 
@@ -15,33 +15,33 @@ def nyse_dates(start=None, end=None, insideSearch=True, list=False, useCache=Tru
         start: datetime
         end: datetime
         insideSearch: boolean, TODO
+        lookbackDays: int
+        lookforwardDays: int
         list: boolean, if want to be returned a python.list
-        useCache: boolean
     '''
-    if start is not None or end is not None:
-        # Ask for specific dates
-        dates = nyse_dates(list=True) # Get all dates
-        idx_start = 0
-        idx_end = len(dates)
-        # Get the indexes of the start and end dates
-        if start is not None:
-            idx_start = get_idx_date(start, searchBack=False)
-        if end is not None:
-            idx_end = get_idx_date(end)
-        # Modify the indexes with the lookback and lookforward days
-        if lookbackDays is not 0:
-            idx_start = idx_start - lookbackDays
-        if lookforwardDays is not 0:
-            idx_end = idx_end + lookforwardDays
-        dates = dates[idx_start:idx_end+1]
+    start = datetime(start.year, start.month, start.day)
+    end = datetime(end.year, end.month, end.day)
+    if start >= datetime(2000, 1, 1):
+        # Get dates from 2000-1-1
+        dates = ListUtils.NYSE()
     else:
-        # Ask for all dates
-        if useCache:
-            dates = NYSE_dates.all_dates
-        else :
-            self_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-            filename = os.path.join(self_dir, 'NYSE_dates.txt')
-            dates = [datetime.strptime(x ,"b'%m/%d/%Y'") for x in np.loadtxt(filename,dtype=str)]
+        # If specify an start date before 2000, ask for all dates
+        dates = ListUtils.NYSE(complete=True)
+    # Get the indexes to slice the array
+    idx_start = 0
+    idx_end = len(dates)
+    # Get the indexes of the start and end dates
+    if start is not datetime(2000,1,1):
+        idx_start = search_closer_date(start, dates, searchBack=False)
+    if end is not datetime.today():
+        idx_end = search_closer_date(end, dates, searchBack=True)
+    # Modify the indexes with the lookback and lookforward days
+    if lookbackDays is not 0:
+        idx_start = idx_start - lookbackDays
+    if lookforwardDays is not 0:
+        idx_end = idx_end + lookforwardDays
+    # Slice the dates using the indexes
+    dates = dates[idx_start:idx_end+1]
 
     if list:
         return dates
@@ -49,36 +49,26 @@ def nyse_dates(start=None, end=None, insideSearch=True, list=False, useCache=Tru
         return pd.TimeSeries(index=dates, data=dates)
 
 
-def get_idx_date(date, searchBack=True, maxDistance=10, customDates=None):
+def search_closer_date(date, dates, searchBack=True, maxDistance=10):
     '''
     Get the index the closer date given as parameter
 
     Parameters
     ----------
         date: datetime
+        dates: list or np.array, list to look the date on
         searchBack: boolean, True to search for the date into the past
         maxDistance: int, maximum distance (on days) to look for the date
-        customDates: array, if want to look for an index on a custom array of dates
-                            instead of the NYSE dates
     '''
-    if customDates is not None:
-        dates = customDates
-    else:
-        dates = nyse_dates(list=True)
-
     searchBack = -1 if searchBack else 1
     idx = 0
     for i in range(maxDistance):
         try:
             d = date + searchBack * timedelta(days=i)
-            idx = dates.index(d)
-            break # If didn't generate error then date was founded
+            return dates.index(d)
         except ValueError:
             pass
-
-    return idx
 
 def nyse_dates_event(date, lookbackDays, lookforwardDays, list=False):
     return nyse_dates(start=date, end=date, lookbackDays=lookbackDays,
                         lookforwardDays=lookforwardDays)
-

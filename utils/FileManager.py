@@ -14,8 +14,12 @@ class FileManager(object):
 
     def set_dir(self, dir_path):
         '''
-        Creates the directories
-        Set global variables with absolute paths to the directories
+        1. Set global variables with absolute paths to the directories
+        2. Creates the directories
+
+        Parameters
+        ----------
+            dir_path: str
         '''
         self.dir = os.path.realpath(dir_path) # Absolute Path
 
@@ -26,8 +30,10 @@ class FileManager(object):
     def empty_dir(self, delete=True):
         '''
         Empty the directory of files
-        Parameters:
-            delete=True - True if want to delete the folder too
+
+        Parameters
+        ----------
+            delete: boolean, True if want to delete the folder too
         '''
         list_files = os.listdir(self.dir) # Get the list of files
         for f in list_files:
@@ -41,16 +47,18 @@ class FileManager(object):
 
     def get_data(self, symbol_s, start_date, end_date, downloadMissing=True):
         '''
-        Returns file paths of the symbol(str)/symbols(list) which contains the
-        information between the dates. If data is not available download the
-        missing data (optional)
+        Returns a list with the file paths of the symbol(str)/symbols(list)
+        which contains the information between the specified dates.
+        Optional: If data is not available download the missing data
 
-        Args:
-            symbol_s - str for single - list of str for multiple
-            start_date - datetime with the initial date
-            end_date - datetime with the final date
+        Parameters
+        ----------
+            symbol_s: str for single - list of str for multiple
+            start_date: datetime, with the initial date
+            end_date: datetime, with the final date
 
-        Return:
+        Returns
+        -------
             if single - str with the relative path to the file with the information
             if multiple - list of str with absolute paths
         '''
@@ -59,7 +67,7 @@ class FileManager(object):
             symbol_s = [symbol_s]
 
         # 1. Get the list of files
-        list_files = os.listdir(self.dir)
+        list_files = [f for f in os.listdir(self.dir) if os.path.isfile(os.path.join(self.dir,f))]
         ans = []
 
         # For symbol in symbols and for each file_name in files
@@ -88,37 +96,22 @@ class FileManager(object):
         else:
             return ans
 
-    def exists(self, symbol_s, start_date, end_date):
-        '''
-        Checks is a symbols or lists of symbols have the information between the
-        specified dates
-
-        Args:
-            symbols can be an string or list of strings
-
-        Returns:
-            if single - boolean if information is available
-            if multiple - list of booleans
-        '''
-        if type(symbol_s) == str:
-            return not (self.get_data(symbol_s, start_date, end_date, False) == None)
-        elif type(symbol_s) == list:
-            d = self.get_data(symbol_s, start_date, end_date, False)
-            return [not (x == None) for x in d ]
-
     def yahoo_download(self, symbol, start_date, end_date):
         '''
-        Downloads ans saves the symbol information between the specified dates from Yahoo Finance
+        Downloads and saves the equitiy information from Yahoo! Finance between
+        the specified dates.
         Saves the csv file with the name: SYMBOL_start_date_end_date.csv
-             e.g: AAPL_2009-1-1_2010-1-1.csv
-        Args:
-            symbol
-            start_date
-            end_date
+            e.g: AAPL_2009-1-1_2010-1-1.csv
 
-        Returns:
-            boolean - True if was able to download all the symbols, False otherwise
-        TODO: logger with the erros
+        Parameters
+        ----------
+            symbol: str
+            start_date: datetime
+            end_date: datetime
+
+        Returns
+        -------
+            boolean: True if was able to download the symbol, False otherwise
         '''
         try:
             params = urllib.parse.urlencode({
@@ -136,7 +129,6 @@ class FileManager(object):
             localFile.close()
             return True
         except:
-            # TODO: logger
             print(sys.exc_info()[1])
             return False
 

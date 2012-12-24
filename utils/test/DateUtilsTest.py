@@ -22,54 +22,64 @@ class DateUtilsTest(unittest.TestCase):
         Tests the dates between two dates without lookBack and lookForward
         For each test checks:
             1. type returned
-            2. lenght of arrays
-            3. initial and final dates returned
+            2. initial and final dates returned
         List of tets:
-            1. Ask for all dates
-            2. Ask for dates with start date
-            2. Ask for dates with end date
-            2. Ask for dates between two dates
+            1. Returned Type
+            2. Ask for dates with start date after 2000-1-1
+            3. Ask for dates with start date before 2000-1-1
+            4. Ask for dates with end date
+            5. Ask for dates between two dates
         '''
-        # Test: Lenght: Complete - list
+        today = datetime(datetime.today().year, datetime.today().month, datetime.today().day)
+        # Test: Type: list
         dates = DateUtils.nyse_dates(list=True)
         self.assertEquals(type(dates), list)
-        self.assertEquals(len(dates), 14728)
-        # Test: Lenght: Complete - pd.Series
+        # Test: Type: pd.Series
         dates = DateUtils.nyse_dates()
         self.assertEquals(type(dates), pd.TimeSeries)
-        self.assertEquals(len(dates), 14728)
 
-        # Test: Lenght: start date only
-        start = datetime(2000, 1, 1)
-        # Test: Lenght: Section - list
+        # Test: Values: start date after 2000-1-1
+        start = datetime(2001, 1, 1)
+        # Test: with list
         dates = DateUtils.nyse_dates(start=start, list=True)
         self.assertEquals(type(dates), list)
-        self.assertEquals(dates[0], datetime(2000, 1, 3))
-        self.assertEquals(dates[-1], datetime(2020, 12, 31))
-        self.assertEquals(len(dates), 5286 + 1)
-        # Test: Lenght: Section - pd.Series
+        self.assertEquals(dates[0], datetime(2001, 1, 2))
+        self.assertEquals(dates[-1], today)
+        # Test: with pd.Series
         dates = DateUtils.nyse_dates(start=start)
         self.assertEquals(type(dates), pd.TimeSeries)
-        self.assertEquals(dates[0], datetime(2000, 1, 3))
-        self.assertEquals(dates[-1], datetime(2020, 12, 31))
-        self.assertEquals(len(dates), 5286 + 1)
+        self.assertEquals(dates[0], datetime(2001, 1, 2))
+        self.assertEquals(dates[-1], today)
 
-        # Test: Lenght: end date only
+        # Test: Values: start date only before 2000-1-1
+        start = datetime(1995, 1, 1)
+        # Test: with list
+        dates = DateUtils.nyse_dates(start=start, list=True)
+        self.assertEquals(type(dates), list)
+        self.assertEquals(dates[0], datetime(1995, 1, 3))
+        self.assertEquals(dates[-1], today)
+        # Test: with pd.Series
+        dates = DateUtils.nyse_dates(start=start)
+        self.assertEquals(type(dates), pd.TimeSeries)
+        self.assertEquals(dates[0], datetime(1995, 1, 3))
+        self.assertEquals(dates[-1], today)
+
+        # Test: Values and lenght: end date
         end = datetime(2002, 1, 1)
-        # Test: Lenght: Section - list
+        # Test: with list
         dates = DateUtils.nyse_dates(end=end, list=True)
         self.assertEquals(type(dates), list)
-        self.assertEquals(dates[0], datetime(1962, 7, 5))
+        self.assertEquals(dates[0], datetime(2000, 1, 3))
         self.assertEquals(dates[-1], datetime(2001, 12, 31))
-        self.assertEquals(len(dates), 9941)
-        # Test: Lenght: Section - pd.Series
+        self.assertEquals(len(dates), 500)
+        # Test: with pd.Series
         dates = DateUtils.nyse_dates(end=end)
         self.assertEquals(type(dates), pd.TimeSeries)
-        self.assertEquals(dates[0], datetime(1962, 7, 5))
+        self.assertEquals(dates[0], datetime(2000, 1, 3))
         self.assertEquals(dates[-1], datetime(2001, 12, 31))
-        self.assertEquals(len(dates), 9941)
+        self.assertEquals(len(dates), 500)
 
-         # Test: Lenght: Section
+        # Test: Values and lenght: Section dates
         start = datetime(2009, 1, 1)
         end = datetime(2011, 1, 1)
         # Test: Lenght: Section - list
@@ -121,8 +131,6 @@ class DateUtilsTest(unittest.TestCase):
         self.assertEquals(dates[-1], datetime(2011, 1, 14))
 
     def nyse_dates_event(self):
-        '''
-        '''
         dates = DateUtils.nyse_dates_event(datetime(2009, 1, 5), 100, 100)
         self.assertEquals(dates[0], datetime(2008, 8, 12))
         self.assertEquals(dates[-1], datetime(2009, 5, 29))

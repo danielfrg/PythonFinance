@@ -9,8 +9,7 @@ class DataAccess(object):
     Class to manage the Access to the Data
     Features:
         1. Easy access to the data
-        2. Download data from Yahoo! Finance
-        3. Serialization of the data
+        2. Serialization of data
     '''
     def __init__(self, dir_path='./data/'):
         self.set_dir(dir_path)
@@ -20,6 +19,10 @@ class DataAccess(object):
         Initialize the FileManager
         Creates the directories
         Set global variables with absolute paths to the directories
+
+        Parameters
+        ----------
+            dir_path: str
         '''
         self.dir = os.path.realpath(dir_path) # Absolute Path
         self.cache_dir = os.path.join(self.dir, 'cached')
@@ -34,16 +37,20 @@ class DataAccess(object):
     def empty_dir(self, delete=True):
         '''
         Empty the directory of .csv files. Do not delete the cache files/folder
-        Parameters:
-            delete=True - True if want to delete the folder too
+
+        Parameters
+        ----------
+            delete:boolean, True if want to delete the folder too
         '''
         self.file_manager.empty_dir(delete)
 
     def empty_cache(self, delete=True):
         '''
         Empty the directory of cached files. Do not delete the .csv files/folder
-        Parameters:
-            delete=True - True if want to delete the folder too
+
+        Parameters
+        ----------
+            delete: boolean, True if want to delete the folder too
         '''
         list_files = os.listdir(self.cache_dir) # Get the list of files
         for f in list_files:
@@ -58,8 +65,10 @@ class DataAccess(object):
     def empty_dirs(self, delete=True):
         '''
         Delete both cached files and .csv files.
-        Parameters:
-            delete=True - True if want to delete the folders too
+
+        Parameters
+        ----------
+            delete:booelan, True if want to delete the folders too
         '''
         self.empty_cache(delete)
         self.empty_dir(delete)
@@ -67,23 +76,26 @@ class DataAccess(object):
     def get_data(self, symbol_s, start_date, end_date, field_s, save=True, useCache=True,
                                 downloadMissing=True):
         '''
-        1. Checks if the data requeted has been previously cached:
-            1.1 if it was saved, then load the cache version
-            1.2 if not loads the data from the .csv files
-                1.2.1 saves the cache version (optional)
+        Returns a pandas DataFrame with the data of the symbol/symbols and field
+        fields between the specified dates.
+        If cache version is available load it (optional) if not available
+        load the data from the csv files.
+        Optional: Saves a serialized version of the data
+        Optional: If data is not available download the missing data
 
-        Args:
-            symbols_s - symbol (str) or list of symbols
-            start_date - datetime with the initial date
-            end_date - datetime with the final date
-            field_s - field (str) or list of fields
-            save=True - True if want to save the cache version
-            useCache=True - True if want to load a cached version, if available
-            downloadMissing=True - True if want to download unavailable data
+        Parameters
+        ----------
+            symbols_s: str or list of str
+            start_date: datetime, with the initial date
+            end_date: datetime, with the final date
+            field_s: str or list of str
+            save: boolean, True if want to save the cache version
+            useCache: boolean: True if want to load a cached version (if available)
+            downloadMissing: boolean, True if want to download unavailable data
 
-        Returns:
-            pandas.DataFrame - with the data of the symbols and fields requested
-                                index:
+        Returns
+        -------
+            data: pandas.DataFrame
         '''
         # 1. Load the Data
         if useCache == True:
@@ -99,9 +111,36 @@ class DataAccess(object):
             self.save(df, self.generate_filename(symbol_s, start_date, end_date, field_s))
         return df
 
+    def save(self, data, name, extension='.data'):
+        '''
+        Saves a serialized (pickle) version of the data to the cache directory
+
+        Parameters
+        ----------
+            data: object
+            name: str, identifier of the data
+            extension: str, extension of the filename
+        '''
+        h = hashlib.md5()
+        h.update(name.encode('utf8'))
+        filename = h.hexdigest() + extension
+
+        f = os.path.join(self.cache_dir, filename)
+        data.save(f)
+
     def load(self, name, extension='.data'):
         '''
         Checks for an existing file name and if exists returns the data saved
+
+        Parameters
+        ----------
+            name: str, identifier of the data
+            extension: str, extension of the filename
+
+        Returns
+        -------
+            data: object, usually pandas.DataFrame. None if file is not
+                    available
         '''
         h = hashlib.md5()
         h.update(name.encode('utf8'))
@@ -113,39 +152,35 @@ class DataAccess(object):
         else:
             return None
 
-    def save(self, data, name, extension='.data'):
+    def generate_filename(self, symbols, start_date, end_date, field_s):
         '''
-        Save a serialized (pickle) version of the data to the cache directory
+        Returns an unique filename identifier of a list of symbols and between dates
         '''
-        h = hashlib.md5()
-        h.update(name.encode('utf8'))
-        filename = h.hexdigest() + extension
-
-        f = os.path.join(self.cache_dir, filename)
-        data.save(f)
-
-    def generate_filename(self, symbol_s, start_date, end_date, field_s, extension='.data'):
-        filename_large = "%s_%s_%s_%s" % ('_'.join(symbol_s),
+        filename_large = "%s_%s_%s_%s" % ('_'.join(symbols),
                                             start_date.strftime('%m-%d-%Y'),
                                             end_date.strftime('%m-%d-%Y'),
                                             '-'.join(field_s))
-        # 0.1 Generates hash key of the string to reduce filename length
         h = hashlib.md5()
         h.update(filename_large.encode('utf8'))
-        return h.hexdigest() + extension
+        return h.hexdigest()
 
     def get_data_from_files(self, symbol_s, start_date, end_date, field_s, downloadMissing=True):
         '''
-        Gets the data directly from the csv files
+        Returns a pandas DataFrame with the data of the symbol/symbols and field
+        fields between the specified dates.
+        Use directly the information from the csv files
+        Optional: If data is not available download the missing data
 
-        Args:
+        Parameters
+        ----------
             symbols_s - symbol (str) or list of symbols
             start_date - datetime with the initial date
             end_date - datetime with the final date
             field_s - field (str) or list of fields
             downloadMissing=True - True if want to download missing information from the internet
 
-        Returs:
+        Returns
+        -------
             pandas.DataFrame - with the data of the symbols and fields requested
                                 index: DatetimeIndex
         '''
@@ -196,10 +231,10 @@ class DataAccess(object):
 if __name__ == "__main__":
     da = DataAccess("./data")
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-    start_date = datetime(2007, 6, 6)
+    start_date = datetime(2008, 6, 6)
     end_date = datetime(2009, 12, 31)
     fields = "Close"
-    a = da.get_data('AAPL', start_date, end_date, fields, useCache=False)
+    a = da.get_data(symbols, start_date, end_date, fields, useCache=False)
     print(a)
 
     #da.empty_dirs(delete=True)
