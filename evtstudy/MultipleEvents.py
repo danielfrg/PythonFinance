@@ -62,75 +62,91 @@ class MultipleEvents(object):
         if len(data.columns) == 1:
             data.columns = symbols
         market = self.data_access.get_data(self.market, nyse_dates[0], nyse_dates[-1], self.field)
-        print(data.index[0], data.index[-1])
 
         # 1. Create DataFrames with the data of each event
         windows_indexes = range(- self.lookback_days, self.lookforward_days + 1)
         estimation_indexes = range(-self.estimation_period - self.lookback_days - 1, - self.lookback_days)
         self.equities_window = pd.DataFrame(index=windows_indexes)
-        self.market_window = pd.DataFrame(index=windows_indexes)
         self.equities_estimation = pd.DataFrame(index=estimation_indexes)
+        self.market_window = pd.DataFrame(index=windows_indexes)
         self.market_estimation = pd.DataFrame(index=estimation_indexes)
+
+        dr_data = BasicUtils.daily_returns(data)
+        dr_market = BasicUtils.daily_returns(market)
+        self.dr_equities_window = pd.DataFrame(index=windows_indexes)
+        self.dr_equities_estimation = pd.DataFrame(index=estimation_indexes)
+        self.dr_market_window = pd.DataFrame(index=windows_indexes)
+        self.dr_market_estimation = pd.DataFrame(index=estimation_indexes)
+
+        # 2. Iterate over the matrix (events) and fill the DataFrames
         for symbol in symbols:
             for (item, i) in zip(self.matrix[symbol], range(len(self.matrix))):
                 if item == 1: # Event marked on the matrix
                     col_name = symbol + ' ' + self.matrix.index[i].to_pydatetime().strftime('%Y-%m-%d')
                     evt_idx = i + self.estimation_period + self.lookback_days + 1 # event idx on self.data
-
-                    # 1.1 Equities on the event window: self.evt_windows_data
-                    start_idx = evt_idx - self.lookback_days # window start idx on self.data
-                    end_idx = evt_idx + self.lookforward_days + 1 # window end idx on self.data
-                    new_equities_window = data[symbol][start_idx:end_idx]
-                    new_equities_window.index = self.equities_window.index
-                    self.equities_window[col_name] = new_equities_window
-
-                    # 1.2 Market on the event window: self.market_window
-                    new_market_window = market[self.field][start_idx:end_idx]
-                    new_market_window.index = self.market_window.index
-                    self.market_window[col_name] = new_market_window
-
-                    # 1.3 Data on the estimation period: self.equities_estimation
-                    start_idx = evt_idx - self.lookback_days - self.estimation_period - 1# estimation start idx on self.data
+                    
+                    # 1.1 Data on the estimation period: self.equities_estimation
+                    start_idx = evt_idx - self.lookback_days - self.estimation_period - 1 # estimation start idx on self.data
                     end_idx = evt_idx - self.lookback_days # estimation end idx on self.data
                     new_equities_estimation = data[symbol][start_idx:end_idx]
                     new_equities_estimation.index = self.equities_estimation.index
                     self.equities_estimation[col_name] = new_equities_estimation
+                    # Daily return of the equities on the estimation period
+                    new_dr_equities_estimation = dr_data[symbol][start_idx:end_idx]
+                    new_dr_equities_estimation.index = self.dr_equities_estimation.index
+                    self.dr_equities_estimation[col_name] = new_dr_equities_estimation
 
                     # 1.4 Market on the estimation period: self.market_estimation
                     new_market_estimation = market[self.field][start_idx:end_idx]
                     new_market_estimation.index = self.market_estimation.index
                     self.market_estimation[col_name] = new_market_estimation
+                    # Daily return of the market on the estimation period
+                    new_dr_market_estimation = dr_market[start_idx:end_idx]
+                    new_dr_market_estimation.index = self.dr_market_estimation.index
+                    self.dr_market_estimation[col_name] = new_dr_market_estimation
 
-        '''
-        # 2. Assess the data
-        # 2.1 Calculate the daily returns
-        self.dr_equities_window = BasicUtils.daily_returns(self.equities_window)
-        self.dr_equities_estimation = BasicUtils.daily_returns(self.equities_estimation)
-        self.dr_market_window = BasicUtils.daily_returns(self.market_window)
-        self.dr_market_estimation = BasicUtils.daily_returns(self.market_estimation)
-        # 2.2 Calculate: regression, expected return
+                    # 1.3 Equities on the event window: self.equities_window
+                    start_idx = evt_idx - self.lookback_days # window start idx on self.data
+                    end_idx = evt_idx + self.lookforward_days + 1 # window end idx on self.data
+                    new_equities_window = data[symbol][start_idx:end_idx]
+                    new_equities_window.index = self.equities_window.index
+                    self.equities_window[col_name] = new_equities_window
+                    # Daily return of the equities on the event window
+                    new_dr_equities_window = dr_data[symbol][start_idx:end_idx]
+                    new_dr_equities_window.index = self.dr_equities_window.index
+                    self.dr_equities_window[col_name] = new_dr_equities_window
+
+                    # 1.4 Market on the event window: self.market_window
+                    new_market_window = market[self.field][start_idx:end_idx]
+                    new_market_window.index = self.market_window.index
+                    self.market_window[col_name] = new_market_window
+                    # Daily return of the market on the event window
+                    new_dr_market_window = dr_market[start_idx:end_idx]
+                    new_dr_market_window.index = self.dr_market_window.index
+                    self.dr_market_window[col_name] = new_dr_market_window
+
+        # 3. Calculate the linear regression -> expected return
         self.reg_estimation = pd.DataFrame(index=self.dr_market_estimation.columns,
                                         columns=['Intercept', 'Slope', 'Std Error'])
         self.expected_returns = pd.DataFrame(index=self.dr_market_window.index,
                                         columns=self.dr_market_window.columns)
         # For each column (event) on the estimation period
         for col in self.dr_market_estimation.columns:
-            # 2.1 Calculate the regression
+            # 3.1 Calculate the regression
             x = self.dr_market_estimation[col]
             y = self.dr_equities_estimation[col]
             slope, intercept, r_value, p_value, slope_std_error = stats.linregress(x, y)
             self.reg_estimation['Slope'][col] = slope
             self.reg_estimation['Intercept'][col] = intercept
             self.reg_estimation['Std Error'][col] = slope_std_error
-            # 2.2 Calculate the expected return of each date using the regression
+            # 3.2 Calculate the expected return of each date using the regression
             self.expected_returns[col] = intercept + self.dr_market_window[col] * slope
 
-        # 3. Final calculations
+        # 4. Final results
         self.abnormal_returns = self.dr_equities_window - self.expected_returns
         self.abnormal_return = self.abnormal_returns.mean(axis=1)
         self.cumulative_abnormal_returns = self.abnormal_returns.apply(np.cumsum)
         self.cumulative_abnormal_return = self.cumulative_abnormal_returns.mean(axis=1)
-        #'''
 
 if __name__ == '__main__':
     from finance.evtstudy import EventFinder
@@ -142,6 +158,7 @@ if __name__ == '__main__':
     evtf.search()
     #print(evtf.num_events)
 
+
     mevt = MultipleEvents('./data')
     mevt.matrix = evtf.matrix
     mevt.market = 'SPY'
@@ -150,11 +167,10 @@ if __name__ == '__main__':
     mevt.estimation_period = 200
     mevt.run()
 
-    #print(mevt.dr_market_window)
-    #print(mevt.reg_estimation.ix[0])
-    #print(mevt.equities_window)
+    # print(mevt.expected_returns)
 
+    import matplotlib
+    matplotlib.use('Qt4Agg')
     import matplotlib.pyplot as plt
-    from scipy import linspace
-    #mevt.cumulative_abnormal_return.plot()
-    #plt.show()
+    mevt.cumulative_abnormal_return.plot()
+    plt.show()

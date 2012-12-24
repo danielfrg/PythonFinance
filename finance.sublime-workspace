@@ -500,6 +500,7 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/MultipleEventTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/EventFinder.py",
@@ -626,8 +627,7 @@
 		"/C/Users/Daniel/Documents/projects/modules/financ.sublime-project",
 		"/C/Users/Daniel/Documents/projects/modules/finance/__init__.py",
 		"/C/Users/Daniel/Documents/projects/modules/finance/print/__init__.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/print/verbose.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/verbose.py"
+		"/C/Users/Daniel/Documents/projects/modules/finance/print/verbose.py"
 	],
 	"find":
 	{
@@ -879,6 +879,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 282.0,
+	"side_bar_width": 199.0,
 	"status_bar_visible": true
 }
