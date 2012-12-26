@@ -73,44 +73,6 @@ class DataAccess(object):
         self.empty_cache(delete)
         self.empty_dir(delete)
 
-    def get_data(self, symbol_s, start_date, end_date, field_s, save=True, useCache=True,
-                                downloadMissing=True):
-        '''
-        Returns a pandas DataFrame with the data of the symbol/symbols and field
-        fields between the specified dates.
-        If cache version is available load it (optional) if not available
-        load the data from the csv files.
-        Optional: Saves a serialized version of the data
-        Optional: If data is not available download the missing data
-
-        Parameters
-        ----------
-            symbols_s: str or list of str
-            start_date: datetime, with the initial date
-            end_date: datetime, with the final date
-            field_s: str or list of str
-            save: boolean, True if want to save the cache version
-            useCache: boolean: True if want to load a cached version (if available)
-            downloadMissing: boolean, True if want to download unavailable data
-
-        Returns
-        -------
-            data: pandas.DataFrame
-        '''
-        # 1. Load the Data
-        if useCache == True:
-            data = self.load(self.generate_filename(symbol_s, start_date, end_date, field_s))
-            if data is not None:
-                # 1.1 Data was cached so return it
-                return data
-
-        # 1.2 Data was not cached before need to load the data from csv files
-        df = self.get_data_from_files(symbol_s, start_date, end_date, field_s, downloadMissing)
-        if save == True:
-            # 1.2.1 Saves the cache version
-            self.save(df, self.generate_filename(symbol_s, start_date, end_date, field_s))
-        return df
-
     def save(self, data, name, extension='.data'):
         '''
         Saves a serialized (pickle) version of the data to the cache directory
@@ -163,6 +125,44 @@ class DataAccess(object):
         h = hashlib.md5()
         h.update(filename_large.encode('utf8'))
         return h.hexdigest()
+
+    def get_data(self, symbol_s, start_date, end_date, field_s, save=True, useCache=True,
+                                downloadMissing=True):
+        '''
+        Returns a pandas DataFrame with the data of the symbol/symbols and field
+        fields between the specified dates.
+        If cache version is available load it (optional) if not available
+        load the data from the csv files.
+        Optional: Saves a serialized version of the data
+        Optional: If data is not available download the missing data
+
+        Parameters
+        ----------
+            symbols_s: str or list of str
+            start_date: datetime, with the initial date
+            end_date: datetime, with the final date
+            field_s: str or list of str
+            save: boolean, True if want to save the cache version
+            useCache: boolean: True if want to load a cached version (if available)
+            downloadMissing: boolean, True if want to download unavailable data
+
+        Returns
+        -------
+            data: pandas.DataFrame
+        '''
+        # 1. Load the Data
+        if useCache == True:
+            data = self.load(self.generate_filename(symbol_s, start_date, end_date, field_s))
+            if data is not None:
+                # 1.1 Data was cached so return it
+                return data
+
+        # 1.2 Data was not cached before need to load the data from csv files
+        df = self.get_data_from_files(symbol_s, start_date, end_date, field_s, downloadMissing)
+        if save == True:
+            # 1.2.1 Saves the cache version
+            self.save(df, self.generate_filename(symbol_s, start_date, end_date, field_s))
+        return df
 
     def get_data_from_files(self, symbol_s, start_date, end_date, field_s, downloadMissing=True):
         '''

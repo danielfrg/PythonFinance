@@ -2,7 +2,8 @@
 	"folders":
 	[
 		{
-			"path": "/home/dfrodriguez/Documents/packages/finance"
+			"path": "/home/dfrodriguez/Documents/packages/finance",
+			"folder_exclude_patterns": ["__pycache__"]
 		}
 	]
 }

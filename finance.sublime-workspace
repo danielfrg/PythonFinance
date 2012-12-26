@@ -4,12 +4,20 @@
 		"selected_items":
 		[
 			[
-				"mar",
-				"market_estimation"
+				"ex",
+				"expected_returns"
+			],
+			[
+				"dr_market",
+				"dr_market_window"
 			],
 			[
 				"end",
-				"end_date"
+				"end_idx"
+			],
+			[
+				"mar",
+				"market_estimation"
 			],
 			[
 				"star",
@@ -212,10 +220,6 @@
 				"load_trades"
 			],
 			[
-				"ex",
-				"extraAnswers"
-			],
-			[
 				"por",
 				"portfolio"
 			],
@@ -415,6 +419,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "evtstudy/MultipleEvents.py",
+			"settings":
+			{
+				"buffer_size": 8508,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
+			"settings":
+			{
+				"buffer_size": 337,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "evtstudy/test/MultipleEventTest.py",
+			"settings":
+			{
+				"buffer_size": 8079,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -500,6 +528,12 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/.bashrc",
+		"/home/dfrodriguez/.profile",
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/dfrodriguez/Documents/packages/finance/utils/BasicUtils.py",
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/MultipleEventTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
@@ -621,13 +655,7 @@
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/results/model_comparison.txt",
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/clean.py",
 		"/C/Users/Daniel/Downloads/clean2.csv",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/Carvana_Data_Dictionary.txt",
-		"/C/Users/Daniel/Downloads/table.csv",
-		"/C/Users/Daniel/Desktop/test.py",
-		"/C/Users/Daniel/Documents/projects/modules/financ.sublime-project",
-		"/C/Users/Daniel/Documents/projects/modules/finance/__init__.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/print/__init__.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/print/verbose.py"
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/Carvana_Data_Dictionary.txt"
 	],
 	"find":
 	{
@@ -645,6 +673,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"print",
+			"mevt",
+			"evtf",
+			"delete",
+			"values",
+			"53",
+			"]]\n",
 			"data_estimation",
 			"data_window",
 			"daily return",
@@ -765,14 +800,7 @@
 			"	 ",
 			"	  ",
 			"      ",
-			"       ",
-			"	 ",
-			"	  ",
-			"	   ",
-			"      ",
-			"       ",
-			"        ",
-			"	 "
+			"       "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -790,8 +818,91 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "evtstudy/MultipleEvents.py",
+					"settings":
+					{
+						"buffer_size": 8508,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8508,
+								8508
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2879.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
+					"settings":
+					{
+						"buffer_size": 337,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								332,
+								332
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "evtstudy/test/MultipleEventTest.py",
+					"settings":
+					{
+						"buffer_size": 8079,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7906,
+								7906
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2143.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -879,6 +990,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 199.0,
+	"side_bar_width": 257.0,
 	"status_bar_visible": true
 }

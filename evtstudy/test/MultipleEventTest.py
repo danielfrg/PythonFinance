@@ -25,11 +25,30 @@ class MultipleEventTest(unittest.TestCase):
         self.mevt.estimation_period = 200
         self.mevt.run()
 
+    def setUp2(self):
+        from finance.evtstudy import EventFinder
+        self.evtf = EventFinder('./data')
+        self.evtf.symbols = ['AMD', 'CBG']
+        self.evtf.start_date = datetime(2008, 1, 1)
+        self.evtf.end_date = datetime(2009, 12, 31)
+        self.evtf.function = self.evtf.went_below(3)
+        self.evtf.search()
+        
+        from finance.evtstudy import MultipleEvents
+        self.mevt = MultipleEvents('./data')
+        self.mevt.matrix = self.evtf.matrix
+        self.mevt.market = 'SPY'
+        self.mevt.lookback_days = 20
+        self.mevt.lookforward_days = 20
+        self.mevt.estimation_period = 200
+        self.mevt.run()
+
 
     def suite(self):
         suite = unittest.TestSuite()
-        suite.addTest(MultipleEventTest('test_data_values'))
-        suite.addTest(MultipleEventTest('test_analysis'))
+        #suite.addTest(MultipleEventTest('test_data_values'))
+        #suite.addTest(MultipleEventTest('test_analysis'))
+        suite.addTest(MultipleEventTest('test_data_values_2'))
         return suite
 
     def test_data_values(self):
@@ -43,12 +62,6 @@ class MultipleEventTest(unittest.TestCase):
 
         evtf = self.evtf
         mevt = self.mevt
-
-        # Test: number of events found = 1
-        self.assertEqual(evtf.num_events, 1)
-        # Test: date of the event is 2008-10-27
-        self.assertEqual(evtf.matrix['AMD'][evtf.matrix['AMD'] == 1].index, [datetime(2008,10,27)])
-
 
         # Test: Equities: Event window
         sol = [[4.29],[5.25],[4.74],[4.14],[4.53],[4.23],[4.59],[4.05],[4.04],[3.81],[4.21],[4.27],[3.91],[4.12],[4.21],[4.11],[3.91],[3.62],[3.28],[3.03],[2.94],[2.84],[2.98],[3.56],[3.5],[3.61],[3.8],[3.55],[3.17],[3.16],[3.04],[2.96],[2.57],[2.7],[2.43],[2.5],[2.5],[2.12],[1.91],[1.82],[1.86]]
@@ -118,10 +131,8 @@ class MultipleEventTest(unittest.TestCase):
         '''
         Test the regression
 
-
         Note: Assumes test_data_values is OK.
         '''
-
         self.setUp1()
 
         evtf = self.evtf
@@ -133,11 +144,21 @@ class MultipleEventTest(unittest.TestCase):
         self.assertAlmostEqual(mevt.reg_estimation['Std Error'][0], 0.166, 1)
 
         # Test: expected returns
-        sol = [[ -0.116949],[  0.060677],[  0.000136],[ -0.054427],[ -0.020790],[ -0.076242],[ -0.067083],[ -0.038135],[ -0.104212],[ -0.036780],[  0.214691],[ -0.022711],[ -0.146623],[  0.060955],[ -0.009560],[  0.088540],[ -0.045021],[ -0.081537],[  0.016535],[ -0.075981], [-0.053261], [ 0.172445], [-0.011471], [ 0.050714], [ 0.007407], [ 0.003665], [ 0.049581], [-0.062963], [-0.082952], [ 0.048385], [-0.020303], [-0.046401], [-0.065987], [ 0.091669], [-0.074631], [-0.020439], [ 0.027292], [-0.095856], [-0.110768], [ 0.079340], [ 0.102059]]
+        sol = [[ -0.116949],[0.060677],[0.000136],[ -0.054427],[ -0.020790],[ -0.076242],[ -0.067083],[ -0.038135],[ -0.104212],[ -0.036780],[0.214691],[ -0.022711],[ -0.146623],[0.060955],[ -0.009560],[0.088540],[ -0.045021],[ -0.081537],[0.016535],[ -0.075981], [-0.053261], [ 0.172445], [-0.011471], [ 0.050714], [ 0.007407], [ 0.003665], [ 0.049581], [-0.062963], [-0.082952], [ 0.048385], [-0.020303], [-0.046401], [-0.065987], [ 0.091669], [-0.074631], [-0.020439], [ 0.027292], [-0.095856], [-0.110768], [ 0.079340], [ 0.102059]]
         np_test.assert_almost_equal(mevt.expected_returns.values, sol, 5)
         
 
+    def test_data_values_2(self):
+        '''
+        Two events on one Symbol
+        Test the values of the equities and market
+        Tests the values on the event windows and estimation period
+        Tests the daily returns on the event windows and estimation period
+        '''
+        self.setUp2()
 
+        evtf = self.evtf
+        mevt = self.mevt
 
 if __name__ == '__main__':
     suite = MultipleEventTest().suite()

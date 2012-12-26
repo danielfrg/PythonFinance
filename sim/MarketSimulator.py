@@ -29,6 +29,14 @@ class MarketSimulator(object):
     def load_trades(self, file_path):
         '''
         Reads the csv file and parse the data
+
+        Parameters
+        ----------
+            file_path: str, path to the csv containing the orders
+
+        Returns
+        -------
+            Nothing: the trades are ready to simulate
         '''
         # 1. Read the .csv file
         self.trades = pd.read_csv(file_path)
@@ -44,14 +52,22 @@ class MarketSimulator(object):
         # 4. Sort the DataFrame by the index (dates)
         self.trades = self.trades.sort()
 
-    def simulate(self, trades=None, ordersIsDataFrame=False):
+    def simulate(self, trades=None):
         '''
-        Simulates the trades, fills the DataFrames: cash, equities_value, porfolio
+        Simulates the trades
+
+        Parameters
+        ----------
+            trades: str(filepath) or pandas.DataFrame, if str loads the orders from a csv file
+
+        Returns
+        -------
+            None: Fills the DataFrames: cash, equities_value, porfolio
         '''
         # 0. Init the required data
         # 0.1 if trades is not None load them
         if trades is not None:
-            if ordersIsDataFrame:
+            if type(trades) is pd.DataFrame:
                 self.trades = trades
             else:
                 # If orders no DataFrame then is a file to be loaded
@@ -73,7 +89,8 @@ class MarketSimulator(object):
         for idx, row in self.trades.iterrows():
             # For each order
             # Note: idx is Timestamp, row is Series
-            # Note 2: If there are various trades on the same day overwrites the previous value.
+            # Note 2: If there are various trades on the same day overwrites the previous value
+                        # which is the correct behavior
 
             # 1.0 Get info of the row
             symbol = row['symbol']
@@ -118,7 +135,7 @@ if __name__ == "__main__":
     sim.initial_cash = 1000000
     sim.load_trades("./test/orders.csv")
     sim.simulate()
-    print(sim.portfolio['Portfolio'].dtype)
+    print(sim.portfolio['Portfolio'])
 
 
 

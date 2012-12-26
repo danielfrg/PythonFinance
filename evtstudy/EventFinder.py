@@ -20,12 +20,18 @@ class EventFinder(object):
         self.matrix = None
         self.num_events = 0
 
-    def generate_filename(self):
-        return "%s_%s_%s_%s_%s" % (
-                '_'.join(self.symbols), self.start_date.strftime('%m-%d-%Y'),
-                self.end_date.strftime('%m-%d-%Y'), self.field, self.funcion_name)
+        self.reduceMatrix = True
+        self.oneEventPerEquity = True
 
-    def search(self, useCache=True, save=True):
+    def generate_filename(self):
+        return '%s%s%s%s%s%s%s' % (''.join(self.symbols), self.start_date.strftime('%m-%d-%Y'),
+                self.end_date.strftime('%m-%d-%Y'), self.field, self.funcion_name,
+                str(self.reduceMatrix), str(self.oneEventPerEquity))
+
+    def search(self, reduceMatrix=True, oneEventPerEquity=True, useCache=True, save=True):
+        self.reduceMatrix = reduceMatrix
+        self.oneEventPerEquity = oneEventPerEquity
+
         if useCache:
             self.matrix = self.data_access.load(self.generate_filename(), '.evt_matrix')
             if self.matrix is not None:
@@ -48,7 +54,14 @@ class EventFinder(object):
                 e = self.function(i, item, data[symbol][1:])
                 if e:
                     self.matrix[symbol][i+1] = 1
+                    if oneEventPerEquity == True:
+                        break
                 i = i + 1
+
+        if reduceMatrix:
+            # Sum each row and if is greater than 0 there is an event
+            self.matrix = self.matrix[self.matrix.fillna(value=0).sum(axis=1) > 0]
+
 
         # 2. Calculate other results and save if requested
         self.num_events = self.matrix.count().sum(axis=0)
@@ -72,13 +85,13 @@ class EventFinder(object):
         return lambda i, item, data: (data[i-1] <= above and item > above)
 
 if __name__ == '__main__':
+    
     evtf = EventFinder('./data')
-    evtf.symbols = ['AAPL', 'GOOG', 'XOM']
-    evtf.symbols = ['AMD']
+    evtf.symbols = ['AMD', 'CBG']
     evtf.start_date = datetime(2008, 1, 1)
-    evtf.end_date = datetime(2011, 1, 1)
-    evtf.function = evtf.increase(5)
+    evtf.end_date = datetime(2010, 12, 31)
     evtf.function = evtf.went_below(3)
-    evtf.search()
-    print(evtf.num_events)
+    evtf.search(reduceMatrix=True)
+
+    # print(evtf.num_events)
     print(evtf.matrix)

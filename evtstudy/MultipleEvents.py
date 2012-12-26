@@ -158,7 +158,6 @@ if __name__ == '__main__':
     evtf.search()
     #print(evtf.num_events)
 
-
     mevt = MultipleEvents('./data')
     mevt.matrix = evtf.matrix
     mevt.market = 'SPY'
