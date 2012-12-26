@@ -33,18 +33,18 @@ class SimpleEvent(object):
         self.ar = dr_data[c_name][self.start_window:self.end_window] - self.er
         self.ar.name = 'Abnormal Return'
         # Cumulative abnormal return
-        self.car = self.ar.apply(np.cumsum)
+        self.car = self.ar.cumsum()
         self.car.name = 'Cumulative Abnormal Return'
         # t-test
         t_test_calc = lambda x: x / std_error
-        self.t_test = self.car.apply(t_test_calc)
+        self.t_test = self.ar.apply(t_test_calc)
         self.t_test.name = 't test'
         self.prob = self.t_test.apply(stats.norm.cdf)
         self.prob.name = 'Probability'
 
 if __name__ == "__main__":
     from finance.evtstudy import PastEvent
-    pevt = PastEvent('./data')
+    pevt = PastEvent('./test/data')
     pevt.symbol = 'AAPL'
     pevt.market = "^gspc"
     pevt.lookback_days = 10
@@ -52,4 +52,4 @@ if __name__ == "__main__":
     pevt.estimation_period = 252
     pevt.date = datetime(2009, 1, 5)
     pevt.run()
-    print(pevt.er)
+    print(pevt.car)

@@ -65,7 +65,7 @@ class MultipleEvents(object):
 
         # 1. Create DataFrames with the data of each event
         windows_indexes = range(- self.lookback_days, self.lookforward_days + 1)
-        estimation_indexes = range(-self.estimation_period - self.lookback_days - 1, - self.lookback_days)
+        estimation_indexes = range(-self.estimation_period - self.lookback_days, - self.lookback_days)
         self.equities_window = pd.DataFrame(index=windows_indexes)
         self.equities_estimation = pd.DataFrame(index=estimation_indexes)
         self.market_window = pd.DataFrame(index=windows_indexes)
@@ -80,13 +80,16 @@ class MultipleEvents(object):
 
         # 2. Iterate over the matrix (events) and fill the DataFrames
         for symbol in symbols:
-            for (item, i) in zip(self.matrix[symbol], range(len(self.matrix))):
-                if item == 1: # Event marked on the matrix
-                    col_name = symbol + ' ' + self.matrix.index[i].to_pydatetime().strftime('%Y-%m-%d')
-                    evt_idx = i + self.estimation_period + self.lookback_days + 1 # event idx on self.data
+            for idx, row in self.matrix.iterrows():
+                # print(idx)
+                # print('-',row[symbol])
+                if row[symbol] == 1: # Event marked on the matrix
+                    evt_date = idx.to_pydatetime()
+                    col_name = symbol + ' ' + evt_date.strftime('%Y-%m-%d')
+                    evt_idx = DateUtils.search_closer_date(evt_date, data.index, exact=True)
                     
                     # 1.1 Data on the estimation period: self.equities_estimation
-                    start_idx = evt_idx - self.lookback_days - self.estimation_period - 1 # estimation start idx on self.data
+                    start_idx = evt_idx - self.lookback_days - self.estimation_period # estimation start idx on self.data
                     end_idx = evt_idx - self.lookback_days # estimation end idx on self.data
                     new_equities_estimation = data[symbol][start_idx:end_idx]
                     new_equities_estimation.index = self.equities_estimation.index
@@ -109,6 +112,7 @@ class MultipleEvents(object):
                     start_idx = evt_idx - self.lookback_days # window start idx on self.data
                     end_idx = evt_idx + self.lookforward_days + 1 # window end idx on self.data
                     new_equities_window = data[symbol][start_idx:end_idx]
+                    # print(new_equities_window)
                     new_equities_window.index = self.equities_window.index
                     self.equities_window[col_name] = new_equities_window
                     # Daily return of the equities on the event window
@@ -143,22 +147,24 @@ class MultipleEvents(object):
             self.expected_returns[col] = intercept + self.dr_market_window[col] * slope
 
         # 4. Final results
+        self.mean_expected_return = self.expected_returns.mean(axis=1)
         self.abnormal_returns = self.dr_equities_window - self.expected_returns
-        self.abnormal_return = self.abnormal_returns.mean(axis=1)
+        self.mean_abnormal_return = self.abnormal_returns.mean(axis=1)
         self.cumulative_abnormal_returns = self.abnormal_returns.apply(np.cumsum)
-        self.cumulative_abnormal_return = self.cumulative_abnormal_returns.mean(axis=1)
+        self.mean_cumulative_abnormal_return = self.cumulative_abnormal_returns.mean(axis=1)
 
 if __name__ == '__main__':
     from finance.evtstudy import EventFinder
-    evtf = EventFinder('./data')
-    evtf.symbols = ['AMD']
+    evtf = EventFinder('./test/data')
+    evtf.symbols = ['AMD', 'CBG']
     evtf.start_date = datetime(2008, 1, 1)
-    evtf.end_date = datetime(2008, 10, 28)
+    evtf.end_date = datetime(2009, 12, 31)
     evtf.function = evtf.went_below(3)
     evtf.search()
-    #print(evtf.num_events)
+    # print(evtf.num_events)
+    # print(evtf.matrix)
 
-    mevt = MultipleEvents('./data')
+    mevt = MultipleEvents('./test/data')
     mevt.matrix = evtf.matrix
     mevt.market = 'SPY'
     mevt.lookback_days = 20
@@ -166,10 +172,10 @@ if __name__ == '__main__':
     mevt.estimation_period = 200
     mevt.run()
 
-    # print(mevt.expected_returns)
+    # print(mevt.mean_abnormal_return)
 
     import matplotlib
     matplotlib.use('Qt4Agg')
     import matplotlib.pyplot as plt
-    mevt.cumulative_abnormal_return.plot()
+    mevt.mean_cumulative_abnormal_return.plot()
     plt.show()

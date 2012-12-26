@@ -90,4 +90,4 @@ if __name__ == '__main__':
     suite = EventFinderTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    #DataAccess('./data').empty_dirs(delete=True)
+    DataAccess('./data').empty_dirs(delete=True)

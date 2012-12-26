@@ -94,4 +94,4 @@ if __name__ == '__main__':
     evtf.search(reduceMatrix=True)
 
     # print(evtf.num_events)
-    print(evtf.matrix)
+    # print(evtf.matrix)

@@ -49,25 +49,34 @@ def nyse_dates(start=datetime(2000,1,1), end=datetime.today(),
         return pd.TimeSeries(index=dates, data=dates)
 
 
-def search_closer_date(date, dates, searchBack=True, maxDistance=10):
+def search_closer_date(date, dates, exact=False, searchBack=True, maxDistance=10):
     '''
     Get the index the closer date given as parameter
 
     Parameters
     ----------
         date: datetime
-        dates: list or np.array, list to look the date on
+        dates: list or np.array or pd.DatetimeIndex, list to look the date on
         searchBack: boolean, True to search for the date into the past
         maxDistance: int, maximum distance (on days) to look for the date
     '''
-    searchBack = -1 if searchBack else 1
-    idx = 0
-    for i in range(maxDistance):
-        try:
-            d = date + searchBack * timedelta(days=i)
-            return dates.index(d)
-        except ValueError:
-            pass
+    # 0. Diferent type of parameters
+    if type(dates) == pd.tseries.index.DatetimeIndex:
+        dates = dates.to_pydatetime()
+    if type(dates) == np.ndarray:
+        dates = dates.tolist()
+
+    if exact == False:
+        searchBack = -1 if searchBack else 1
+        idx = 0
+        for i in range(maxDistance):
+            try:
+                d = date + searchBack * timedelta(days=i)
+                return dates.index(d)
+            except ValueError:
+                pass
+    else:
+        return dates.index(date)
 
 def nyse_dates_event(date, lookbackDays, lookforwardDays, list=False):
     return nyse_dates(start=date, end=date, lookbackDays=lookbackDays,

@@ -135,7 +135,7 @@ class FileManager(object):
 if __name__ == "__main__":
     fm = FileManager("./data/")
     symbols = ["AAPL","GLD","GOOG","SPY","XOM", "FAKE1"]
-    start_date = datetime(2008, 1, 1)
-    end_date = datetime(2009, 12, 31)
-    a = fm.get_data(symbols[0], start_date, end_date, downloadMissing=True)
+    start_date = datetime(2007, 12, 1)
+    end_date = datetime(2009, 1, 31)
+    a = fm.get_data('^gspc', start_date, end_date)
     print (a)
