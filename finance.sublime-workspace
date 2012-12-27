@@ -420,26 +420,10 @@
 	"buffers":
 	[
 		{
-			"file": "evtstudy/MultipleEvents.py",
-			"settings":
-			{
-				"buffer_size": 8508,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
-			"settings":
-			{
-				"buffer_size": 337,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "evtstudy/test/MultipleEventTest.py",
 			"settings":
 			{
-				"buffer_size": 8079,
+				"buffer_size": 15261,
 				"line_ending": "Unix"
 			}
 		}
@@ -447,9 +431,13 @@
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 54.0,
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"packa",
 				"Package Control: Remove Package"
@@ -465,10 +453,6 @@
 			[
 				"remove",
 				"Package Control: Remove Package"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"conver",
@@ -511,7 +495,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 386.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -528,13 +512,15 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/.bashrc",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/test/MultipleEventTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/MultipleEvents.py",
 		"/home/dfrodriguez/.profile",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/dfrodriguez/Documents/packages/finance/utils/BasicUtils.py",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/MultipleEventTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/EventFinder.py",
@@ -653,9 +639,7 @@
 		"/C/Users/Daniel/Desktop/scores.out",
 		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/EMCODE/EMOUTPUT.out",
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/results/model_comparison.txt",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/clean.py",
-		"/C/Users/Daniel/Downloads/clean2.csv",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/Carvana_Data_Dictionary.txt"
+		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/clean.py"
 	],
 	"find":
 	{
@@ -823,72 +807,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "evtstudy/MultipleEvents.py",
-					"settings":
-					{
-						"buffer_size": 8508,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8508,
-								8508
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2879.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
-					"settings":
-					{
-						"buffer_size": 337,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								332,
-								332
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "evtstudy/test/MultipleEventTest.py",
 					"settings":
 					{
-						"buffer_size": 8079,
+						"buffer_size": 15261,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7906,
-								7906
+								789,
+								789
 							]
 						],
 						"settings":
@@ -898,7 +828,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2143.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

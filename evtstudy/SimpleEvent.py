@@ -27,17 +27,17 @@ class SimpleEvent(object):
 
         # 2. Analysis on the event window
         # Expexted Return:
-        self.er = dr_market[self.start_window:self.end_window].apply(expected_return)[c_name]
-        self.er.name = 'Expected Return'
+        self.expected_return = dr_market[self.start_window:self.end_window].apply(expected_return)[c_name]
+        self.expected_return.name = 'Expected Return'
         # Abnormal return: Return of the data - expected return
-        self.ar = dr_data[c_name][self.start_window:self.end_window] - self.er
-        self.ar.name = 'Abnormal Return'
+        self.abnormal_return = dr_data[c_name][self.start_window:self.end_window] - self.expected_return
+        self.abnormal_return.name = 'Abnormal Return'
         # Cumulative abnormal return
-        self.car = self.ar.cumsum()
-        self.car.name = 'Cumulative Abnormal Return'
+        self.cumulative_abnormal_return = self.abnormal_return.cumsum()
+        self.cumulative_abnormal_return.name = 'Cumulative Abnormal Return'
         # t-test
         t_test_calc = lambda x: x / std_error
-        self.t_test = self.ar.apply(t_test_calc)
+        self.t_test = self.abnormal_return.apply(t_test_calc)
         self.t_test.name = 't test'
         self.prob = self.t_test.apply(stats.norm.cdf)
         self.prob.name = 'Probability'

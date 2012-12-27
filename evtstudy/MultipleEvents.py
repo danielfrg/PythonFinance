@@ -161,8 +161,6 @@ if __name__ == '__main__':
     evtf.end_date = datetime(2009, 12, 31)
     evtf.function = evtf.went_below(3)
     evtf.search()
-    # print(evtf.num_events)
-    # print(evtf.matrix)
 
     mevt = MultipleEvents('./test/data')
     mevt.matrix = evtf.matrix

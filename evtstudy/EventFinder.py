@@ -91,7 +91,7 @@ if __name__ == '__main__':
     evtf.start_date = datetime(2008, 1, 1)
     evtf.end_date = datetime(2010, 12, 31)
     evtf.function = evtf.went_below(3)
-    evtf.search(reduceMatrix=True)
+    evtf.search()
 
-    # print(evtf.num_events)
-    # print(evtf.matrix)
+    print(evtf.num_events)
+    print(evtf.matrix)
