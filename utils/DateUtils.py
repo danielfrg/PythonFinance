@@ -21,12 +21,14 @@ def nyse_dates(start=datetime(2000,1,1), end=datetime.today(),
     '''
     start = datetime(start.year, start.month, start.day)
     end = datetime(end.year, end.month, end.day)
+    
     if start >= datetime(2000, 1, 1):
         # Get dates from 2000-1-1
         dates = ListUtils.NYSE()
     else:
         # If specify an start date before 2000, ask for all dates
         dates = ListUtils.NYSE(complete=True)
+
     # Get the indexes to slice the array
     idx_start = 0
     idx_end = len(dates)
@@ -48,6 +50,15 @@ def nyse_dates(start=datetime(2000,1,1), end=datetime.today(),
     else:
         return pd.TimeSeries(index=dates, data=dates)
 
+def substract(date, ammount):
+    dates = nyse_dates()
+    idx = search_closer_date(date, dates)
+    return dates[idx-ammount]
+
+def add(date, ammount):
+    dates = nyse_dates(list=True)
+    idx = search_closer_date(date, dates)
+    return dates[idx+ammount]
 
 def search_closer_date(date, dates, exact=False, searchBack=True, maxDistance=10):
     '''

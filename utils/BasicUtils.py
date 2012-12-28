@@ -16,9 +16,13 @@ def total_return(data):
         total_return: int, with the total return
     '''
     if type(data) is np.ndarray:
-        return data[-1] / data[0] - 1
-    else:
-        return data.values[-1] / data.values[0] - 1
+        return (data[-1] / data[0] - 1)[0]
+    elif type(data) is pd.Series or type(data) is pd.TimeSeries:
+        values = data.values
+    elif type(data) is pd.DataFrame:
+        return total_return(data[data.columns[0]])
+
+    return values[-1] / values[0] - 1
 
 def daily_returns(data):
     '''

@@ -4,8 +4,12 @@
 		"selected_items":
 		[
 			[
+				"ev",
+				"evtstudy"
+			],
+			[
 				"ex",
-				"expected_returns"
+				"expected_return"
 			],
 			[
 				"dr_market",
@@ -94,10 +98,6 @@
 			[
 				"slo",
 				"slope_std_error"
-			],
-			[
-				"ev",
-				"evt_idx"
 			],
 			[
 				"reg",
@@ -419,14 +419,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "evtstudy/test/MultipleEventTest.py",
-			"settings":
-			{
-				"buffer_size": 15261,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -512,11 +504,22 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Past.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/README.md",
+		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Multiple.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/ListUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/DateUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/EventFinder.py",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/EventFinder.py",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/SimpleEvent.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/DateUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/test/MultipleEventTest.py",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/.bashrc",
-		"/home/dfrodriguez/Documents/packages/finance/evtstudy/test/MultipleEventTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/MultipleEvents.py",
 		"/home/dfrodriguez/.profile",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
@@ -628,18 +631,7 @@
 		"/C/Users/Daniel/Desktop/mbr_output.txt",
 		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/Data_Dictionary.txt",
 		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/Neural/EMOUTPUT.out",
-		"/C/Users/Daniel/Desktop/testing_scores_dt - Copy.txt",
-		"/C/Users/Daniel/Desktop/testing_scores_dt.csv",
-		"/C/Users/Daniel/Documents/projects/modules/finance/log/__init__.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/log/verbose.py",
-		"/C/Users/Daniel/Downloads/t.py",
-		"/C/Users/Daniel/Desktop/readme.txt",
-		"/C/Users/Daniel/Desktop/testing_scores_dt.txt",
-		"/C/Users/Daniel/Desktop/nn_output",
-		"/C/Users/Daniel/Desktop/scores.out",
-		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/EMCODE/EMOUTPUT.out",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/results/model_comparison.txt",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/clean.py"
+		"/C/Users/Daniel/Desktop/testing_scores_dt - Copy.txt"
 	],
 	"find":
 	{
@@ -657,6 +649,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"self.car",
+			"self.ar",
+			"er",
 			"print",
 			"mevt",
 			"evtf",
@@ -781,10 +776,7 @@
 			"       ",
 			"        ",
 			"         ",
-			"	 ",
-			"	  ",
-			"      ",
-			"       "
+			"	 "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -802,37 +794,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "evtstudy/test/MultipleEventTest.py",
-					"settings":
-					{
-						"buffer_size": 15261,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								789,
-								789
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

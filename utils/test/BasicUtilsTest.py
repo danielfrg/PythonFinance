@@ -26,10 +26,10 @@ class BasicUtilsTest(unittest.TestCase):
         sim.simulate("../../sim/test/orders.csv")
 
         # Test: Input is pandas.Series
-        tr = BasicUtils.total_return(sim.portfolio['Portfolio'])
+        tr = BasicUtils.total_return(sim.portfolio)
         self.assertEquals(tr, 0.1332629999999999)
         # Test: Input is numpy.array
-        tr = BasicUtils.total_return(sim.portfolio['Portfolio'].values)
+        tr = BasicUtils.total_return(sim.portfolio.values)
         self.assertEquals(tr, 0.1332629999999999)
 
     def test_daily_return(self):
@@ -39,11 +39,13 @@ class BasicUtilsTest(unittest.TestCase):
         self.assertEquals(type(ans), np.ndarray)
         sol = np.array([0, 0.5, 1])
         np_test.assert_array_equal(ans, sol)
+
         # Test: Input is pandas.Series
         s = pd.Series([1,1.5,3], index=[2,3,4])
         ans = BasicUtils.daily_returns(s)
         sol = pd.Series([0, 0.5, 1], index=s.index)
         pd_test.assert_series_equal(ans, sol)
+        
         # Test: Input is pandas.DataFrame
         d = pd.DataFrame([[1,1.5,3], [4,4,5]], columns=['c1', 'c2', 'c3'])
         ans = BasicUtils.daily_returns(d)

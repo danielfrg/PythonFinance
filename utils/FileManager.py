@@ -119,7 +119,6 @@ class FileManager(object):
                                 'a': start_date.month - 1, 'b': start_date.day, 'c': start_date.year,
                                 'd': end_date.month - 1, 'e': end_date.day, 'f': end_date.year
                             })
-
             webFile = urllib.request.urlopen("http://ichart.finance.yahoo.com/table.csv?%s" % params)
             filename = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.year, start_date.month,
                         start_date.day, end_date.year, end_date.month, end_date.day)
@@ -129,13 +128,14 @@ class FileManager(object):
             localFile.close()
             return True
         except:
-            print(sys.exc_info()[1])
+            print(symbol, sys.exc_info()[1])
             return False
 
 if __name__ == "__main__":
     fm = FileManager("./data/")
     symbols = ["AAPL","GLD","GOOG","SPY","XOM", "FAKE1"]
-    start_date = datetime(2007, 12, 1)
-    end_date = datetime(2009, 1, 31)
-    a = fm.get_data('^gspc', start_date, end_date)
+    symbols = ["BWA","KMI","LYB","MPC","PEG", "PSX", 'QEP', 'TRIP', 'PEG', 'PSX']
+    start_date = datetime(2008, 1, 1)
+    end_date = datetime(2009, 12, 31)
+    a = fm.get_data(symbols, start_date, end_date)
     print (a)

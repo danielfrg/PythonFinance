@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
-from finance.utils import DataAccess
 from datetime import datetime
+from finance.utils import DataAccess
+from finance.utils import DateUtils
 
 class MarketSimulator(object):
     '''
@@ -18,6 +19,7 @@ class MarketSimulator(object):
 
         self.initial_cash = 0
         self.current_cash = 0
+        self.field = "Adj Close"
 
         self.trades = None
         self.prices = None
@@ -52,6 +54,36 @@ class MarketSimulator(object):
         # 4. Sort the DataFrame by the index (dates)
         self.trades = self.trades.sort()
 
+    def create_trades_from_event(self, eventList, eventDayAction='Buy', eventDayShares=100,
+                                actionAfter='Sell', daysAfter=5, sharesAfter=100,
+                                actionBefore='But', daysBefore=5, sharesBefore=100):
+        '''
+        Creates trades using an event list
+
+        Parameters
+        ----------
+            eventList: pandas.Series - usually the list created by the EventFinder
+        '''
+        self.trades = pd.DataFrame(index=eventList.index, columns=['symbol', 'action', 'num_of_shares'])
+        self.trades['symbol'] = eventList
+        self.trades['action'] = eventDayAction
+        self.trades['num_of_shares'] = eventDayShares
+
+        # TODO: Actions BEFORE
+
+        if actionAfter is not None:
+            dicts = []
+            for idx, row in self.trades.iterrows():
+                after_date = DateUtils.add(idx.to_pydatetime(), daysAfter)
+                after = pd.DataFrame([  {'symbol': row['symbol'], 
+                                        'action': actionAfter, 
+                                        'num_of_shares': sharesAfter}],
+                                    index=[after_date], columns=self.trades.columns)
+                self.trades = self.trades.append(after)
+
+        self.trades = self.trades.sort()
+    
+
     def simulate(self, trades=None):
         '''
         Simulates the trades
@@ -76,7 +108,7 @@ class MarketSimulator(object):
         symbols = list(set(self.trades['symbol']))
         start_date = self.trades.index[0].to_pydatetime()  # Convert from TimeStamp to datetime
         end_date = self.trades.index[-1].to_pydatetime()
-        self.prices = self.da.get_data(symbols, start_date, end_date, "Adj Close")
+        self.prices = self.da.get_data(symbols, start_date, end_date, self.field)
         # 0.3 Init other DataFrames
         self.cash = pd.DataFrame(index=self.prices.index, columns=['Cash'], dtype=np.float64)
         self.own = pd.DataFrame(index=self.prices.index, columns=self.prices.columns, dtype=np.float64)
@@ -88,9 +120,8 @@ class MarketSimulator(object):
         self.current_cash = self.initial_cash
         for idx, row in self.trades.iterrows():
             # For each order
-            # Note: idx is Timestamp, row is Series
-            # Note 2: If there are various trades on the same day overwrites the previous value
-                        # which is the correct behavior
+            # Note: If there are various trades on the same day overwrites the previous value
+            # which is the correct behavior
 
             # 1.0 Get info of the row
             symbol = row['symbol']
@@ -117,9 +148,8 @@ class MarketSimulator(object):
 
         # Fill forward missing values
         self.cash = self.cash.fillna(method='ffill')
-        self.own = self.own.fillna(method='ffill')
-        # After forward-fill fill with zeros because initial values are still NaN
-        self.own = self.own.fillna(0)
+        self.prices = self.prices.fillna(method='ffill').fillna(method='bfill')
+        self.own = self.own.fillna(method='ffill').fillna(0)
 
         # 2. Get the value of the equitues
         self.equities = self.own * self.prices
@@ -131,11 +161,35 @@ class MarketSimulator(object):
         self.portfolio.columns = ['Portfolio']
 
 if __name__ == "__main__":
-    sim = MarketSimulator('./test/data')
-    sim.initial_cash = 1000000
-    sim.load_trades("./test/orders.csv")
+    from finance.evtstudy import EventFinder
+    evtf = EventFinder('./data')
+    evtf.symbols = ['AMD', 'CBG', 'AAPL']
+    evtf.start_date = datetime(2008, 1, 1)
+    evtf.end_date = datetime(2010, 12, 31)
+    evtf.function = evtf.went_below(5)
+    evtf.search(oneEventPerEquity=False)
+
+    # print(evtf.list)
+
+    sim = MarketSimulator('./data')
+    sim.field = "Adj Close"
+    sim.initial_cash = 1
+    sim.create_trades_from_event(evtf.list)
+    # print(sim.trades)
+    # sim.load_trades("./test/orders.csv")
     sim.simulate()
-    print(sim.portfolio['Portfolio'])
+
+    from finance.utils import BasicUtils
+    print(BasicUtils.total_return(sim.portfolio))
+    print(BasicUtils.total_return(sim.portfolio.values))
+
+    import matplotlib
+    matplotlib.use('Qt4Agg')
+
+    import matplotlib.pyplot as plt
+    #sim.portfolio.plot()
+    #plt.show()
+
 
 
 

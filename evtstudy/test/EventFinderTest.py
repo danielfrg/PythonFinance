@@ -14,8 +14,6 @@ class EventFinderTest(unittest.TestCase):
     def suite(self):
         suite = unittest.TestSuite()
         suite.addTest(EventFinderTest('test_oneEventPerEquity'))
-        suite.addTest(EventFinderTest('test_reduceMatrix'))
-        # suite.addTest(EventFinderTest('test_3'))
         return suite
 
     def test_oneEventPerEquity(self):
@@ -49,42 +47,6 @@ class EventFinderTest(unittest.TestCase):
         date2 = evtf.matrix['AMD'][evtf.matrix['AMD'] == 1].index[1].to_pydatetime()
         self.assertEqual(date1, datetime(2008,10,27))
         self.assertEqual(date2, datetime(2008,11,11))
-
-    def test_reduceMatrix(self):
-        '''
-        Equities: AMD, CGB
-        Function: went_below(3)
-        Period: 2008-1-1 -> 2009-12-31
-
-        Tests: reduceMatrix=True and reduceMatrix=False
-        '''
-        self.setUp1()
-
-        evtf = EventFinder('./data')
-        evtf.symbols = ['AMD' ,'CBG']
-        evtf.start_date = datetime(2008, 1, 1)
-        evtf.end_date = datetime(2009, 12, 31)
-        evtf.function = evtf.went_below(3)
-
-        # Test: reduceMatrix=False
-        evtf.search(reduceMatrix=False)
-        self.assertEqual(len(evtf.matrix), 505)
-        self.assertEqual(evtf.num_events, 2)
-        # Test: date of the events
-        date1 = evtf.matrix['AMD'][evtf.matrix['AMD'] == 1].index[0].to_pydatetime()
-        self.assertEqual(date1, datetime(2008,10,27))
-        date2 = evtf.matrix['CBG'][evtf.matrix['CBG'] == 1].index[0].to_pydatetime()
-        self.assertEqual(date2, datetime(2009,2,27))
-
-        # Test: reduceMatrix=True
-        evtf.search(reduceMatrix=True)
-        self.assertEqual(len(evtf.matrix), 2)
-        self.assertEqual(evtf.num_events, 2)
-        # Test: date of the events
-        date1 = evtf.matrix['AMD'][evtf.matrix['AMD'] == 1].index[0].to_pydatetime()
-        self.assertEqual(date1, datetime(2008,10,27))
-        date2 = evtf.matrix['CBG'][evtf.matrix['CBG'] == 1].index[0].to_pydatetime()
-        self.assertEqual(date2, datetime(2009,2,27))
 
 if __name__ == '__main__':
     suite = EventFinderTest().suite()

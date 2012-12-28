@@ -18,7 +18,7 @@ class MultipleEventTest(unittest.TestCase):
         
         from finance.evtstudy import MultipleEvents
         self.mevt = MultipleEvents('./data')
-        self.mevt.matrix = self.evtf.matrix
+        self.mevt.list = self.evtf.list
         self.mevt.market = 'SPY'
         self.mevt.lookback_days = 20
         self.mevt.lookforward_days = 20
@@ -36,7 +36,7 @@ class MultipleEventTest(unittest.TestCase):
         
         from finance.evtstudy import MultipleEvents
         self.mevt = MultipleEvents('./data')
-        self.mevt.matrix = self.evtf.matrix
+        self.mevt.list = self.evtf.list
         self.mevt.market = 'SPY'
         self.mevt.lookback_days = 20
         self.mevt.lookforward_days = 20
