@@ -1,8 +1,9 @@
 import unittest
 import numpy as np
-import numpy.testing as np_test
 import pandas as pd
+import numpy.testing as np_test
 import pandas.util.testing as pd_test
+
 from finance.utils import DataAccess
 from finance.utils import BasicUtils
 from finance.sim import MarketSimulator
@@ -15,70 +16,120 @@ class BasicUtilsTest(unittest.TestCase):
 
     def suite(self):
         suite = unittest.TestSuite()
-        suite.addTest(BasicUtilsTest('test_total_return'))
+        # suite.addTest(BasicUtilsTest('test_total_return'))
+        # suite.addTest(BasicUtilsTest('test_daily_return'))
         suite.addTest(BasicUtilsTest('test_sharpe_ratio'))
-        suite.addTest(BasicUtilsTest('test_daily_return'))
         return suite
 
     def test_total_return(self):
-        sim = MarketSimulator('./data')
-        sim.initial_cash = 1000000
-        sim.simulate("../../sim/test/orders.csv")
+        d1_array = np.array([1,2,3,4,5])
+        d2_array = np.array([   [1,5],
+                                [2,4],
+                                [3,3],
+                                [4,2],
+                                [5,1]])
 
-        # Test: Input is pandas.Series
-        tr = BasicUtils.total_return(sim.portfolio)
-        self.assertEquals(tr, 0.1332629999999999)
-        # Test: Input is numpy.array
-        tr = BasicUtils.total_return(sim.portfolio.values)
-        self.assertEquals(tr, 0.1332629999999999)
+        # Test: Input is numpy.ndarray of 1 dimmension
+        ans = BasicUtils.total_return(np.array(d1_array))
+        self.assertEquals(ans, 4)
+
+        # Test: Input is numpy.ndarray of 2 dimmensions
+        ans = BasicUtils.total_return(d2_array)
+        np_test.assert_array_equal(ans, [4, -0.8])
+
+        # Test: Input is pandas.TimeSeries/Series
+        ans = BasicUtils.total_return(pd.TimeSeries(d1_array))
+        self.assertEquals(ans, 4)
+        ans = BasicUtils.total_return(pd.Series(d1_array))
+        self.assertEquals(ans, 4)
+
+        # Test: Input is pandas.DataFrame with col parameter
+        df = pd.DataFrame(d2_array, columns=['c1', 'c2'], index=[1,2,3,4,5])
+        ans = BasicUtils.total_return(df, 'c1')
+        self.assertEquals(ans, 4)
+        ans = BasicUtils.total_return(df, 'c2')
+        self.assertEquals(ans, -0.8)
+
+        # Test: Input is pandas.DataFrame without col parameter
+        ans = BasicUtils.total_return(df)
+        sol = pd.Series([4, -0.8], index=['c1', 'c2'], name='Total Returns')
+        pd_test.assert_series_equal(ans, sol)
 
     def test_daily_return(self):
-        # Test: Input is numpy.array
-        arr = np.array([1,1.5,3])
-        ans = BasicUtils.daily_returns(arr)
-        self.assertEquals(type(ans), np.ndarray)
-        sol = np.array([0, 0.5, 1])
-        np_test.assert_array_equal(ans, sol)
+        d1_array_1 = np.array([1,1.5,3,4,4.3])
+        d1_array_2 = np.array([5,4.3,3,3.5,1])
+        d2_array = np.array([d1_array_1, d1_array_2]).T
+        
+        d1_array_1_dr = np.array([0, 0.5, 1, 0.33333333, 0.075])
+        d1_array_2_dr = np.array([ 0., -0.14, -0.30232558, 0.16666667, -0.71428571])
+        d2_array_dr = np.array([d1_array_1_dr, d1_array_2_dr]).T
+
+        # Test: Input is numpy.ndarray of 1 dimmension
+        ans = BasicUtils.daily_returns(d1_array_1)
+        np_test.assert_array_almost_equal(ans, d1_array_1_dr, 5)
+        ans = BasicUtils.daily_returns(d1_array_2)
+        np_test.assert_array_almost_equal(ans, d1_array_2_dr, 5)
+
+        # Test: Input is numpy.ndarray of 2 dimmension 2
+        ans = BasicUtils.daily_returns(d2_array)
+        np_test.assert_array_almost_equal(ans, d2_array_dr, 5)
 
         # Test: Input is pandas.Series
-        s = pd.Series([1,1.5,3], index=[2,3,4])
-        ans = BasicUtils.daily_returns(s)
-        sol = pd.Series([0, 0.5, 1], index=s.index)
+        ser = pd.Series(d1_array_1, name='TEST')
+        ans = BasicUtils.daily_returns(ser)
+        sol = pd.Series(d1_array_1_dr, index=ser.index, name='TEST Daily Returns')
         pd_test.assert_series_equal(ans, sol)
         
-        # Test: Input is pandas.DataFrame
-        d = pd.DataFrame([[1,1.5,3], [4,4,5]], columns=['c1', 'c2', 'c3'])
-        ans = BasicUtils.daily_returns(d)
-        sol = pd.DataFrame([[0.0,0.0,0.0], [3, 1.66667, 0.666667]], index=d.index, columns=d.columns)
+        # Test: Input is pandas.DataFrame and gives col parameter
+        df = pd.DataFrame(d2_array, columns=['c1', 'c2'])
+        ans = BasicUtils.daily_returns(df, col='c1')
+        sol = pd.Series(d1_array_1_dr, index=df.index, name='c1 Daily Returns')
+        pd_test.assert_series_equal(ans, sol)
+
+        ans = BasicUtils.daily_returns(df, col='c2')
+        sol = pd.Series(d1_array_2_dr, index=df.index, name='c2 Daily Returns')
+        pd_test.assert_series_equal(ans, sol)
+
+        # Test: Input is pandas.DataFrame and do not gives col parameter
+        ans = BasicUtils.daily_returns(df)
+        sol = pd.DataFrame(d2_array_dr, index=df.index, columns=df.columns)
         pd_test.assert_frame_equal(ans, sol)
 
     def test_sharpe_ratio(self):
-        sim = MarketSimulator('./data')
-        sim.initial_cash = 1000000
-        sim.simulate("../../sim/test/orders.csv")
+        d1_array = np.array([1,1.5,3,4,4.3])
+        d1_array_2 = np.array([5,4.3,3,3.5,1])
+        d2_array = np.array([d1_array, d1_array_2]).T
 
-        # Test: give pd.DataFrame
-        # Test: extraAnswers=False
-        sr = BasicUtils.sharpe_ratio(sim.portfolio)
-        self.assertEquals(sr, 1.1825359272456812)
-        # Test: extraAnswers=True
-        sr = BasicUtils.sharpe_ratio(sim.portfolio, extraAnswers=True)
-        self.assertEquals(sr['sharpe_ratio'], 1.1825359272456812)
-        self.assertEquals(sr['std'], 0.0071658104790118396)
-        self.assertEquals(sr['mean'], 0.00054698326727656884)
+        # Test: Input is np.array of 1 dimmension
+        ans = BasicUtils.sharpe_ratio(d1_array)
+        self.assertAlmostEquals(ans, 2.38842, 5)
 
-        # Test: give np.array
-        # Test: extraAnswers=False
-        sr = BasicUtils.sharpe_ratio(sim.portfolio.values)
-        self.assertAlmostEquals(sr, 1.1825359272456812, 2)
-        # Test: extraAnswers=True
-        sr = BasicUtils.sharpe_ratio(sim.portfolio, extraAnswers=True)
-        self.assertAlmostEquals(sr['sharpe_ratio'], 1.1825359272456812, 2)
-        self.assertAlmostEquals(sr['std'], 0.0071658104790118396, 2)
-        self.assertAlmostEquals(sr['mean'], 0.00054698326727656884, 2)
+        # Test: Input is np.array of 2 dimmensions
+        ans = BasicUtils.sharpe_ratio(d2_array)
+        sol = np.array([2.38842482, -1.4708528])
+        np_test.assert_array_almost_equal(ans, sol, 5)
+
+        # Test: Input is pandas.TimeSeries/Series
+        ans = BasicUtils.total_return(pd.TimeSeries(d1_array))
+        self.assertAlmostEquals(ans, 3.299999, 5)
+        ans = BasicUtils.total_return(pd.Series(d1_array))
+        self.assertAlmostEquals(ans, 3.299999, 5)
+
+        # Test: Input is pandas.DataFrame with col parameter
+        df = pd.DataFrame(d2_array, columns=['c1', 'c2'])
+        ans = BasicUtils.total_return(df, 'c1')
+        self.assertAlmostEquals(ans, 3.299999, 5)
+        ans = BasicUtils.total_return(df, 'c2')
+        self.assertEquals(ans, -0.8)
+
+        # Test: Input is pandas.DataFrame without col parameter
+        ans = BasicUtils.total_return(df)
+        sol = pd.Series([3.299999, -0.8], index=['c1', 'c2'], name='Shape Ratios')
+        pd_test.assert_series_equal(ans, sol)
+
 
 if __name__ == '__main__':
     suite = BasicUtilsTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess('./data').empty_dirs(delete=True)
+    #DataAccess('./data').empty_dirs(delete=True)

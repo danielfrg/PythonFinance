@@ -1,81 +1,102 @@
 import math
 import numpy as np
 import pandas as pd
-from copy import deepcopy
 
-def total_return(data):
+def total_return(data, col=None):
     '''
-    Calculates the total return
+    Calculates the total return of a list
 
     Parameters
     ----------
-        data: numpy.array or pandas.Series
+        data: numpy.array or pandas.Series or pandas.DataFrame
+        col=None: if data is pandas.DataFrame use this column to calculate the Total Return
 
     Returns
     -------
-        total_return: int, with the total return
+        if data is numpy.array of 1 dim: int with the total return
+        if data is numpy.array of 2 dim: numpy.array with the total return of each column
+        if data is pandas.Series: int with the total return
+        if data is pandas.DataFrame: pandas.DataFrame with the total return of each column
+        if data is pandas.DataFrame and col!=None: int with the total return
     '''
     if type(data) is np.ndarray:
-        return (data[-1] / data[0] - 1)[0]
-    elif type(data) is pd.Series or type(data) is pd.TimeSeries:
-        values = data.values
-    elif type(data) is pd.DataFrame:
-        return total_return(data[data.columns[0]])
+        return data[-1] / data[0] - 1
+    
+    if type(data) is pd.Series or type(data) is pd.TimeSeries:
+        return total_return(data.values)
 
-    return values[-1] / values[0] - 1
+    if type(data) is pd.DataFrame:
+        if col is not None:
+            return total_return(data[col])
+        else:
+            series = data.apply(total_return)
+            series.name = 'Total Returns'
+            return series
 
-def daily_returns(data):
+
+def daily_returns(data, col=None):
     '''
     Calculates the daily returns
 
     Parameters
     ----------
         data: numpy.array or pandas.Series or pandas.DataFrame
+        col=None: if data is pandas.DataFrame use this column to calculate the Daily Returns
 
     Returns
     -------
-        daily_return: same type as data
+        if data is numpy.array of 1 dim: numpy.array with the daily returns
+        if data is numpy.array of 2 dim: numpy.array with the daily returns of each column
+        if data is pandas.Series: pandas.Series with the daily returns
+        if data is pandas.DataFrame: pandas.DataFrame with the daily returns of each column
+        if data is pandas.DataFrame and col!=None: pandas.Series with the daily returns
     '''
-    if type(data) is not np.ndarray:
-        values = data.values
-    else:
-        values = data
-
-    dr = deepcopy(values)
-    dr[0] = 0
-    dr[1:] = (values[1:] / values[0:-1]) - 1
 
     if type(data) is np.ndarray:
+        dr = np.zeros(shape=data.shape)
+        dr[1:] = data[1:] / data[0:-1] - 1
         return dr
-    elif type(data) is pd.core.series.Series:
-        ans = pd.Series(dr, index=data.index)
-        ans.name = 'Daily Return'
-        return ans
-    elif type(data) is pd.core.frame.DataFrame:
-        ans = pd.DataFrame(dr, index=data.index, columns=data.columns)
-        ans.columns.name = 'Daily Return'
-        return ans
 
-def sharpe_ratio(data, extraAnswers=False):
+    if type(data) is pd.Series or type(data) is pd.TimeSeries:
+        return pd.Series(daily_returns(data.values), index=data.index, name=data.name + ' Daily Returns')
+
+    if type(data) is pd.DataFrame:
+        if col is not None:
+            return daily_returns(data[col])
+        else:
+            df = data.apply(daily_returns)
+            return df
+
+def sharpe_ratio(data, col=None):
     '''
     Calculates the sharpe ratio
 
     Parameters
     ----------
-        data - pandas.DataFrame or pandas.Series
-        extraAnswers=False - optional parameter if want more information than just the sharpe_ratio
-                                also retuns the mean and standard deviation
+        data - numpy.array or pandas.DataFrame or pandas.Series
+        col=None: if data is pandas.DataFrame use this column to calculate the Sharpe Ratio
 
     Returns
     -------
-        if extraAnswers=False -> int: sharpe ratio
-        if extraAnswers=True  -> dictionary: {'sharpe_ratio', 'mean', 'std'}
+        if data is numpy.array of 1 dim: int with the sharpe ratio
+        if data is numpy.array of 2 dim: numpy.array with the sharpe ratio of each column
+        if data is pandas.Series: int with the sharpe ratio
+        if data is pandas.DataFrame: pandas.DataFrame with the sharpe ratio of each column
+        if data is pandas.DataFrame and col!=None: int with the sharpe ratio
     '''
-    dr = daily_returns(data)
-    mean = dr.mean(0)[0]
-    std = dr.std(0)[0]
-    sr = math.sqrt(len(data)) * mean / std
-    if extraAnswers:
-        return {'sharpe_ratio': sr, 'mean': mean, 'std': std}
-    else:
-        return sr
+    if type(data) is np.ndarray:
+        dr = daily_returns(data)
+        mean = dr.mean(0)
+        std = dr.std(0)
+        return math.sqrt(len(data)) * mean / std
+
+    if type(data) is pd.Series or type(data) is pd.TimeSeries:
+        return sharpe_ratio(data.values)
+
+    if type(data) is pd.DataFrame:
+        if col is not None:
+            return sharpe_ratio(data[col])
+        else:
+            series = data.apply(sharpe_ratio)
+            series.name = 'Sharpe Ratios'
+            return series
