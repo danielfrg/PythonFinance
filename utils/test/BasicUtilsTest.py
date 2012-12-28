@@ -16,8 +16,8 @@ class BasicUtilsTest(unittest.TestCase):
 
     def suite(self):
         suite = unittest.TestSuite()
-        # suite.addTest(BasicUtilsTest('test_total_return'))
-        # suite.addTest(BasicUtilsTest('test_daily_return'))
+        suite.addTest(BasicUtilsTest('test_total_return'))
+        suite.addTest(BasicUtilsTest('test_daily_return'))
         suite.addTest(BasicUtilsTest('test_sharpe_ratio'))
         return suite
 
@@ -132,4 +132,4 @@ if __name__ == '__main__':
     suite = BasicUtilsTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    #DataAccess('./data').empty_dirs(delete=True)
+    DataAccess('./data').empty_dirs(delete=True)
