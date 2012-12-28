@@ -4,61 +4,96 @@ import pandas as pd
 from datetime import datetime, timedelta
 from finance.utils import ListUtils
 
-def nyse_dates(start=datetime(2000,1,1), end=datetime.today(),
-                insideSearch=True, list=False,
-                lookbackDays=0, lookforwardDays=0):
+def nyse_dates(start=datetime(2007,1,1), end=datetime.today(),
+                insideSearch=True, lookbackDays=0, lookforwardDays=0,
+                series=False):
     '''
     Returns the NYSE open dates
 
     Parameters
     ----------
-        start: datetime
-        end: datetime
+        start: datetime, start date of the range (incluse)
+            Default value:
+                datetime(2007,1,1) 
+                datetime(1962,7,5) if end is lower than 2007-1-1
+        end: datetime, end date of the range (incluse)
+            Default value: datetime.today()
         insideSearch: boolean, TODO
         lookbackDays: int
         lookforwardDays: int
-        list: boolean, if want to be returned a python.list
+        series: boolean, if want to be returned a pandas.series
+
+    Returns
+    -------
+        dates: list of dates or pandas.Series
     '''
     start = datetime(start.year, start.month, start.day)
     end = datetime(end.year, end.month, end.day)
     
-    if start >= datetime(2000, 1, 1):
-        # Get dates from 2000-1-1
-        dates = ListUtils.NYSE()
-    else:
-        # If specify an start date before 2000, ask for all dates
+    if start < datetime(2007, 1, 1) or end < datetime(2007, 1, 1):
+        # If specify an start date or end date before 2007-1-1
         dates = ListUtils.NYSE(complete=True)
+
+        if end < datetime(2007, 1, 1) and start == datetime(2007, 1, 1):
+            # In case only specify an end date lower than 2007-1-1
+            start = dates[0]
+    else:
+        # Get dates from 2007-1-1
+        dates = ListUtils.NYSE()
 
     # Get the indexes to slice the array
     idx_start = 0
     idx_end = len(dates)
     # Get the indexes of the start and end dates
-    if start is not datetime(2000,1,1):
+    if start is not datetime(2007,1,1):
         idx_start = search_closer_date(start, dates, searchBack=False)
     if end is not datetime.today():
         idx_end = search_closer_date(end, dates, searchBack=True)
+
     # Modify the indexes with the lookback and lookforward days
     if lookbackDays is not 0:
         idx_start = idx_start - lookbackDays
     if lookforwardDays is not 0:
         idx_end = idx_end + lookforwardDays
+
     # Slice the dates using the indexes
     dates = dates[idx_start:idx_end+1]
 
-    if list:
-        return dates
-    else:
+    if series:
         return pd.TimeSeries(index=dates, data=dates)
+    else:
+        return dates
 
-def substract(date, ammount):
-    dates = nyse_dates()
-    idx = search_closer_date(date, dates)
-    return dates[idx-ammount]
+def nyse_add(date, amount):
+    '''
+    Add a number of date to a current date using the NYSE open dates
 
-def add(date, ammount):
-    dates = nyse_dates(list=True)
+    Parameters
+    ----------
+        date: datetime
+        amount: int, how many days wants to add
+    '''
+    dates = nyse_dates(start=date)
     idx = search_closer_date(date, dates)
-    return dates[idx+ammount]
+    return dates[idx+amount]
+
+def nyse_substract(date, amount):
+    '''
+    Substracts a number of date to a current date using the NYSE open dates
+
+    Parameters
+    ----------
+        date: datetime
+        amount: int, how many days wants to substract
+
+    Returns
+    -------
+        date: datetime
+    '''
+    dates = nyse_dates(end=date)
+    idx = search_closer_date(date, dates)
+    return dates[idx-amount]
+
 
 def search_closer_date(date, dates, exact=False, searchBack=True, maxDistance=10):
     '''
@@ -89,6 +124,26 @@ def search_closer_date(date, dates, exact=False, searchBack=True, maxDistance=10
     else:
         return dates.index(date)
 
-def nyse_dates_event(date, lookbackDays, lookforwardDays, list=False):
-    return nyse_dates(start=date, end=date, lookbackDays=lookbackDays,
+def nyse_dates_event(eventDate, lookbackDays, lookforwardDays, estimationPeriod, pastEvent=True):
+    '''
+    Special Case of DateUtils.nyse_dates() returns the dates around an event
+
+    Parameters
+    ----------
+        eventDate: datetime
+        lookbackDays: int
+        lookforwardDays: int
+        estimationPeriod: int
+
+    Returns
+    -------
+        dates: list of dates or pandas.Series
+    '''
+    if pastEvent:
+        return nyse_dates(start=eventDate, end=eventDate, 
+                        lookbackDays=estimationPeriod+lookbackDays,
                         lookforwardDays=lookforwardDays)
+    else:
+        return nyse_dates(start=eventDate, end=eventDate, 
+                        lookbackDays=lookbackDays,
+                        lookforwardDays=estimationPeriod+lookforwardDays)

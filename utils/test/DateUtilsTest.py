@@ -1,6 +1,7 @@
 import unittest
 import pandas as pd
 from datetime import datetime
+
 from finance.utils import DataAccess
 from finance.utils import DateUtils
 
@@ -15,81 +16,97 @@ class DateUtilsTest(unittest.TestCase):
         suite.addTest(DateUtilsTest('nyse_dates_basic'))
         suite.addTest(DateUtilsTest('nyse_dates_advanced'))
         suite.addTest(DateUtilsTest('nyse_dates_event'))
+        suite.addTest(DateUtilsTest('nyse_add_substract'))
         return suite
 
     def nyse_dates_basic(self):
         '''
-        Tests the dates between two dates without lookBack and lookForward
-        For each test checks:
-            1. type returned
-            2. initial and final dates returned
-        List of tets:
-            1. Returned Type
-            2. Ask for dates with start date after 2000-1-1
-            3. Ask for dates with start date before 2000-1-1
-            4. Ask for dates with end date
-            5. Ask for dates between two dates
+        Tests the dates without the lookBack and lookForward parameters
         '''
         today = datetime(datetime.today().year, datetime.today().month, datetime.today().day)
-        # Test: Type: list
-        dates = DateUtils.nyse_dates(list=True)
-        self.assertEquals(type(dates), list)
-        # Test: Type: pd.Series
+        
+        # Test: Returns a list
         dates = DateUtils.nyse_dates()
-        self.assertEquals(type(dates), pd.TimeSeries)
-
-        # Test: Values: start date after 2000-1-1
-        start = datetime(2001, 1, 1)
-        # Test: with list
-        dates = DateUtils.nyse_dates(start=start, list=True)
         self.assertEquals(type(dates), list)
-        self.assertEquals(dates[0], datetime(2001, 1, 2))
-        self.assertEquals(dates[-1], today)
-        # Test: with pd.Series
-        dates = DateUtils.nyse_dates(start=start)
+        # Test: Returns a pd.Series if requested
+        dates = DateUtils.nyse_dates(series=True)
         self.assertEquals(type(dates), pd.TimeSeries)
-        self.assertEquals(dates[0], datetime(2001, 1, 2))
+
+        # Test: Default startdate is 2007-1-1
+        dates = DateUtils.nyse_dates()
+        ans = dates[0]
+        self.assertEquals(ans, datetime(2007,1,3))
+        # Test: Default enddate is today
+        ans = dates[-1]
+        self.assertEquals(ans, today)
+
+        # Test: Values: start date after 2007-1-1
+        start = datetime(2008, 1, 1)
+        # Test: returns list
+        dates = DateUtils.nyse_dates(start=start)
+        self.assertEquals(type(dates), list)
+        self.assertEquals(dates[0], datetime(2008, 1, 2))
+        self.assertEquals(dates[-1], today)
+        # Test: returns pd.Series
+        dates = DateUtils.nyse_dates(start=start, series=True)
+        self.assertEquals(type(dates), pd.TimeSeries)
+        self.assertEquals(dates[0], datetime(2008, 1, 2))
         self.assertEquals(dates[-1], today)
 
-        # Test: Values: start date only before 2000-1-1
+        # Test: Values: start date before 2007-1-1
         start = datetime(1995, 1, 1)
         # Test: with list
-        dates = DateUtils.nyse_dates(start=start, list=True)
+        dates = DateUtils.nyse_dates(start=start)
         self.assertEquals(type(dates), list)
         self.assertEquals(dates[0], datetime(1995, 1, 3))
         self.assertEquals(dates[-1], today)
         # Test: with pd.Series
-        dates = DateUtils.nyse_dates(start=start)
+        dates = DateUtils.nyse_dates(start=start, series=True)
         self.assertEquals(type(dates), pd.TimeSeries)
         self.assertEquals(dates[0], datetime(1995, 1, 3))
         self.assertEquals(dates[-1], today)
 
-        # Test: Values and lenght: end date
+        # Test: end date after 2007-1-1
+        end = datetime(2009, 6, 6)
+        dates = DateUtils.nyse_dates(end=end)
+        self.assertEquals(type(dates), list)
+        self.assertEquals(dates[0], datetime(2007, 1, 3))
+        self.assertEquals(dates[-1], datetime(2009, 6, 5))
+
+        # Test: end date before 2007-1-1
+        end = datetime(2005, 6, 6)
+        dates = DateUtils.nyse_dates(end=end)
+        self.assertEquals(type(dates), list)
+        self.assertEquals(dates[0], datetime(1962, 7, 5))
+        self.assertEquals(dates[-1], datetime(2005, 6, 6))
+
+        # Test: Values and lenght between 2 dates - No. 1
+        start = datetime(2000, 1, 1)
         end = datetime(2002, 1, 1)
         # Test: with list
-        dates = DateUtils.nyse_dates(end=end, list=True)
+        dates = DateUtils.nyse_dates(start=start, end=end)
         self.assertEquals(type(dates), list)
         self.assertEquals(dates[0], datetime(2000, 1, 3))
         self.assertEquals(dates[-1], datetime(2001, 12, 31))
         self.assertEquals(len(dates), 500)
         # Test: with pd.Series
-        dates = DateUtils.nyse_dates(end=end)
+        dates = DateUtils.nyse_dates(start=start, end=end, series=True)
         self.assertEquals(type(dates), pd.TimeSeries)
         self.assertEquals(dates[0], datetime(2000, 1, 3))
         self.assertEquals(dates[-1], datetime(2001, 12, 31))
         self.assertEquals(len(dates), 500)
 
-        # Test: Values and lenght: Section dates
+        # Test: Values and lenght between 2 dates - No. 2
         start = datetime(2009, 1, 1)
         end = datetime(2011, 1, 1)
         # Test: Lenght: Section - list
-        dates = DateUtils.nyse_dates(start=start, end=end, list=True)
+        dates = DateUtils.nyse_dates(start=start, end=end)
         self.assertEquals(type(dates), list)
         self.assertEquals(dates[0], datetime(2009, 1, 2))
         self.assertEquals(dates[-1], datetime(2010, 12, 31))
         self.assertEquals(len(dates), 504)
         # Test: Lenght: Section - pd.Series
-        dates = DateUtils.nyse_dates(start=start, end=end)
+        dates = DateUtils.nyse_dates(start=start, end=end, series=True)
         self.assertEquals(type(dates), pd.TimeSeries)
         self.assertEquals(dates[0], datetime(2009, 1, 2))
         self.assertEquals(dates[-1], datetime(2010, 12, 31))
@@ -97,20 +114,13 @@ class DateUtilsTest(unittest.TestCase):
 
     def nyse_dates_advanced(self):
         '''
-        Tests the dates between two dates with lookBack and lookForward
-        For each test checks:
-            1. initial and final dates returned
-            Note: Do not test type of data returned only values
-        List of Tests:
-            1. with lookbackDays without lookforwardDays
-            2. without lookbackDays with lookforwardDays
-            3. with lookbackDays with lookforwardDays
+        Tests the dates between two dates with the lookBack and lookForward parameters
         '''
         # Test: with lookbackDays without lookforwardDays
         start = datetime(2009, 1, 1)
         end = datetime(2011, 1, 1)
         dates = DateUtils.nyse_dates(start=start, end=end,
-                        lookbackDays=10, lookforwardDays=0, list=True)
+                        lookbackDays=10, lookforwardDays=0)
         self.assertEquals(dates[0], datetime(2008, 12, 17))
         self.assertEquals(dates[-1], datetime(2010, 12, 31))
 
@@ -118,7 +128,7 @@ class DateUtilsTest(unittest.TestCase):
         start = datetime(2009, 1, 1)
         end = datetime(2011, 1, 1)
         dates = DateUtils.nyse_dates(start=start, end=end,
-                        lookbackDays=0, lookforwardDays=10, list=True)
+                        lookbackDays=0, lookforwardDays=10)
         self.assertEquals(dates[0], datetime(2009, 1, 2))
         self.assertEquals(dates[-1], datetime(2011, 1, 14))
 
@@ -126,27 +136,28 @@ class DateUtilsTest(unittest.TestCase):
         start = datetime(2009, 1, 1)
         end = datetime(2011, 1, 1)
         dates = DateUtils.nyse_dates(start=start, end=end,
-                        lookbackDays=10, lookforwardDays=10, list=True)
+                        lookbackDays=10, lookforwardDays=10)
         self.assertEquals(dates[0], datetime(2008, 12, 17))
         self.assertEquals(dates[-1], datetime(2011, 1, 14))
 
     def nyse_dates_event(self):
-        dates = DateUtils.nyse_dates_event(datetime(2009, 1, 5), 100, 100)
-        self.assertEquals(dates[0], datetime(2008, 8, 12))
-        self.assertEquals(dates[-1], datetime(2009, 5, 29))
-        self.assertEquals(len(dates), 201)
+        dates = DateUtils.nyse_dates_event(datetime(2009, 1, 5), 10, 10, 250)
+        self.assertEquals(dates[0], datetime(2007, 12, 21))
+        self.assertEquals(dates[-1], datetime(2009, 1, 20))
+        self.assertEquals(len(dates), 271)
 
-def benchmark_get_dates():
-    from time import clock, time
-    t1, t2 = clock(), time()
-    DateUtils.nyse_dates(list=True, useCache=False)
-    t1_f, t2_f = clock(), time()
-    print("Load from file:", t1_f - t1, t2_f - t2)
+    def nyse_add_substract(self):
+        ans = DateUtils.nyse_add(datetime(2009, 4, 13), 5)
+        self.assertEquals(ans, datetime(2009, 4, 20))
 
-    t1, t2 = clock(), time()
-    DateUtils.nyse_dates(list=True)
-    t1_f, t2_f = clock(), time()
-    print ("Load from cache:", t1_f - t1, t2_f - t2)
+        ans = DateUtils.nyse_substract(datetime(2009, 4, 13), 5)        
+        self.assertEquals(ans, datetime(2009, 4, 3))
+
+        ans = DateUtils.nyse_add(datetime(1990, 10, 1), 7)
+        self.assertEquals(ans, datetime(1990, 10, 10))
+
+        ans = DateUtils.nyse_substract(datetime(1990, 10, 1), 3)        
+        self.assertEquals(ans, datetime(1990, 9, 26))
 
 if __name__ == '__main__':
     suite = DateUtilsTest().suite()
