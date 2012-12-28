@@ -45,9 +45,9 @@ class FileManager(object):
         if delete:
             os.rmdir(self.dir)
 
-    def get_data(self, symbol_s, start_date, end_date, downloadMissing=True):
+    def get_filenames(self, symbol_s, start_date, end_date, downloadMissing=True, ignoreMissing=True):
         '''
-        Returns a list with the file paths of the symbol(str)/symbols(list)
+        Returns a list with the file paths of the symbols
         which contains the information between the specified dates.
         Optional: If data is not available download the missing data
 
@@ -56,17 +56,18 @@ class FileManager(object):
             symbol_s: str for single - list of str for multiple
             start_date: datetime, with the initial date
             end_date: datetime, with the final date
+            downloadMissing: boolean, True if want to download missing data
 
         Returns
         -------
             if single - str with the relative path to the file with the information
-            if multiple - list of str with absolute paths
+            if multiple - list of str with relative paths
         '''
         # 0. If only asks for one symbols convert it to a list
         if type(symbol_s) == str:
             symbol_s = [symbol_s]
 
-        # 1. Get the list of files
+        # 1. Get the list of files available
         list_files = [f for f in os.listdir(self.dir) if os.path.isfile(os.path.join(self.dir,f))]
         ans = []
 
@@ -89,7 +90,13 @@ class FileManager(object):
                     # If download was susccesfull add the path to the new file
                     f = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.year, start_date.month,
                         start_date.day, end_date.year, end_date.month, end_date.day)
-            ans.append(f)
+            
+            if ignoreMissing == False:
+                ans.append(f)
+            else:
+                if f is not None:
+                    ans.append(f)
+
 
         if len(ans) == 1:
             return ans[0]
@@ -130,12 +137,3 @@ class FileManager(object):
         except:
             print(symbol, sys.exc_info()[1])
             return False
-
-if __name__ == "__main__":
-    fm = FileManager("./data/")
-    symbols = ["AAPL","GLD","GOOG","SPY","XOM", "FAKE1"]
-    symbols = ["BWA","KMI","LYB","MPC","PEG", "PSX", 'QEP', 'TRIP', 'PEG', 'PSX']
-    start_date = datetime(2008, 1, 1)
-    end_date = datetime(2009, 12, 31)
-    a = fm.get_data(symbols, start_date, end_date)
-    print (a)
