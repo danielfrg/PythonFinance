@@ -13,13 +13,13 @@ Features
 --------
 
 1. Data Manager (Yahoo! Finance)
-2. Basic Calculator Utils
+2. Basic Calculator Utils (total return, daily returns, sharpe ratio)
 3. Basic Date Utils no handle open NYSE Dates
 4. Market Simulator
 5. Event Study
-  - Past Event Study: Previous data analysis
   - Event Finder
-  - Multiple Events (Past)
+  - Single (Past) Event Study
+  - Multiple (Past) Events
 
 How to use it
 -------------
