@@ -16,11 +16,10 @@ Features
 2. Basic Calculator Utils
 3. Basic Date Utils no handle open NYSE Dates
 4. Market Simulator
-4. Event Study
-
-    3.1 Past Event Study: Previous data analysis
-    3.2 Event Finder
-    3.3 Multiple Events (Past)
+5. Event Study
+ 1 Past Event Study: Previous data analysis
+ 2 Event Finder
+ 3 Multiple Events (Past)
 
 How to use it
 -------------
