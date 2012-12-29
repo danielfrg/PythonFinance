@@ -12,6 +12,9 @@ class MarketSimulatorTest(unittest.TestCase):
     def setUp1(self):
         DataAccess('./data').empty_dirs()
         self.sim = MarketSimulator('./data')
+        self.sim.initial_cash = 1000000
+        self.sim.load_trades("orders.csv")
+        self.sim.simulate()        
 
     def suite(self):
         suite = unittest.TestSuite()
@@ -20,9 +23,6 @@ class MarketSimulatorTest(unittest.TestCase):
 
     def test_success(self):
         self.setUp1()
-
-        self.sim.initial_cash = 1000000
-        self.sim.simulate("orders.csv")
 
         # Test: Length of the DataFrame
         self.assertEqual(len(self.sim.portfolio), 240)

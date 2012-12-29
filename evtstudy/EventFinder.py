@@ -37,7 +37,7 @@ class EventFinder(object):
         else:
             # 2. Data was not loaded
             # 2.1 Get the dates, and Download/Import the data
-            nyse_dates = DateUtils.nyse_dates(start=self.start_date, end=self.end_date, list=True)
+            nyse_dates = DateUtils.nyse_dates(start=self.start_date, end=self.end_date)
             data = self.data_access.get_data(self.symbols, nyse_dates[0], nyse_dates[-1], self.field)
             # Special case
             if len(data.columns) == 1:
