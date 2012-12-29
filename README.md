@@ -17,9 +17,9 @@ Features
 3. Basic Date Utils no handle open NYSE Dates
 4. Market Simulator
 5. Event Study
- 1 Past Event Study: Previous data analysis
- 2 Event Finder
- 3 Multiple Events (Past)
+  1 Past Event Study: Previous data analysis
+  2 Event Finder
+  3 Multiple Events (Past)
 
 - Item 1
   - SubItem 1a
