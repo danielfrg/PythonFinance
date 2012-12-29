@@ -21,6 +21,16 @@ Features
  2 Event Finder
  3 Multiple Events (Past)
 
+- Item 1
+  - SubItem 1a
+  - SubItem 1b
+
+<!-- hey there sailor -->
+
+- Item 2
+  - SubItem 2a
+  - SubItem 2b
+
 How to use it
 -------------
 
