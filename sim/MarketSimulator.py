@@ -24,8 +24,8 @@ class MarketSimulator(object):
         3. Create trades from an event list:
             TODO: example
     '''
-    def __init__(self, path='./data'):
-        self.da = DataAccess(path)
+    def __init__(self):
+        self.da = DataAccess()
 
         self.initial_cash = 0
         self.field = "Adj Close"

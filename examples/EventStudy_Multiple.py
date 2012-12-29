@@ -1,15 +1,19 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
+from finance.utils import DataAccess
 from finance.events import EventFinder, MultipleEvents
 
-evtf = EventFinder('./data')
+DataAccess.path = 'data'
+da = DataAccess()
+
+evtf = EventFinder()
 evtf.symbols = ['AMD', 'CBG']
 evtf.start_date = datetime(2008, 1, 1)
 evtf.end_date = datetime(2009, 12, 31)
 evtf.function = evtf.went_below(3)
 evtf.search()
 
-mevt = MultipleEvents('./data')
+mevt = MultipleEvents()
 mevt.list = evtf.list
 mevt.market = 'SPY'
 mevt.lookback_days = 20

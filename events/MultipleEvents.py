@@ -9,9 +9,8 @@ from finance.utils import DataAccess
 from finance.utils import BasicUtils
 
 class MultipleEvents(object):
-    def __init__(self, path='./data/'):
-        self.path = path
-        self.data_access = DataAccess(path)
+    def __init__(self):
+        self.data_access = DataAccess()
 
         self.list = None
         self.market = 'SPY'

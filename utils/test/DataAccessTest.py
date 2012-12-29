@@ -6,8 +6,9 @@ from finance.utils import DataAccess
 class DataAccessTest(unittest.TestCase):
 
     def setUp1(self):
-        DataAccess('./data').empty_dirs()
-        self.data_access = DataAccess('./data')
+        DataAccess.path = 'data'
+        self.data_access = DataAccess()
+        self.data_access.empty_dirs(delete=False)
 
     def suite(self):
         suite = unittest.TestSuite()
@@ -123,4 +124,4 @@ if __name__ == '__main__':
     unittest.TextTestRunner(verbosity=2).run(suite)
 
     # benchmark()
-    DataAccess('./data').empty_dirs(delete=True)
+    DataAccess().empty_dirs(delete=True)

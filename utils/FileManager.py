@@ -101,7 +101,10 @@ class FileManager(object):
 
 
         if type(symbol_s) == str:
-            return ans[0]
+            if len(ans) == 1:
+                return ans[0]
+            else:
+                return []
         else:
             return ans
 

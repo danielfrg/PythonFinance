@@ -1,9 +1,13 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
+from finance.utils import DataAccess
 from finance.utils.BasicUtils import *
 from finance.sim import MarketSimulator
 
-sim = MarketSimulator('./data')
+DataAccess.path = 'data'
+da = DataAccess()
+
+sim = MarketSimulator()
 sim.initial_cash = 1000000
 sim.load_trades("MarketSimulator_orders.csv")
 sim.simulate()

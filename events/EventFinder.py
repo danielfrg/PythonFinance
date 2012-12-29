@@ -6,9 +6,8 @@ from finance.utils import DateUtils
 from finance.utils import DataAccess
 
 class EventFinder(object):
-    def __init__(self, path='./data/'):
-        self.path = path
-        self.data_access = DataAccess(path)
+    def __init__(self):
+        self.data_access = DataAccess()
 
         self.symbols = []
         self.start_date = None

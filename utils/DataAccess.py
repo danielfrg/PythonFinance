@@ -5,14 +5,33 @@ from datetime import datetime
 from finance.utils.FileManager import FileManager
 
 class DataAccess(object):
+
+    path = ''
     '''
     Class to manage the Access to the Data
-    Features:
+    
+    Features
+    --------
         1. Easy access to the data
         2. Serialization of data
+
+    How to use 
+    ----------
+        Use one: Note: Option 2 overwrites option 1
+        1. Set the enviroment variable: FINANCEPATH
+        2. Set the Static Variable DataAccess.path
+
     '''
-    def __init__(self, dir_path='./data/'):
-        self.set_dir(dir_path)
+    def __init__(self):
+        if self.path != '':
+            self.set_dir(self.path)
+        else:
+            env_var = os.getenv("FINANCEPATH")
+            if env_var is not None:
+                self.set_dir(env_var)
+            else:
+                raise Exception('No path defined')
+
 
     def set_dir(self, dir_path):
         '''
@@ -199,4 +218,4 @@ if __name__ == '__main__':
     da = DataAccess()
     symbols = "AAPL"
     fields = "Close"
-    df = da.get_data(symbols, datetime(2008,1,1), datetime(2008,12,31), fields, useCache=False)
+    # df = da.get_data(symbols, datetime(2008,1,1), datetime(2008,12,31), fields, useCache=False)

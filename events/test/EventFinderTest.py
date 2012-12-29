@@ -10,7 +10,9 @@ from finance.events import EventFinder
 
 class EventFinderTest(unittest.TestCase):
     def setUp1(self):
-        DataAccess('./data').empty_cache()
+        DataAccess.path = 'data'
+        self.data_access = DataAccess()
+        self.data_access.empty_dirs()
 
     def suite(self):
         suite = unittest.TestSuite()
@@ -27,7 +29,7 @@ class EventFinderTest(unittest.TestCase):
         '''
         self.setUp1()
 
-        evtf = EventFinder('./data')
+        evtf = EventFinder()
         evtf.symbols = ['AMD']
         evtf.start_date = datetime(2008, 1, 1)
         evtf.end_date = datetime(2009, 12, 31)
@@ -53,4 +55,4 @@ if __name__ == '__main__':
     suite = EventFinderTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess('./data').empty_dirs(delete=True)
+    DataAccess().empty_dirs(delete=True)

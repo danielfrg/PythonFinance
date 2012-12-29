@@ -1,8 +1,12 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
+from finance.utils import DataAccess
 from finance.events import PastEvent
 
-pevt = PastEvent('./data')
+DataAccess.path = 'data'
+da = DataAccess()
+
+pevt = PastEvent()
 pevt.symbol = 'AAPL'
 pevt.market = "^gspc"
 pevt.lookback_days = 10

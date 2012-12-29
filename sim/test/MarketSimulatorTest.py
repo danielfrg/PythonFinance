@@ -10,8 +10,11 @@ from finance.sim import MarketSimulator
 class MarketSimulatorTest(unittest.TestCase):
 
     def setUp1(self):
-        DataAccess('./data').empty_dirs()
-        self.sim = MarketSimulator('./data')
+        DataAccess.path = 'data'
+        self.data_access = DataAccess()
+        self.data_access.empty_dirs()
+        
+        self.sim = MarketSimulator()
         self.sim.initial_cash = 1000000
         self.sim.load_trades("orders.csv")
         self.sim.simulate()        
@@ -63,4 +66,4 @@ if __name__ == '__main__':
     suite = MarketSimulatorTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess('./data').empty_dirs()
+    DataAccess().empty_dirs()

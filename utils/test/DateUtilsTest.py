@@ -7,10 +7,6 @@ from finance.utils import DateUtils
 
 class DateUtilsTest(unittest.TestCase):
 
-    def setUp1(self):
-        DataAccess('./data').empty_dirs()
-        self.da = DataAccess('./data')
-
     def suite(self):
         suite = unittest.TestSuite()
         suite.addTest(DateUtilsTest('nyse_dates_basic'))
@@ -162,7 +158,3 @@ class DateUtilsTest(unittest.TestCase):
 if __name__ == '__main__':
     suite = DateUtilsTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
-
-    #benchmark_get_dates()
-
-    DataAccess('./data').empty_dirs(delete=True)

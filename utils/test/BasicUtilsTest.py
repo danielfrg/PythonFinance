@@ -11,8 +11,9 @@ from finance.sim import MarketSimulator
 class BasicUtilsTest(unittest.TestCase):
 
     def setUp1(self):
-        DataAccess('./data').empty_dirs()
-        self.da = DataAccess('./data')
+        DataAccess.path = 'data'
+        self.data_access = DataAccess()
+        self.data_access.empty_dirs()
 
     def suite(self):
         suite = unittest.TestSuite()
@@ -132,4 +133,4 @@ if __name__ == '__main__':
     suite = BasicUtilsTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess('./data').empty_dirs(delete=True)
+    # DataAccess().empty_dirs(delete=True)

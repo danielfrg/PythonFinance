@@ -11,14 +11,18 @@ from finance.events import MultipleEvents
 
 class MultipleEventTest(unittest.TestCase):
     def setUp1(self):
-        self.evtf = EventFinder('./data')
+        DataAccess.path = 'data'
+        self.data_access = DataAccess()
+        self.data_access.empty_dirs()
+
+        self.evtf = EventFinder()
         self.evtf.symbols = ['AMD']
         self.evtf.start_date = datetime(2008, 1, 1)
         self.evtf.end_date = datetime(2009, 12, 31)
         self.evtf.function = self.evtf.went_below(3)
         self.evtf.search()
         
-        self.mevt = MultipleEvents('./data')
+        self.mevt = MultipleEvents()
         self.mevt.list = self.evtf.list
         self.mevt.market = 'SPY'
         self.mevt.lookback_days = 20
@@ -27,21 +31,24 @@ class MultipleEventTest(unittest.TestCase):
         self.mevt.run()
 
     def setUp2(self):
-        self.evtf = EventFinder('./data')
+        DataAccess.path = 'data'
+        self.data_access = DataAccess()
+        self.data_access.empty_dirs()
+
+        self.evtf = EventFinder()
         self.evtf.symbols = ['AMD', 'CBG']
         self.evtf.start_date = datetime(2008, 1, 1)
         self.evtf.end_date = datetime(2009, 12, 31)
         self.evtf.function = self.evtf.went_below(3)
         self.evtf.search()
         
-        self.mevt = MultipleEvents('./data')
+        self.mevt = MultipleEvents()
         self.mevt.list = self.evtf.list
         self.mevt.market = 'SPY'
         self.mevt.lookback_days = 20
         self.mevt.lookforward_days = 20
         self.mevt.estimation_period = 200
         self.mevt.run()
-
 
     def suite(self):
         suite = unittest.TestSuite()
@@ -214,4 +221,4 @@ if __name__ == '__main__':
     suite = MultipleEventTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess('./data').empty_dirs(delete=True)
+    DataAccess().empty_dirs(delete=True)

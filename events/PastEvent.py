@@ -26,9 +26,9 @@ class PastEvent(EventStudy):
        estimation      lookback   event   lookforward
     '''
 
-    def __init__(self, path='./data'):
+    def __init__(self):
         # Utils
-        self.data_access = DataAccess(path)
+        self.data_access = DataAccess()
 
         # Variables
         self.date = None # Date of the event
