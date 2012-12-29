@@ -36,7 +36,7 @@ class DataAccess(object):
 
     def empty_dir(self, delete=True):
         '''
-        Empty the directory of .csv files. Do not delete the cache files/folder
+        Empty the directory of csv files. Do not delete the cache files/folder
 
         Parameters
         ----------
@@ -46,7 +46,7 @@ class DataAccess(object):
 
     def empty_cache(self, delete=True):
         '''
-        Empty the directory of cached files. Do not delete the .csv files/folder
+        Empty the directory of cached files. Does not delete the csv files/folder
 
         Parameters
         ----------
@@ -64,7 +64,7 @@ class DataAccess(object):
 
     def empty_dirs(self, delete=True):
         '''
-        Delete both cached files and .csv files.
+        Delete both cached and csv files.
 
         Parameters
         ----------
@@ -101,8 +101,7 @@ class DataAccess(object):
 
         Returns
         -------
-            data: object, usually pandas.DataFrame. None if file is not
-                    available
+            data: object (usually pandas.DataFrame), if file was available; None otherwise.
         '''
         h = hashlib.md5()
         h.update(name.encode('utf8'))
@@ -111,131 +110,93 @@ class DataAccess(object):
         f = os.path.join(self.cache_dir, filename)
         if os.access(f, os.F_OK):
             return pd.load(f)
-        else:
-            return None
 
-    def generate_filename(self, symbols, start_date, end_date, field_s):
-        '''
-        Returns an unique filename identifier of a list of symbols and between dates
-        '''
-        filename_large = "%s_%s_%s_%s" % ('_'.join(symbols),
-                                            start_date.strftime('%m-%d-%Y'),
-                                            end_date.strftime('%m-%d-%Y'),
-                                            '-'.join(field_s))
-        h = hashlib.md5()
-        h.update(filename_large.encode('utf8'))
-        return h.hexdigest()
 
-    def get_data(self, symbol_s, start_date, end_date, field_s, save=True, useCache=True,
-                                downloadMissing=True):
+    def get_data(self, symbols, start, end, fields='Adj Close', save=True, useCache=True,
+                    downloadMissing=True, ignoreMissing=True):
         '''
-        Returns a pandas DataFrame with the data of the symbol/symbols and field
-        fields between the specified dates.
-        If cache version is available load it (optional) if not available
-        load the data from the csv files.
-        Optional: Saves a serialized version of the data
-        Optional: If data is not available download the missing data
+        Returns a pandas DataFrame with the data of the symbols and field
+        fields between the specified dates with the fields specified
+
+        Optional: 
+            1. Load a serialized version of the data
+            2. Saves a serialized version of the data
+            3. If data is not available download the missing data
 
         Parameters
         ----------
             symbols_s: str or list of str
-            start_date: datetime, with the initial date
-            end_date: datetime, with the final date
-            field_s: str or list of str
+            start: datetime, with the initial date
+            end: datetime, with the final date
+            fields: str or list of str
             save: boolean, True if want to save the cache version
             useCache: boolean: True if want to load a cached version (if available)
             downloadMissing: boolean, True if want to download unavailable data
+            ignoreMissing=True
 
         Returns
         -------
             data: pandas.DataFrame
         '''
-        # 1. Load the Data
+        # 0. If ask for only one symbols or field convert it to a list of one item
+        if type(symbols) == str:
+            symbols = [symbols]
+        if type(fields) == str:
+            fields = [fields]
+
+        # 1. Load the Data, if requested
+        filename_id = "%s_%s_%s_%s" % ('_'.join(symbols), start.strftime('%m-%d-%Y'),
+                                        end.strftime('%m-%d-%Y'), '-'.join(fields))
         if useCache == True:
-            data = self.load(self.generate_filename(symbol_s, start_date, end_date, field_s))
+            data = self.load(filename_id)
             if data is not None:
-                # 1.1 Data was cached so return it
+                # 1.1 Data was cached before and loaded => return
                 return data
 
-        # 1.2 Data was not cached before need to load the data from csv files
-        df = self.get_data_from_files(symbol_s, start_date, end_date, field_s, downloadMissing)
-        if save == True:
-            # 1.2.1 Saves the cache version
-            self.save(df, self.generate_filename(symbol_s, start_date, end_date, field_s))
-        return df
+        # 1. Data was not cached before need to load the data from csv files
+        
+        # 1.1 Get the list of filenames from the FileManager
+        files = self.file_manager.get_filenames(symbols, start, end, downloadMissing, ignoreMissing)
 
-    def get_data_from_files(self, symbol_s, start_date, end_date, field_s, downloadMissing=True):
-        '''
-        Returns a pandas DataFrame with the data of the symbol/symbols and field
-        fields between the specified dates.
-        Use directly the information from the csv files
-        Optional: If data is not available download the missing data
-
-        Parameters
-        ----------
-            symbols_s - symbol (str) or list of symbols
-            start_date - datetime with the initial date
-            end_date - datetime with the final date
-            field_s - field (str) or list of fields
-            downloadMissing=True - True if want to download missing information from the internet
-
-        Returns
-        -------
-            pandas.DataFrame - with the data of the symbols and fields requested
-                                index: DatetimeIndex
-        '''
-        # 0. If ask for only one symbols or field convert it to a list of one item
-        if type(symbol_s) == str:
-            symbol_s = [symbol_s]
-        if type(field_s) == str:
-            field_s = [field_s]
-
-        # 1. We are going to create a pd.DataFrame from a dictionary of pd.Series
+        # 1.2 We are going to create a pd.DataFrame from a dictionary of pd.Series
         data_dic = {}
-        # 1.1 Save the Indexes of the data
 
-        # 2. Get the file names with the information needed from the FileManager
-        files = self.file_manager.get_data(symbol_s, start_date, end_date, downloadMissing)
-        if type(files) == str:
-            files = [files]
+        for f, symbol in zip(files, symbols):
+            # Create DataFrame from the csv
+            new_data = pd.read_csv(os.path.join(self.dir, f))
 
-        for f, symbol in zip(files, symbol_s):
-            # for each file in files and symbol in symbol_s
-            n_data = pd.read_csv(os.path.join(self.dir, f))
-            # Needs to convert the string to datetime so the index of the Series is DatetimeIndex
-            n_data = n_data.set_index(pd.to_datetime(n_data['Date']))
+            # Change the index of the DataFrame to be the date
+            new_data = new_data.set_index(pd.to_datetime(new_data['Date']))
 
-            for field in field_s:
-                # For each field in fields
+            for field in fields:
+                # For each field in fields, creates a new column
                 colname = ''
-                if len(symbol_s) == 1 and len(field_s) == 1:
+                if len(symbols) == 1 and len(fields) == 1:
                     # Single symbol and Single field
                     colname = field
-                elif len(symbol_s) > 1 and len(field_s) == 1:
+                elif len(symbols) > 1 and len(fields) == 1:
                     # Multiple symbols and single fields
                     colname = symbol
-                elif len(symbol_s) == 1 and len(field_s) > 1:
+                elif len(symbols) == 1 and len(fields) > 1:
                     # Single symbol and Multiple fields
                     colname = field
                 else:
                     # Multiple symbols and multiple fields
                     colname = "%s %s" % (symbol, field)
                 # Adds the pd.Series to the dictionary
-                data_dic[colname] = n_data[field]
+                data_dic[colname] = new_data[field]
 
-        # 3. Create and return a pd.DataFrame from the dictionary of pd.Series
-        df = pd.DataFrame(data_dic)
-        df = df.sort() # Sort because Yahoo Finance data comes reverse
-        return df.ix[start_date:end_date] # Slice by date to only return what is important
+        # 1.4. Create, slice and sort the data
+        data = pd.DataFrame(data_dic)
+        data = data.sort()[start:end] # Sort because Yahoo Finance data comes reverse
 
-if __name__ == "__main__":
-    da = DataAccess("./data")
-    symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-    start_date = datetime(2008, 6, 6)
-    end_date = datetime(2009, 12, 31)
+        # Save a cache version if requested
+        if save == True:
+            self.save(data, filename_id)
+        return data
+       
+if __name__ == '__main__':
+    da = DataAccess()
+    symbols = "AAPL"
     fields = "Close"
-    a = da.get_data(symbols, start_date, end_date, fields, useCache=False)
-    print(a)
-
-    #da.empty_dirs(delete=True)
-
+    df = da.get_data(symbols, datetime(2008,1,1), datetime(2008,12,31), fields, useCache=False)

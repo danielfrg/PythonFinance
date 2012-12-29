@@ -65,14 +65,16 @@ class FileManager(object):
         '''
         # 0. If only asks for one symbols convert it to a list
         if type(symbol_s) == str:
-            symbol_s = [symbol_s]
+            symbols = [symbol_s]
+        elif type(symbol_s) == list:
+            symbols = symbol_s
 
         # 1. Get the list of files available
         list_files = [f for f in os.listdir(self.dir) if os.path.isfile(os.path.join(self.dir,f))]
         ans = []
 
         # For symbol in symbols and for each file_name in files
-        for symbol in symbol_s:
+        for symbol in symbols:
             f = None
             for file_name in list_files:
                 # Check the name of the stock
@@ -98,7 +100,7 @@ class FileManager(object):
                     ans.append(f)
 
 
-        if len(ans) == 1:
+        if type(symbol_s) == str:
             return ans[0]
         else:
             return ans
