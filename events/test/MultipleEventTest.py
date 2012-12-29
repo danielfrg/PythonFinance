@@ -4,11 +4,13 @@ import pandas as pd
 import numpy.testing as np_test
 import pandas.util.testing as pd_test
 from datetime import datetime
+
 from finance.utils import DataAccess
+from finance.events import EventFinder
+from finance.events import MultipleEvents
 
 class MultipleEventTest(unittest.TestCase):
     def setUp1(self):
-        from finance.evtstudy import EventFinder
         self.evtf = EventFinder('./data')
         self.evtf.symbols = ['AMD']
         self.evtf.start_date = datetime(2008, 1, 1)
@@ -16,7 +18,6 @@ class MultipleEventTest(unittest.TestCase):
         self.evtf.function = self.evtf.went_below(3)
         self.evtf.search()
         
-        from finance.evtstudy import MultipleEvents
         self.mevt = MultipleEvents('./data')
         self.mevt.list = self.evtf.list
         self.mevt.market = 'SPY'
@@ -26,7 +27,6 @@ class MultipleEventTest(unittest.TestCase):
         self.mevt.run()
 
     def setUp2(self):
-        from finance.evtstudy import EventFinder
         self.evtf = EventFinder('./data')
         self.evtf.symbols = ['AMD', 'CBG']
         self.evtf.start_date = datetime(2008, 1, 1)
@@ -34,7 +34,6 @@ class MultipleEventTest(unittest.TestCase):
         self.evtf.function = self.evtf.went_below(3)
         self.evtf.search()
         
-        from finance.evtstudy import MultipleEvents
         self.mevt = MultipleEvents('./data')
         self.mevt.list = self.evtf.list
         self.mevt.market = 'SPY'

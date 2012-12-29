@@ -4,8 +4,9 @@ import pandas as pd
 import numpy.testing as np_test
 import pandas.util.testing as pd_test
 from datetime import datetime
+
 from finance.utils import DataAccess
-from finance.evtstudy import EventFinder
+from finance.events import EventFinder
 
 class EventFinderTest(unittest.TestCase):
     def setUp1(self):

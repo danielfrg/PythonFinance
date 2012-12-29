@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from datetime import datetime
+
 from finance.utils import DateUtils
 from finance.utils import DataAccess
 from finance.utils import BasicUtils
@@ -56,7 +57,7 @@ class MultipleEvents(object):
         end_date = self.list.index[-1]
         nyse_dates = DateUtils.nyse_dates(start=start_date, end=end_date,
                         lookbackDays=self.lookback_days + self.estimation_period + 1,
-                        lookforwardDays=self.lookforward_days, list=True)
+                        lookforwardDays=self.lookforward_days)
 
         data = self.data_access.get_data(symbols, nyse_dates[0], nyse_dates[-1], self.field)
         market = self.data_access.get_data(self.market, nyse_dates[0], nyse_dates[-1], self.field)
@@ -125,8 +126,8 @@ class MultipleEvents(object):
 
             # 1.4 Market on the event window: self.market_window
             new_market_window = market[self.field][start_idx:end_idx]
-            new_market_window.index = new_market_window
-            self.market_window[col_name] = self.market_window.index
+            new_market_window.index = self.market_window.index
+            self.market_window[col_name] = new_market_window
             # Daily return of the market on the event window
             new_dr_market_window = dr_market[start_idx:end_idx]
             new_dr_market_window.index = self.dr_market_window.index
@@ -172,7 +173,7 @@ class MultipleEvents(object):
 
 
 if __name__ == '__main__':
-    from finance.evtstudy import EventFinder
+    from finance.events import EventFinder
     evtf = EventFinder('./test/data')
     evtf.symbols = ['AMD', 'CBG']
     evtf.start_date = datetime(2008, 1, 1)

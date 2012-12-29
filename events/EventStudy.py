@@ -4,7 +4,7 @@ from scipy import stats
 from datetime import datetime
 from finance.utils import BasicUtils
 
-class SimpleEvent(object):
+class EventStudy(object):
     def __init__(self):
         self.data = None
         self.market = None
@@ -41,15 +41,3 @@ class SimpleEvent(object):
         self.t_test.name = 't test'
         self.prob = self.t_test.apply(stats.norm.cdf)
         self.prob.name = 'Probability'
-
-if __name__ == "__main__":
-    from finance.evtstudy import PastEvent
-    pevt = PastEvent('./test/data')
-    pevt.symbol = 'AAPL'
-    pevt.market = "^gspc"
-    pevt.lookback_days = 10
-    pevt.lookforward_days = 10
-    pevt.estimation_period = 252
-    pevt.date = datetime(2009, 1, 5)
-    pevt.run()
-    print(pevt.car)

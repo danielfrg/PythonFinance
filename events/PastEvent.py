@@ -4,13 +4,31 @@ from datetime import datetime
 
 from finance.utils import DateUtils
 from finance.utils import DataAccess
-from finance.evtstudy.SimpleEvent import SimpleEvent
+from finance.events.EventStudy import EventStudy
 
-class PastEvent(SimpleEvent):
+class PastEvent(EventStudy):
+    '''
+    Analyse a particular equity on a particular date
+    
+    Necesary Parameters
+    -------------------
+        date: datetime
+        symbol: str, eg: AAPL
+    
+    Optional Parameters
+    -------------------
+        market: str, default2-'SPY' - used to asses the event
+        lookback_days: int, default=20 - past event window size
+        lookforward_days: int, default=20 - future event window size
+        estimation_period: int, default=255
+
+    |-----255-----|-------20-------|-|--------20--------|
+       estimation      lookback   event   lookforward
+    '''
 
     def __init__(self, path='./data'):
         # Utils
-        self.da = DataAccess(path)
+        self.data_access = DataAccess(path)
 
         # Variables
         self.date = None # Date of the event
@@ -32,16 +50,15 @@ class PastEvent(SimpleEvent):
 
     def run(self):
         dates = DateUtils.nyse_dates_event(self.date,
-                            self.lookback_days + self.estimation_period,
-                            self.lookforward_days, list=True)
+                            self.lookback_days, self.lookforward_days, self.estimation_period)
         start_date = dates[0]
         end_date = dates[-1]
 
         # Data to the General market_return Study
-        self.data = self.da.get_data(self.symbol, start_date, end_date, self.field)
+        self.data = self.data_access.get_data(self.symbol, start_date, end_date, self.field)
         evt_window_dates = dates[- self.lookforward_days - self.lookback_days - 1:]
         self.evt_window_data = self.data[evt_window_dates[0]:dates[-1]]
-        self.market = self.da.get_data(self.market, start_date, end_date, self.field)
+        self.market = self.data_access.get_data(self.market, start_date, end_date, self.field)
         # Parameters of the General market_return Study
         self.start_period = dates[0]
         self.end_period = dates[self.estimation_period]
@@ -60,4 +77,4 @@ if __name__ == "__main__":
     pevt.estimation_period = 252
     pevt.date = datetime(2009, 1, 5)
     pevt.run()
-    print(pevt.er)
+    print(pevt.expected_return)
