@@ -1,5 +1,5 @@
 from datetime import datetime
-from finance.data import DataAccess
+from finance.utils import DataAccess
 
 da = DataAccess('./data')
 symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]

@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 from finance.utils import DateUtils
 from finance.utils import DataAccess
@@ -39,6 +40,9 @@ class MultipleEvents(object):
         '''
         Assess the events
 
+        |-----100-----|-------20-------|-|--------20--------|
+           estimation      lookback   event   lookforward
+
         Prerequisites
         -------------
             self.matrix
@@ -49,9 +53,6 @@ class MultipleEvents(object):
             self.field = 'Adj Close'
         '''
         # 0. Get the dates and Download/Import the data
-        # |-----100-----|-------20-------|-|--------20--------|
-        #   estimation       lookback   event   lookforward
-
         symbols = list(set(self.list))
         start_date = self.list.index[0]
         end_date = self.list.index[-1]
@@ -168,32 +169,4 @@ class MultipleEvents(object):
             x = self.mean_cumulative_abnormal_return.index
             y = self.mean_cumulative_abnormal_return.values
             yerr = self.std_cumulative_abnormal_return.values
-            # p = mevt.mean_cumulative_abnormal_return.plot()
         plt.errorbar(x, y, yerr=yerr)
-
-
-if __name__ == '__main__':
-    from finance.events import EventFinder
-    evtf = EventFinder('./test/data')
-    evtf.symbols = ['AMD', 'CBG']
-    evtf.start_date = datetime(2008, 1, 1)
-    evtf.end_date = datetime(2009, 12, 31)
-    evtf.function = evtf.went_below(3)
-    evtf.search()
-
-    mevt = MultipleEvents('./test/data')
-    mevt.list = evtf.list
-    mevt.market = 'SPY'
-    mevt.lookback_days = 20
-    mevt.lookforward_days = 20
-    mevt.estimation_period = 200
-    mevt.run()
-
-    # print(mevt.std_cumulative_abnormal_return.values)
-
-    import matplotlib
-    matplotlib.use('Qt4Agg')
-    import matplotlib.pyplot as plt
-    mevt.plot('car')
-    plt.show()
-    

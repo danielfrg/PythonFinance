@@ -1,7 +1,7 @@
 from datetime import datetime
 from finance.utils import DateUtils
 
-all_dates = DateUtils.nyse_dates(list=True)
+all_dates = DateUtils.nyse_dates()
 print(all_dates)
 
 print(DateUtils.nyse_dates(start=datetime(2008,1,1)))

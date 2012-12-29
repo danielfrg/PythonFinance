@@ -1,5 +1,6 @@
 from datetime import datetime
-from finance.evtstudy import PastEvent
+import matplotlib.pyplot as plt
+from finance.events import PastEvent
 
 pevt = PastEvent('./data')
 pevt.symbol = 'AAPL'
@@ -15,8 +16,6 @@ pevt.run()
 print(pevt.cumulative_abnormal_return)
 #print(pevt.t_test)
 
-import matplotlib
-matplotlib.use('Qt4Agg') # Probably most people dont need this line
-import matplotlib.pyplot as plt
-pevt.expected_return.plot()
+
+pevt.cumulative_abnormal_return.plot()
 plt.show()

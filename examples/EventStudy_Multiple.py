@@ -1,5 +1,6 @@
 from datetime import datetime
-from finance.evtstudy import EventFinder, MultipleEvents
+import matplotlib.pyplot as plt
+from finance.events import EventFinder, MultipleEvents
 
 evtf = EventFinder('./data')
 evtf.symbols = ['AMD', 'CBG']
@@ -9,7 +10,7 @@ evtf.function = evtf.went_below(3)
 evtf.search()
 
 mevt = MultipleEvents('./data')
-mevt.matrix = evtf.matrix
+mevt.list = evtf.list
 mevt.market = 'SPY'
 mevt.lookback_days = 20
 mevt.lookforward_days = 20
@@ -18,8 +19,8 @@ mevt.run()
 
 print(mevt.mean_abnormal_return)
 
-import matplotlib
-matplotlib.use('Qt4Agg') # Probably most people dont need this line
-import matplotlib.pyplot as plt
 mevt.mean_cumulative_abnormal_return.plot()
+plt.show()
+
+mevt.plot('car')
 plt.show()

@@ -105,6 +105,9 @@ class FileManager(object):
         else:
             return ans
 
+    def download(self, symbols, start_date, end_date):
+        get_filenames(symbols, start_date, end_date, downloadMissing=True)
+
     def yahoo_download(self, symbol, start_date, end_date):
         '''
         Downloads and saves the equitiy information from Yahoo! Finance between

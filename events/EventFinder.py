@@ -87,14 +87,3 @@ class EventFinder(object):
     def went_above(self, above):
         self.funcion_name = 'above_%d' % above
         return lambda i, item, data: (data[i-1] <= above and item > above)
-
-if __name__ == '__main__':
-    evtf = EventFinder('./data')
-    evtf.symbols = ['AMD', 'CBG', 'AAPL']
-    evtf.start_date = datetime(2008, 1, 1)
-    evtf.end_date = datetime(2010, 12, 31)
-    evtf.function = evtf.went_below(5)
-    evtf.search(oneEventPerEquity=False)
-
-    print(evtf.num_events)
-    print(evtf.list)
