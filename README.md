@@ -24,6 +24,6 @@ Features
 How to use it
 -------------
 
-1. Look at examples folder for examples of each module; some are .py files, some are ipython notebooks
+1. Look at examples folder for examples; some are .py files, some are ipython notebooks
 2. The most updated examples are the test of each module
 3. More information (but possible un-updated): [ctrl68.wordpress.com](http://ctrl68.wordpress.com/category/python/pythonfinance/)
