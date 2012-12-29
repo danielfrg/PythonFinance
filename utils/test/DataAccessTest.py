@@ -12,7 +12,7 @@ class DataAccessTest(unittest.TestCase):
     def suite(self):
         suite = unittest.TestSuite()
         suite.addTest(DataAccessTest('test_get_data'))
-        # suite.addTest(DataAccessTest('test_save_load_custom_name'))
+        suite.addTest(DataAccessTest('test_save_load_custom_name'))
         return suite
 
     def test_get_data(self):
@@ -120,7 +120,7 @@ def benchmark():
 
 if __name__ == '__main__':
     suite = DataAccessTest().suite()
-    # unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.TextTestRunner(verbosity=2).run(suite)
 
-    benchmark()
+    # benchmark()
     DataAccess('./data').empty_dirs(delete=True)
