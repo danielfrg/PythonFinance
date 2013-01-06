@@ -1,7 +1,7 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
 from finance.utils import DataAccess
-from finance.utils.BasicUtils import *
+from finance.utils import Calculator
 from finance.sim import MarketSimulator
 
 DataAccess.path = 'data'
@@ -14,8 +14,8 @@ sim.simulate()
 
 print(sim.portfolio[0:10])
 
-print('Total Return:', total_return(sim.portfolio))
-print(sharpe_ratio(sim.portfolio))
+print('Total Return:', Calculator.total_return(sim.portfolio))
+print(Calculator.sharpe_ratio(sim.portfolio))
 
 sim.portfolio.plot()
 plt.show()

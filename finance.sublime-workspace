@@ -4,8 +4,120 @@
 		"selected_items":
 		[
 			[
+				"emp",
+				"empty_dirs"
+			],
+			[
+				"en",
+				"environ"
+			],
+			[
+				"get",
+				"get_filenames"
+			],
+			[
+				"sym",
+				"symbols"
+			],
+			[
+				"loo",
+				"lookforward_days"
+			],
+			[
+				"sy",
+				"symbol_s"
+			],
+			[
+				"symbo",
+				"symbol"
+			],
+			[
+				"Data",
+				"DataAccess"
+			],
+			[
+				"past",
+				"pastEvent"
+			],
+			[
+				"d2_",
+				"d1_array_2_dr"
+			],
+			[
+				"col",
+				"columns"
+			],
+			[
+				"da",
+				"daily_returns"
+			],
+			[
+				"port",
+				"Portfolio"
+			],
+			[
+				"colu",
+				"column"
+			],
+			[
+				"to",
+				"total_return"
+			],
+			[
+				"pr",
+				"prices"
+			],
+			[
+				"afte",
+				"after_date"
+			],
+			[
+				"days",
+				"daysAfter"
+			],
+			[
+				"idx",
+				"idx"
+			],
+			[
+				"event",
+				"eventList"
+			],
+			[
+				"act",
+				"actionAfter"
+			],
+			[
+				"fil",
+				"field"
+			],
+			[
+				"mar",
+				"market"
+			],
+			[
 				"ev",
-				"evtstudy"
+				"evt_idx2"
+			],
+			[
+				"evt",
+				"evt_idx"
+			],
+			[
+				"evt_",
+				"evt_date"
+			],
+			[
+				"end",
+				"end_date"
+			],
+			[
+				"star",
+				"start"
+			],
+			[
+				"fill",
+				"fillna"
 			],
 			[
 				"ex",
@@ -16,18 +128,6 @@
 				"dr_market_window"
 			],
 			[
-				"end",
-				"end_idx"
-			],
-			[
-				"mar",
-				"market_estimation"
-			],
-			[
-				"star",
-				"start"
-			],
-			[
 				"equi",
 				"equities_window"
 			],
@@ -36,16 +136,8 @@
 				"assertEqual"
 			],
 			[
-				"loo",
-				"lookforward_days"
-			],
-			[
 				"data",
 				"data_window"
-			],
-			[
-				"idx",
-				"idx_end"
 			],
 			[
 				"cus",
@@ -104,16 +196,8 @@
 				"reg_estimation"
 			],
 			[
-				"Data",
-				"DataFrame"
-			],
-			[
 				"dr",
 				"dr_market_estimation"
-			],
-			[
-				"col",
-				"col_name"
 			],
 			[
 				"pd",
@@ -124,10 +208,6 @@
 				"daily_returns"
 			],
 			[
-				"evt",
-				"evt_window_data"
-			],
-			[
 				"e",
 				"end_date"
 			],
@@ -136,32 +216,12 @@
 				"return"
 			],
 			[
-				"sym",
-				"symbols"
-			],
-			[
-				"en",
-				"evt_window_data"
-			],
-			[
-				"get",
-				"get_idx_date"
-			],
-			[
 				"n",
 				"new_col"
 			],
 			[
 				"lo",
 				"lookback_days"
-			],
-			[
-				"da",
-				"data"
-			],
-			[
-				"sy",
-				"symbols"
 			],
 			[
 				"Mar",
@@ -222,10 +282,6 @@
 			[
 				"por",
 				"portfolio"
-			],
-			[
-				"port",
-				"get_portfolio"
 			],
 			[
 				"valu",
@@ -504,26 +560,58 @@
 	},
 	"file_history":
 	[
-		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Past.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/DataAccess.py",
+		"/home/dfrodriguez/Dropbox/Documents/UTD/Bussiness Intelligence/Project - Term/data/training_clean2.csv",
 		"/home/dfrodriguez/Documents/packages/finance/examples/MarketSimulator.py",
-		"/home/dfrodriguez/Documents/packages/finance/README.md",
+		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Finder.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Multiple.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/ListUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Past.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/DataManagement.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/DateUtils.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/EventFinder.py",
+		"/home/dfrodriguez/Documents/packages/finance/sim/test/MarketSimulatorTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/test/MultipleEventTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/EventStudy.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/PastEvent.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/test/PastEventTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/test/EventFinderTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/DataAccessTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/DateUtilsTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/BasicUtilsTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/FileManagerTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/FileManager.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/BasicUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/EventFinder.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
+		"/home/dfrodriguez/Documents/packages/finance/README.md",
+		"/home/dfrodriguez/Documents/packages/finance/examples/ListUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/__init__.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/SimpleEvent.py",
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/EventFinder.py",
-		"/home/dfrodriguez/Documents/packages/finance/evtstudy/SimpleEvent.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/ListUtils.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/DateUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/lists/NYSE_dates.txt",
+		"/home/dfrodriguez/Documents/packages/finance/utils/lists/NYSE_dates.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/lists/__init__.py",
+		"/home/dfrodriguez/Documents/packages/finance/.gitignore",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/MultipleEvents.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/MultipleEvents/data/SUN_2009-12-10_2012-1-19.csv",
+		"/home/dfrodriguez/Documents/packages/finance/utils/SP500_2012.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/MultipleEvents/data/SPY_2009-12-17_2012-1-19.csv",
+		"/home/dfrodriguez/Documents/packages/finance/examples/MultipleEvents/data/FTR_2011-1-1_2011-12-31.csv",
+		"/home/dfrodriguez/Documents/packages/finance/examples/MultipleEvents/data/FTR_2009-12-17_2012-1-19.csv",
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/test/MultipleEventTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/test/MultipleEventTest.ods",
+		"/home/dfrodriguez/Documents/packages/finance/utils/SP500_2008.py",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/test/EventFinderTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/EventFinder.py",
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/SimpleEvent.py",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/.bashrc",
-		"/home/dfrodriguez/Documents/packages/finance/evtstudy/MultipleEvents.py",
 		"/home/dfrodriguez/.profile",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
-		"/home/dfrodriguez/Documents/packages/finance/utils/BasicUtils.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/MultipleEventTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/EventFinder.py",
@@ -599,39 +687,7 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/HW3.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/sim/Simulator.py",
-		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-build",
-		"/C/Users/Daniel/Documents/projects/packages/finance/data/test/DataAccessTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/example.py",
-		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/C/Users/Daniel/Documents/projects/packages/financ.sublime-workspace",
-		"/C/Users/Daniel/Documents/projects/packages/financ.sublime-project",
-		"/C/Users/Daniel/Documents/projects/modules/test.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/DataAccess.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/FileManager.py",
-		"/C/Users/Daniel/Documents/projects/modules/log/verbose.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/test/DataAccessTest.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/utils",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/test/FileManagerTest.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/test/FileManager.py",
-		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/__init__.py",
-		"/C/Users/Daniel/Documents/projects/modules/log/test/verbose.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/NYSE_dates.txt",
-		"/C/Users/Daniel/Desktop/a.py",
-		"/C/Users/Daniel/Documents/projects/modules/log/__init__.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/pull.py",
-		"/C/Users/Daniel/Documents/projects/modules/log/tutorial/verbose.py",
-		"/C/Users/Daniel/Documents/projects/modules/finance/data/dataaccess.py",
-		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/Daniel/Desktop/FP FN",
-		"/C/Users/Daniel/Desktop/dt_output.txt",
-		"/C/Users/Daniel/Desktop/lr_output.txt",
-		"/C/Users/Daniel/Desktop/comparison_output.txt",
-		"/C/Users/Daniel/Desktop/nn_output.txt",
-		"/C/Users/Daniel/Desktop/mbr_output.txt",
-		"/C/Users/Daniel/Dropbox/Documents/UTD/Bussiness Intelligence/Project/data/Data_Dictionary.txt",
-		"/C/Users/Daniel/Documents/My SAS Files/Project3/Workspaces/EMWS1/Neural/EMOUTPUT.out",
-		"/C/Users/Daniel/Desktop/testing_scores_dt - Copy.txt"
+		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-build"
 	],
 	"find":
 	{
@@ -649,6 +705,38 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"self.fm",
+			"self.da",
+			"self.da.",
+			"da",
+			"self.da ",
+			"self.da",
+			"self.current_cash",
+			"current_stocks",
+			"self.own",
+			"self.da",
+			"da",
+			"field_s",
+			"symbol_s",
+			"n_data",
+			"end_date",
+			"start_date",
+			"get_data",
+			"import",
+			"list",
+			"0.9175",
+			"sr",
+			"d,",
+			"d",
+			"tr",
+			"equities",
+			"print",
+			"Adj",
+			")\n",
+			"))\n",
+			"columns",
+			"CFN",
+			"bwa",
 			"self.car",
 			"self.ar",
 			"er",
@@ -744,39 +832,7 @@
 			"self.data",
 			"path",
 			"csv",
-			"get_filename",
-			"load=True",
-			"load",
-			"print",
-			"symbols",
-			"None",
-			"print",
-			"self.dir_path",
-			"pull.yahoo_pull(symbols, start_date, end_date, self.dir_path",
-			"self.dir_path",
-			"self.dir",
-			"pandas.",
-			"pull",
-			"yahoo_pull_single",
-			"yahoo_pull_multiple",
-			"self.dir_path",
-			"data_path",
-			"dt.",
-			"dt",
-			"pd",
-			"NYSE",
-			"pd",
-			"	 ",
-			"	  ",
-			"	   ",
-			"      ",
-			"       ",
-			"	  ",
-			"      ",
-			"       ",
-			"        ",
-			"         ",
-			"	 "
+			"get_filename"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -832,7 +888,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 163.0
+		"height": 166.0
 	},
 	"replace":
 	{
@@ -844,6 +900,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"sun",
+				"examples/MultipleEvents/data/SUN_2009-12-10_2012-1-19.csv"
+			],
 			[
 				"amd",
 				"finance/evtstudy/data/AMD_2007-10-5_2010-1-15.csv"
@@ -883,6 +943,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 257.0,
+	"side_bar_width": 216.0,
 	"status_bar_visible": true
 }

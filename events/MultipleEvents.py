@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 from finance.utils import DateUtils
 from finance.utils import DataAccess
-from finance.utils import BasicUtils
+from finance.utils import Calculator
 
 class MultipleEvents(object):
     def __init__(self):
@@ -79,8 +79,8 @@ class MultipleEvents(object):
         self.market_window = pd.DataFrame(index=windows_indexes)
         self.market_estimation = pd.DataFrame(index=estimation_indexes)
 
-        dr_data = BasicUtils.daily_returns(data)
-        dr_market = BasicUtils.daily_returns(market)
+        dr_data = Calculator.daily_returns(data)
+        dr_market = Calculator.daily_returns(market)
         self.dr_equities_window = pd.DataFrame(index=windows_indexes)
         self.dr_equities_estimation = pd.DataFrame(index=estimation_indexes)
         self.dr_market_window = pd.DataFrame(index=windows_indexes)

@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from datetime import datetime
-from finance.utils import BasicUtils
+from finance.utils import Calculator
 
 class EventStudy(object):
     def __init__(self):
@@ -17,8 +17,8 @@ class EventStudy(object):
 
     def market_return(self):
         # 1. Linear Regression: On the estimation_period
-        dr_data = BasicUtils.daily_returns(self.data)
-        dr_market = BasicUtils.daily_returns(self.market)
+        dr_data = Calculator.daily_returns(self.data)
+        dr_market = Calculator.daily_returns(self.market)
         c_name = dr_data.columns[0]
         x =  dr_market[c_name][self.start_period:self.end_period]
         y = dr_data[c_name][self.start_period:self.end_period]

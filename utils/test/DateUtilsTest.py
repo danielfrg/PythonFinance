@@ -19,7 +19,12 @@ class DateUtilsTest(unittest.TestCase):
         '''
         Tests the dates without the lookBack and lookForward parameters
         '''
+        # We assume this works: because sometime today is not and open day
         today = datetime(datetime.today().year, datetime.today().month, datetime.today().day)
+        dates = DateUtils.nyse_dates()
+        today = DateUtils.search_closer_date(today, dates)
+        today = dates[today]
+        # End of assumssion
         
         # Test: Returns a list
         dates = DateUtils.nyse_dates()
