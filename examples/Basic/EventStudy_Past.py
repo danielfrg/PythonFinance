@@ -21,5 +21,5 @@ print(pevt.cumulative_abnormal_return)
 #print(pevt.t_test)
 
 
-pevt.cumulative_abnormal_return.plot()
+pevt.abnormal_return.plot()
 plt.show()

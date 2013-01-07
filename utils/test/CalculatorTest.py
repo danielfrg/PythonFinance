@@ -18,19 +18,29 @@ class BasicUtilsTest(unittest.TestCase):
     def suite(self):
         suite = unittest.TestSuite()
         suite.addTest(BasicUtilsTest('test_present_and_future_value'))
-        suite.addTest(BasicUtilsTest('test_rates_and_n'))
+        suite.addTest(BasicUtilsTest('test_rates'))
+        suite.addTest(BasicUtilsTest('test_n_and_m'))
         # suite.addTest(BasicUtilsTest('test_total_return'))
         # suite.addTest(BasicUtilsTest('test_daily_return'))
         # suite.addTest(BasicUtilsTest('test_sharpe_ratio'))
         return suite
 
-    def test_rates_and_n(self):
-        # Test: Rate from PV and FV
+    def test_rates(self):
+        # Test: Rate from PV and FV; NO m
         ans = Calculator.R(PV=1000, FV=1030, n=1)
         self.assertAlmostEquals(0.03, ans, 4)
         ans = Calculator.R(PV=1000, FV=1159.27, n=5)
         self.assertAlmostEquals(0.03, ans, 4)
         ans = Calculator.R(PV=1000, FV=1343.92, n=10)
+        self.assertAlmostEquals(0.03, ans, 4)
+
+        # Test: Rate from PV and FV; WITH m
+        FV = Calculator.FV(PV=1000, R=0.01, n=2, m=2)
+        ans = Calculator.R(PV=1000, FV=FV, n=2, m=2)
+        self.assertAlmostEquals(0.01, ans, 4)
+
+        FV = Calculator.FV(PV=1234, R=0.03, n=3, m=4)
+        ans = Calculator.R(PV=1234, FV=FV, n=3, m=4)
         self.assertAlmostEquals(0.03, ans, 4)
 
         # Test Efective Annual Rate
@@ -45,15 +55,23 @@ class BasicUtilsTest(unittest.TestCase):
         ans = Calculator.ear(R=0.1, m=float('inf'))
         self.assertAlmostEquals(0.105170, ans, 5)
 
-        # Test n
+    def test_n_and_m(self):
+        # Test n; NO m
         ans = Calculator.n(PV=1000, FV=1030, R=0.03)
         self.assertAlmostEquals(1, ans, 4)
         ans = Calculator.n(PV=1000, FV=1159.27, R=0.03)
         self.assertAlmostEquals(5, ans, 2)
         ans = Calculator.n(PV=1000, FV=1343.92, R=0.03)
         self.assertAlmostEquals(10, ans, 2)
+        
+        # Test n; WITH m
+        FV = Calculator.FV(PV=1000, R=0.1, n=2, m=2)
+        n = Calculator.n(PV=1000, FV=FV, R=0.1, m=2)
+        self.assertAlmostEquals(2, n, 2)
 
-
+        FV = Calculator.FV(PV=4321, R=0.15, n=10, m=52)
+        n = Calculator.n(PV=4321, FV=FV, R=0.15, m=52)
+        self.assertAlmostEquals(10, n, 2)
 
     def test_present_and_future_value(self):
         # Test Future Value with NO compounding frequency
@@ -72,7 +90,7 @@ class BasicUtilsTest(unittest.TestCase):
         ans = Calculator.PV(FV=1343.92, R=0.03, n=10)
         self.assertAlmostEquals(1000, ans, 2)
 
-        # Test Future Value: with compounding frequency
+        # Test Future Value: WITH compounding frequency
         ans = Calculator.FV(PV=1000, R=0.1, n=1, m=1)
         self.assertEquals(1100, ans)
         ans = Calculator.FV(PV=1000, R=0.1, n=1, m=4)
@@ -84,8 +102,7 @@ class BasicUtilsTest(unittest.TestCase):
         ans = Calculator.FV(PV=1000, R=0.1, n=1, m=float('inf'))
         self.assertAlmostEquals(1105.17, ans, 2)
 
-
-        # Test Present Value: with compounding frequency: Inverse of the previous
+        # Test Present Value: WITH compounding frequency: Inverse of the previous
         ans = Calculator.PV(FV=1100, R=0.1, n=1, m=1)
         self.assertAlmostEquals(1000, ans, 2)
         ans = Calculator.PV(FV=1103.81, R=0.1, n=1, m=4)
@@ -96,6 +113,44 @@ class BasicUtilsTest(unittest.TestCase):
         self.assertAlmostEquals(1000, ans, 2)
         ans = Calculator.PV(FV=1105.17, R=0.1, n=1, m=float('inf'))
         self.assertAlmostEquals(1000, ans, 2)
+
+        # Test: Present Value: List of rates, same rate
+        ans = Calculator.FV(PV=1000, R=[0.1])
+        self.assertAlmostEquals(1100, ans, 2)
+
+        ans = Calculator.FV(PV=1000, R=[0.1, 0.1])
+        self.assertAlmostEquals(1210, ans, 2)
+        ans2 = Calculator.FV(PV=1000, R=0.1, n=2)
+        self.assertAlmostEquals(ans2, ans, 2)
+
+        ans = Calculator.FV(PV=1000, R=[0.1, 0.1, 0.1])
+        self.assertAlmostEquals(1331.0, ans, 2)
+        ans2 = Calculator.FV(PV=1000, R=0.1, n=3)
+        self.assertAlmostEquals(ans2, ans, 2)
+
+
+        # Test: Futuve Value: List of rates, same rate, inverse as previous
+        ans = Calculator.PV(FV=1100, R=[0.1])
+        self.assertAlmostEquals(1000, ans, 2)
+
+        ans = Calculator.PV(FV=1210, R=[0.1, 0.1])
+        self.assertAlmostEquals(1000, ans, 2)
+        ans2 = Calculator.PV(FV=1210, R=0.1, n=2)
+        self.assertAlmostEquals(ans2, ans, 2)
+
+        ans = Calculator.PV(FV=1331, R=[0.1, 0.1, 0.1])
+        self.assertAlmostEquals(1000, ans, 2)
+        ans2 = Calculator.PV(FV=1331, R=0.1, n=3)
+        self.assertAlmostEquals(ans2, ans, 2)
+
+        # Test: Present Value: List of rates, different rate
+        ans = Calculator.FV(PV=1000, R=[0.1, 0.2, 0.3])
+        self.assertAlmostEquals(1716.0, ans, 2)
+
+        # Test: Future Value: List of rates, different rate, inverse as previous
+        ans = Calculator.PV(FV=1716, R=[0.3, 0.2, 0.1])
+        self.assertAlmostEquals(1000, ans, 2)
+
 
     def test_total_return(self):
         d1_array = np.array([1,2,3,4,5])

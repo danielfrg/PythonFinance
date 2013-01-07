@@ -213,9 +213,4 @@ class DataAccess(object):
         if save == True:
             self.save(data, filename_id)
         return data
-       
-if __name__ == '__main__':
-    da = DataAccess()
-    symbols = "AAPL"
-    fields = "Close"
-    # df = da.get_data(symbols, datetime(2008,1,1), datetime(2008,12,31), fields, useCache=False)
+        

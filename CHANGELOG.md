@@ -1,8 +1,8 @@
 PythonFinance
 =============
 
-v0.0X
------
+v0.04 - Dev
+-----------
 - Rename BasicUtils to Calculator
 - Add more utils to the Calculator:
 	- Future Value
@@ -10,7 +10,10 @@ v0.0X
 	- Rates (Annual rate)
 	- Number of periods (n)
 	- Efective annual return
-	- Improve total_return to give return by possision
+	- Improve total_return to give return by position
+	- Rename daily_returns to just returns
+	- Add Continusly compouding to total_return and returns
+- A lot of more examples
 
 v0.035
 ------

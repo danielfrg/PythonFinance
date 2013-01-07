@@ -79,8 +79,8 @@ class MultipleEvents(object):
         self.market_window = pd.DataFrame(index=windows_indexes)
         self.market_estimation = pd.DataFrame(index=estimation_indexes)
 
-        dr_data = Calculator.daily_returns(data)
-        dr_market = Calculator.daily_returns(market)
+        dr_data = Calculator.returns(data)
+        dr_market = Calculator.returns(market)
         self.dr_equities_window = pd.DataFrame(index=windows_indexes)
         self.dr_equities_estimation = pd.DataFrame(index=estimation_indexes)
         self.dr_market_window = pd.DataFrame(index=windows_indexes)

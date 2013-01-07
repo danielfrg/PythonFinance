@@ -4,16 +4,40 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getenv"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"col",
+				"column"
+			],
+			[
+				"re",
+				"returns"
+			],
+			[
+				"to",
+				"today"
+			],
+			[
+				"con",
+				"continuouslyCompounded"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
 				"emp",
 				"empty_dirs"
 			],
 			[
 				"en",
 				"environ"
-			],
-			[
-				"get",
-				"get_filenames"
 			],
 			[
 				"sym",
@@ -44,24 +68,12 @@
 				"d1_array_2_dr"
 			],
 			[
-				"col",
-				"columns"
-			],
-			[
-				"da",
-				"daily_returns"
-			],
-			[
 				"port",
 				"Portfolio"
 			],
 			[
 				"colu",
 				"column"
-			],
-			[
-				"to",
-				"total_return"
 			],
 			[
 				"pr",
@@ -214,10 +226,6 @@
 			[
 				"return",
 				"return"
-			],
-			[
-				"n",
-				"new_col"
 			],
 			[
 				"lo",
@@ -560,36 +568,56 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Multiple.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Past.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/DataAccess.py",
+		"/home/dfrodriguez/Documents/packages/finance/CHANGELOG.md",
+		"/home/dfrodriguez/Documents/packages/finance/events/PastEvent.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/EventFinder.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/EventStudy.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/CalculatorTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/Calculator_FV.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/Calculator_FV_PV_R_n.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 1/Solution.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 2/Solution.py",
+		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/tsutil.py",
+		"/home/dfrodriguez/.bashrc",
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/Documents/packages/finance/utils/DataAccess.py",
-		"/home/dfrodriguez/Dropbox/Documents/UTD/Bussiness Intelligence/Project - Term/data/training_clean2.csv",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Example 2/Solution.py",
+		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/qsdateutil.py",
+		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/utils.py",
+		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/fundutil.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/DataManagement.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Calculator/Solution.py",
+		"/home/dfrodriguez/Documents/packages/finance/README.md",
 		"/home/dfrodriguez/Documents/packages/finance/examples/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/sim/test/MarketSimulatorTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/FileManagerTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/DataAccessTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/DateUtils.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/DateUtilsTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/test/MultipleEventTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/test/EventFinderTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/test/PastEventTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Calculator/Example1.py",
+		"/home/dfrodriguez/Dropbox/Documents/UTD/Bussiness Intelligence/Project - Term/data/training_clean2.csv",
 		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Finder.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Multiple.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/EventStudy_Past.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/DataManagement.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/DateUtils.py",
-		"/home/dfrodriguez/Documents/packages/finance/sim/test/MarketSimulatorTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/test/MultipleEventTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/EventStudy.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/PastEvent.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/test/PastEventTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/test/EventFinderTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/test/DataAccessTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/test/DateUtilsTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/test/BasicUtilsTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/test/FileManagerTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/FileManager.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/BasicUtils.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/EventFinder.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
-		"/home/dfrodriguez/Documents/packages/finance/README.md",
 		"/home/dfrodriguez/Documents/packages/finance/examples/ListUtils.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/__init__.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/SimpleEvent.py",
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/EventFinder.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/ListUtils.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/DateUtils.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/lists/NYSE_dates.txt",
 		"/home/dfrodriguez/Documents/packages/finance/utils/lists/NYSE_dates.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/lists/__init__.py",
@@ -608,8 +636,6 @@
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/SimpleEvent.py",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
-		"/home/dfrodriguez/.bashrc",
 		"/home/dfrodriguez/.profile",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/MultipleEventTest.py",
@@ -669,25 +695,7 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/SimpleEventTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_11-1-2007_2-20-2009.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/events/SimpleEvent.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/__init__.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/events/__init__.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/Events.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/BasicUtilsTest.py",
-		"/C/Users/Daniel/Desktop/t.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/__init__.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/.gitignore",
-		"/C/Users/Daniel/Documents/projects/packages/finance/finance.sublime-project",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils.py",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment1/utils/stock.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/datamanager/test/DataAccessTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/orders.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/data/DataAccess.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/data/AAPL_1-10-2011_12-20-2011.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/data/FileManager.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/examples/HW3.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/__init__.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/Simulator.py",
-		"/C/Users/Daniel/AppData/Roaming/Sublime Text 2/Packages/Python/Python.sublime-build"
+		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/__init__.py"
 	],
 	"find":
 	{
@@ -705,6 +713,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"daily",
+			"BasicUtils",
+			"Questio",
+			"(10) ",
+			"continuouslyCompounded",
+			"ans = Calculator.FV(PV=1000, R=0.03, n=1)\n        self.assertEquals(1030, ans)\n        ans = Calculator.FV(PV=1000, R=0.03, n=5)\n        self.assertAlmostEquals(1159.27, ans, 2)\n        ans = Calculator.FV(PV=1000, R=0.03, n=10)\n        self.assertAlmostEquals(1343.92, ans, 2)",
+			"BasicUtils.",
+			"BasicUtils",
 			"self.fm",
 			"self.da",
 			"self.da.",
@@ -824,15 +840,7 @@
 			"self.porfolio",
 			"porfolio_value",
 			"portfolio_value",
-			"ammount_each_stock",
-			"orders",
-			"value_equities",
-			"print",
-			"generate",
-			"self.data",
-			"path",
-			"csv",
-			"get_filename"
+			"ammount_each_stock"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -888,7 +896,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 166.0
+		"height": 144.0
 	},
 	"replace":
 	{

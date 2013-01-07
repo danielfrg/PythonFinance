@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from datetime import datetime
-
 from finance.utils import DateUtils
 from finance.utils import DataAccess
 from finance.events.EventStudy import EventStudy
