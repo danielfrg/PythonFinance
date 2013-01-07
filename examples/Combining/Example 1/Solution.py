@@ -3,18 +3,10 @@ from finance.utils import Calculator
 
 # Create the data
 
-data = [['December, 2004', 31.18],
-['January, 2005', 27.00],
-['February, 2005', 25.91],
-['March, 2005', 25.83],
-['April, 2005', 24.76],
-['May, 2005', 27.40],
-['June, 2005', 25.83],
-['July, 2005', 26.27],
-['August, 2005', 24.51],
-['September, 2005', 25.05],
-['October, 2005', 28.28],
-['November, 2005', 30.45],
+data = [['December, 2004', 31.18], ['January, 2005', 27.00],['February, 2005', 25.91],
+['March, 2005', 25.83],['April, 2005', 24.76],['May, 2005', 27.40],
+['June, 2005', 25.83],['July, 2005', 26.27],['August, 2005', 24.51],
+['September, 2005', 25.05],['October, 2005', 28.28],['November, 2005', 30.45],
 ['December, 2005', 30.51]]
 
 starbucks = pd.DataFrame(data, columns=['Date', 'Value']).set_index('Date')['Value']

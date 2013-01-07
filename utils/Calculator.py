@@ -213,7 +213,7 @@ def returns(data, basedOn=1, cc=False, col=None):
         else:
             return data.apply(returns, cc=cc, basedOn=basedOn)
 
-def sharpe_ratio(data, col=None):
+def sharpe_ratio(data, col=None, cc=False):
     '''
     Calculates the sharpe ratio
 
@@ -237,12 +237,12 @@ def sharpe_ratio(data, col=None):
         return math.sqrt(len(data)) * mean / std
 
     if type(data) is pd.Series or type(data) is pd.TimeSeries:
-        return sharpe_ratio(data.values)
+        return sharpe_ratio(data.values, cc=cc)
 
     if type(data) is pd.DataFrame:
         if col is not None:
-            return sharpe_ratio(data[col])
+            return sharpe_ratio(data[col], cc=cc)
         else:
-            series = data.apply(sharpe_ratio)
+            series = data.apply(sharpe_ratio, cc=cc)
             series.name = 'Sharpe Ratios'
             return series

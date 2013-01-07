@@ -20,9 +20,10 @@ class BasicUtilsTest(unittest.TestCase):
         suite.addTest(BasicUtilsTest('test_present_and_future_value'))
         suite.addTest(BasicUtilsTest('test_rates'))
         suite.addTest(BasicUtilsTest('test_n_and_m'))
-        # suite.addTest(BasicUtilsTest('test_total_return'))
-        # suite.addTest(BasicUtilsTest('test_daily_return'))
-        # suite.addTest(BasicUtilsTest('test_sharpe_ratio'))
+        suite.addTest(BasicUtilsTest('test_pv_fv_R_combined'))
+        suite.addTest(BasicUtilsTest('test_total_return'))
+        suite.addTest(BasicUtilsTest('test_returns'))
+        suite.addTest(BasicUtilsTest('test_sharpe_ratio'))
         return suite
 
     def test_rates(self):
@@ -128,7 +129,6 @@ class BasicUtilsTest(unittest.TestCase):
         ans2 = Calculator.FV(PV=1000, R=0.1, n=3)
         self.assertAlmostEquals(ans2, ans, 2)
 
-
         # Test: Futuve Value: List of rates, same rate, inverse as previous
         ans = Calculator.PV(FV=1100, R=[0.1])
         self.assertAlmostEquals(1000, ans, 2)
@@ -150,6 +150,34 @@ class BasicUtilsTest(unittest.TestCase):
         # Test: Future Value: List of rates, different rate, inverse as previous
         ans = Calculator.PV(FV=1716, R=[0.3, 0.2, 0.1])
         self.assertAlmostEquals(1000, ans, 2)
+
+    def test_pv_fv_R_combined(self):
+        data = [['December, 2004', 31.18], ['January, 2005', 27.00],['February, 2005', 25.91],['March, 2005', 25.83],['April, 2005', 24.76],['May, 2005', 27.40],['June, 2005', 25.83],['July, 2005', 26.27],['August, 2005', 24.51],['September, 2005', 25.05],['October, 2005', 28.28],['November, 2005', 30.45],['December, 2005', 30.51]]
+        starbucks = pd.DataFrame(data, columns=['Date', 'Value']).set_index('Date')['Value']
+
+        q1 = Calculator.total_return(starbucks, pos=1)
+        self.assertAlmostEquals(q1, -0.134, 2)
+
+        q2 = Calculator.FV(PV=10000, R=q1)
+        self.assertAlmostEquals(q2, 8659.40, 2)
+
+        q3 = Calculator.total_return(starbucks, pos=1, cc=True)
+        self.assertAlmostEquals(q3, -0.1439, 2)
+
+        q4 = Calculator.ar(R=q1, m=12)
+        self.assertAlmostEquals(q4, -0.8222, 2)
+
+        q5 = Calculator.ar(R=q3, m=12, cc=True)
+        self.assertAlmostEquals(q5, -1.7272, 2)
+
+        q6 = Calculator.total_return(starbucks)
+        self.assertAlmostEquals(q6, -0.0214, 2)
+
+        q7 = Calculator.FV(PV=10000, R=q6)
+        self.assertAlmostEquals(q7, 9785.12, 2)
+
+        q8 = Calculator.total_return(starbucks, cc=True)
+        self.assertAlmostEquals(q8, -0.0217, 2)
 
 
     def test_total_return(self):
@@ -176,9 +204,9 @@ class BasicUtilsTest(unittest.TestCase):
 
         # Test: Input is pandas.DataFrame with col parameter
         df = pd.DataFrame(d2_array, columns=['c1', 'c2'], index=[1,2,3,4,5])
-        ans = Calculator.total_return(df, 'c1')
+        ans = Calculator.total_return(df, col='c1')
         self.assertEquals(ans, 4)
-        ans = Calculator.total_return(df, 'c2')
+        ans = Calculator.total_return(df, col='c2')
         self.assertEquals(ans, -0.8)
 
         # Test: Input is pandas.DataFrame without col parameter
@@ -186,7 +214,7 @@ class BasicUtilsTest(unittest.TestCase):
         sol = pd.Series([4, -0.8], index=['c1', 'c2'], name='Total Returns')
         pd_test.assert_series_equal(ans, sol)
 
-    def test_daily_return(self):
+    def test_returns(self):
         d1_array_1 = np.array([1,1.5,3,4,4.3])
         d1_array_2 = np.array([5,4.3,3,3.5,1])
         d2_array = np.array([d1_array_1, d1_array_2]).T
@@ -196,33 +224,33 @@ class BasicUtilsTest(unittest.TestCase):
         d2_array_dr = np.array([d1_array_1_dr, d1_array_2_dr]).T
 
         # Test: Input is numpy.ndarray of 1 dimmension
-        ans = Calculator.daily_returns(d1_array_1)
+        ans = Calculator.returns(d1_array_1)
         np_test.assert_array_almost_equal(ans, d1_array_1_dr, 5)
-        ans = Calculator.daily_returns(d1_array_2)
+        ans = Calculator.returns(d1_array_2)
         np_test.assert_array_almost_equal(ans, d1_array_2_dr, 5)
 
         # Test: Input is numpy.ndarray of 2 dimmension 2
-        ans = Calculator.daily_returns(d2_array)
+        ans = Calculator.returns(d2_array)
         np_test.assert_array_almost_equal(ans, d2_array_dr, 5)
 
         # Test: Input is pandas.Series
         ser = pd.Series(d1_array_1, name='TEST')
-        ans = Calculator.daily_returns(ser)
+        ans = Calculator.returns(ser)
         sol = pd.Series(d1_array_1_dr, index=ser.index, name='TEST Daily Returns')
         pd_test.assert_series_equal(ans, sol)
         
         # Test: Input is pandas.DataFrame and gives col parameter
         df = pd.DataFrame(d2_array, columns=['c1', 'c2'])
-        ans = Calculator.daily_returns(df, col='c1')
+        ans = Calculator.returns(df, col='c1')
         sol = pd.Series(d1_array_1_dr, index=df.index, name='c1 Daily Returns')
         pd_test.assert_series_equal(ans, sol)
 
-        ans = Calculator.daily_returns(df, col='c2')
+        ans = Calculator.returns(df, col='c2')
         sol = pd.Series(d1_array_2_dr, index=df.index, name='c2 Daily Returns')
         pd_test.assert_series_equal(ans, sol)
 
         # Test: Input is pandas.DataFrame and do not gives col parameter
-        ans = Calculator.daily_returns(df)
+        ans = Calculator.returns(df)
         sol = pd.DataFrame(d2_array_dr, index=df.index, columns=df.columns)
         pd_test.assert_frame_equal(ans, sol)
 
@@ -248,9 +276,9 @@ class BasicUtilsTest(unittest.TestCase):
 
         # Test: Input is pandas.DataFrame with col parameter
         df = pd.DataFrame(d2_array, columns=['c1', 'c2'])
-        ans = Calculator.total_return(df, 'c1')
+        ans = Calculator.total_return(df, col='c1')
         self.assertAlmostEquals(ans, 3.299999, 5)
-        ans = Calculator.total_return(df, 'c2')
+        ans = Calculator.total_return(df, col='c2')
         self.assertEquals(ans, -0.8)
 
         # Test: Input is pandas.DataFrame without col parameter
