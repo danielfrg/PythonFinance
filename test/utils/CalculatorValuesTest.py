@@ -1,24 +1,19 @@
 import unittest
 import numpy as np
 import pandas as pd
-import numpy.testing as np_test
-import pandas.util.testing as pd_test
+from finance.test import FinanceTest
 
-from finance.utils import DataAccess
 from finance.utils import Calculator
-from finance.sim import MarketSimulator
 
-class CalculatorValues(unittest.TestCase):
-
-    def setUp1(self):
-        DataAccess.path = 'data'
-        self.data_access = DataAccess()
-        self.data_access.empty_dirs()
+class CalculatorTestValues(FinanceTest):
+    '''
+    Tests the values of the functions
+    '''
 
     def suite(self):
         suite = unittest.TestSuite()
-        suite.addTest(CalculatorValues('test_assets'))
-        suite.addTest(CalculatorValues('test_time_value_of_money'))
+        suite.addTest(CalculatorTestValues('test_assets'))
+        suite.addTest(CalculatorTestValues('test_tvm'))
         return suite
 
     def test_assets(self):
@@ -37,24 +32,24 @@ class CalculatorValues(unittest.TestCase):
         data = solution['Adj. Close']
         # Test 1
         simple_returns = Calculator.returns(data)
-        pd_test.assert_series_equal(solution['R(t)'], simple_returns)
+        self.assertSeriesEqual(solution['R(t)'], simple_returns)
         # Test 2
         cc_returns = Calculator.returns(data, cc=True)
-        pd_test.assert_series_equal(solution['r(t)'], cc_returns)
+        self.assertSeriesEqual(solution['r(t)'], cc_returns)
         # Test 3
         simple_returns_2 = Calculator.returns(data, basedOn=2)
-        pd_test.assert_series_equal(solution['R2(t)'], simple_returns_2)
+        self.assertSeriesEqual(solution['R2(t)'], simple_returns_2)
         # Test 4
         cc_returns_2 = Calculator.returns(data, basedOn=2, cc=True)
-        pd_test.assert_series_equal(solution['r2(t)'], cc_returns_2)
+        self.assertSeriesEqual(solution['r2(t)'], cc_returns_2)
         # Test 5
         fv = Calculator.FV(PV=1, R=simple_returns, ret_list=True)
-        pd_test.assert_series_equal(solution['FV'], fv)
+        self.assertSeriesEqual(solution['FV'], fv)
         # Test 6
         pv = Calculator.PV(FV=fv[-1], R=simple_returns, ret_list=True)
-        pd_test.assert_series_equal(solution['FV'], pv)
+        self.assertSeriesEqual(solution['FV'], pv)
 
-    def test_time_value_of_money(self):
+    def test_tvm(self):
         '''
         Tests
         -----
@@ -87,7 +82,5 @@ class CalculatorValues(unittest.TestCase):
                 self.assertAlmostEquals(ear, row['EAR'], 4, "R(%s),m(%s)" % (row['R'], row['m']))
 
 if __name__ == '__main__':
-    suite = CalculatorValues().suite()
+    suite = CalculatorTestValues().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
-
-    # DataAccess().empty_dirs(delete=True)

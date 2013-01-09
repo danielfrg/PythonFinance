@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"asser",
+				"assertFrameEqual"
+			],
+			[
+				"ass",
+				"assertArray"
+			],
+			[
+				"asse",
+				"assertFloat"
+			],
+			[
+				"as",
+				"assertArrayEqual"
+			],
+			[
+				"d1",
+				"d1_array2"
+			],
+			[
+				"an",
+				"ans"
+			],
+			[
+				"re",
+				"ret_list"
+			],
+			[
+				"ret",
+				"ret_list"
+			],
+			[
+				"sim",
+				"simple_returns"
+			],
+			[
+				"t",
+				"t"
+			],
+			[
+				"pd",
+				"pd_test"
+			],
+			[
 				"get",
 				"getenv"
 			],
@@ -14,10 +58,6 @@
 			[
 				"col",
 				"column"
-			],
-			[
-				"re",
-				"returns"
 			],
 			[
 				"to",
@@ -144,10 +184,6 @@
 				"equities_window"
 			],
 			[
-				"asse",
-				"assertEqual"
-			],
-			[
 				"data",
 				"data_window"
 			],
@@ -210,10 +246,6 @@
 			[
 				"dr",
 				"dr_market_estimation"
-			],
-			[
-				"pd",
-				"pd"
 			],
 			[
 				"dail",
@@ -484,18 +516,18 @@
 	"buffers":
 	[
 		{
-			"file": "/home/dfrodriguez/.matplotlib/matplotlibrc",
+			"file": "test/utils/CalculatorValuesTest.py",
 			"settings":
 			{
-				"buffer_size": 11526,
+				"buffer_size": 3379,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "examples/Basic/MarketSimulator.py",
+			"file": "test/utils/CalculatorTypesTest.py",
 			"settings":
 			{
-				"buffer_size": 520,
+				"buffer_size": 5731,
 				"line_ending": "Unix"
 			}
 		}
@@ -503,9 +535,13 @@
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
 	{
-		"height": 54.0,
+		"height": 217.0,
 		"selected_items":
 		[
+			[
+				"conver",
+				"Indentation: Convert to Spaces"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -525,10 +561,6 @@
 			[
 				"remove",
 				"Package Control: Remove Package"
-			],
-			[
-				"conver",
-				"Indentation: Convert to Tabs"
 			],
 			[
 				"CONVER",
@@ -567,7 +599,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 435.0
 	},
 	"console":
 	{
@@ -584,13 +616,20 @@
 	},
 	"file_history":
 	[
-		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Multiple.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 2/Solution.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/finance.sublime-project",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/CalculatorTypesTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/FinanceTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/__init__.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/CalculatorValuesTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/CalculatorTest1.csv",
 		"/home/dfrodriguez/.matplotlib/matplotlibrc",
 		"/home/dfrodriguez/Documents/packages/finance/utils/test/CalculatorTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Multiple.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 2/Solution.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
 		"/home/dfrodriguez/Documents/packages/finance/sim/test/MarketSimulatorTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 1/Solution.py",
 		"/home/dfrodriguez/Dropbox/Documents/Coursera/Intro to Computational Finance/Week 1/returnCalculations.csv",
@@ -704,14 +743,7 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/__init__.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/SimpleEvent.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/SPY_2008-10-7_2011-1-13.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-13.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/GOOG_2009-1-2_2010-12-30.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_17-12-2008_13-1-2011.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_11-7-2008_31-1-2011.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_3-9-2008_20-1-2011.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/XOM_1-1-2009_1-1-2011.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/examples/EventStudy_finder.py"
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/SPY_2008-10-7_2011-1-13.csv"
 	],
 	"find":
 	{
@@ -719,7 +751,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 95.0,
 		"where_history":
 		[
 		]
@@ -729,6 +761,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"CalculatorValues",
+			"np_test",
+			"> Returns",
+			"Returns",
+			"assert_frame_equal",
+			"pd_test",
+			"matrix_dr",
+			"array_2_dr",
+			"assertEquals",
+			"d2_array",
+			"array2",
+			"d1_array",
+			"CalculatorTypes",
+			"BasicUtilsTest",
+			"d1_array_1_dr",
+			"total_return",
+			"test_pv_fv_R_effret_with_m",
+			"solution",
+			"test_pv_fv_R_eff_ret_with_m",
+			"ear",
 			"grid",
 			"plt.grid(True)",
 			"grid",
@@ -836,27 +888,7 @@
 			"int(",
 			"int",
 			"evt2.",
-			"None",
-			"list(e",
-			"list(",
-			"list(s",
-			"list(",
-			"evt.",
-			"e_r",
-			"results",
-			"idx_end_date",
-			"idx_start_date",
-			"datetime",
-			"py",
-			"datetime",
-			"returnize0",
-			"fi",
-			"symbols",
-			"get_data_file",
-			"self.fm",
-			",s",
-			".all()",
-			" sim."
+			"None"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -874,56 +906,58 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/dfrodriguez/.matplotlib/matplotlibrc",
+					"file": "test/utils/CalculatorValuesTest.py",
 					"settings":
 					{
-						"buffer_size": 11526,
+						"buffer_size": 3379,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5544,
-								5544
+								405,
+								405
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1781.0,
+						"translation.y": 51.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "examples/Basic/MarketSimulator.py",
+					"file": "test/utils/CalculatorTypesTest.py",
 					"settings":
 					{
-						"buffer_size": 520,
+						"buffer_size": 5731,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								509,
-								509
+								244,
+								244
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -967,7 +1001,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 144.0
+		"height": 142.0
 	},
 	"replace":
 	{
@@ -1022,6 +1056,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 216.0,
+	"side_bar_width": 262.0,
 	"status_bar_visible": true
 }

@@ -7,7 +7,7 @@ from finance.utils import Calculator
 
 class CalculatorTypesTest(FinanceTest):
     '''
-    Tests the input and output types
+    Tests output types for different input types of the functions
     If there outputs are Series or DataFrames checks its column names
     Also tests very basic output values
     '''
