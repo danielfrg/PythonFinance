@@ -5,14 +5,11 @@ import numpy.testing as np_test
 import pandas.util.testing as pd_test
 from datetime import datetime
 
-from finance.utils import DataAccess
+from finance.test import FinanceTest
 from finance.events import EventFinder
+from finance.events import SampleEvents
 
-class EventFinderTest(unittest.TestCase):
-    def setUp1(self):
-        DataAccess.path = 'data'
-        self.data_access = DataAccess()
-        self.data_access.empty_dirs()
+class EventFinderTest(FinanceTest):
 
     def suite(self):
         suite = unittest.TestSuite()
@@ -27,13 +24,13 @@ class EventFinderTest(unittest.TestCase):
 
         Tests: oneEventPerEquity=True and oneEventPerEquity=False
         '''
-        self.setUp1()
+        self.setUpDataAccess()
 
         evtf = EventFinder()
         evtf.symbols = ['AMD']
         evtf.start_date = datetime(2008, 1, 1)
         evtf.end_date = datetime(2009, 12, 31)
-        evtf.function = evtf.went_below(3)
+        evtf.event = SampleEvents.went_below(3)
         evtf.search(oneEventPerEquity=True)
         # Test: number of events found = 1
         self.assertEqual(evtf.num_events, 1)
@@ -55,4 +52,4 @@ if __name__ == '__main__':
     suite = EventFinderTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess().empty_dirs(delete=True)
+    FinanceTest.delete_data()

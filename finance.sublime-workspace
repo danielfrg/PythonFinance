@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"test",
+				"testName"
+			],
+			[
+				"np",
+				"np_test"
+			],
+			[
+				"Mul",
+				"MultipleEventTest"
+			],
+			[
+				"returns",
+				"returns"
+			],
+			[
+				"asse",
+				"assertEqual"
+			],
+			[
+				"Da",
+				"DataFrame"
+			],
+			[
+				"data",
+				"data_access"
+			],
+			[
+				"sel",
+				"self_dir"
+			],
+			[
 				"da",
 				"data_access"
 			],
@@ -26,10 +58,6 @@
 			[
 				"ass",
 				"assertArray"
-			],
-			[
-				"asse",
-				"assertFloat"
 			],
 			[
 				"as",
@@ -196,10 +224,6 @@
 				"equities_window"
 			],
 			[
-				"data",
-				"data_window"
-			],
-			[
 				"cus",
 				"customDates"
 			],
@@ -230,10 +254,6 @@
 			[
 				"get_",
 				"get_idx_date"
-			],
-			[
-				"test",
-				"testdf"
 			],
 			[
 				"arr",
@@ -494,31 +514,59 @@
 			[
 				"dai",
 				"daily_ret"
-			],
-			[
-				"fun",
-				"fund_inv"
-			],
-			[
-				"sharpe",
-				"sharpe_ratio"
-			],
-			[
-				"cumu",
-				"cumulative"
-			],
-			[
-				"com",
-				"combination"
-			],
-			[
-				"w",
-				"weight"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "test/events/PastEventTest.py",
+			"settings":
+			{
+				"buffer_size": 1517,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "events/PastEvent.py",
+			"settings":
+			{
+				"buffer_size": 2255,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "events/EventStudy.py",
+			"settings":
+			{
+				"buffer_size": 1599,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/events/MultipleEventTest.py",
+			"settings":
+			{
+				"buffer_size": 2500,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/FinanceTest.py",
+			"settings":
+			{
+				"buffer_size": 2910,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/events/docs/PastEvent_window_1.csv",
+			"settings":
+			{
+				"buffer_size": 1480,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -604,21 +652,26 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/Documents/packages/finance/test/events/MultipleEventTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
 		"/home/dfrodriguez/Documents/packages/finance/test/FinanceTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/events/EventFinderTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorValuesTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorTypesTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/sim/MarketSimulatorTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/test/sim/docs/Test1.csv",
+		"/home/dfrodriguez/Documents/packages/finance/utils/DataAccess.py",
+		"/home/dfrodriguez/Documents/packages/finance/utils/ListUtils.py",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/DataAccessTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/FileManagerTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/CHANGELOG.md",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/DateUtilsTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
-		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorTypesTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/test/sim/MarketSimulatorTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/SampleEvents.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/EventFinder.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/Event.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Finder.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
-		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorValuesTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorTest_TVM_3.csv",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorTest_TVM_2.csv",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorTest_TVM.csv",
@@ -650,7 +703,6 @@
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/Calculator_FV_PV_R_n.py",
 		"/home/dfrodriguez/.bashrc",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
-		"/home/dfrodriguez/Documents/packages/finance/utils/DataAccess.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Example 2/Solution.py",
 		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/qsdateutil.py",
 		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/utils.py",
@@ -679,7 +731,6 @@
 		"/home/dfrodriguez/Documents/packages/finance/events/__init__.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/SimpleEvent.py",
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/EventFinder.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/ListUtils.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/lists/NYSE_dates.txt",
 		"/home/dfrodriguez/Documents/packages/finance/utils/lists/NYSE_dates.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/lists/__init__.py",
@@ -728,10 +779,7 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/README.md",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/MarketSimulator.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/examples/DataManagement.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/tsutil.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/PastEvent.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/sim/test/MarketSimulatorTest.py"
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/BasicUtils.py"
 	],
 	"find":
 	{
@@ -749,6 +797,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cumulative_ar",
+			"abnormal_return",
+			"expected_return",
+			"elf.evt",
+			"std_abnormal_return",
+			"mean_abnormal_return",
+			"std_expected_return",
+			"mean_expected_return",
+			"expected_returns",
+			"abnormal_returns",
+			"cumulative_abnormal_returns",
+			"mean_cumulative_abnormal_return",
+			"assert_almost_equal",
+			"assert_equal",
+			"np_test",
+			"mevt",
+			"self.mevt",
+			"self.evtf",
+			"self.setUp",
+			"assertFrameEqual",
+			"assertSeriesEqual",
+			"assertArrayEqual",
+			"assertSeriesEqual",
+			"self.sim",
+			"assert_frame_equal",
+			"pd_test",
 			"nyse_add_substract",
 			"self",
 			"funcion_name",
@@ -850,33 +924,7 @@
 			"self.assertTrue(self.dfCompare",
 			"generate",
 			"reg_results",
-			"evt_estimation_data",
-			"evt_window_data",
-			"returnize0",
-			"deepcop",
-			"returnize0",
-			"AAPL_1-1-2007_6-6-2009.csv",
-			"AAPL_1-1-2008_12-31-2009",
-			"%d-%m-%Y",
-			"data_dic",
-			"evt_matrix",
-			"%d",
-			"True)",
-			"False)",
-			"1/5/2009",
-			"Series",
-			"BasicUtilsTest",
-			"FileManagerTest",
-			"TestFileManager",
-			"DataAccessTest",
-			"PastEventTest",
-			"pevt",
-			"start_window",
-			"start_period",
-			"GTS_DATES",
-			"nyse",
-			"Nyse",
-			"Nyst"
+			"evt_estimation_data"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -894,8 +942,175 @@
 	"groups":
 	[
 		{
+			"selected": 5,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "test/events/PastEventTest.py",
+					"settings":
+					{
+						"buffer_size": 1517,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1367,
+								1367
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 550.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "events/PastEvent.py",
+					"settings":
+					{
+						"buffer_size": 2255,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 851.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "events/EventStudy.py",
+					"settings":
+					{
+						"buffer_size": 1599,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								862,
+								862
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test/events/MultipleEventTest.py",
+					"settings":
+					{
+						"buffer_size": 2500,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								455,
+								455
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 756.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "test/FinanceTest.py",
+					"settings":
+					{
+						"buffer_size": 2910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2569,
+								2569
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 972.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "test/events/docs/PastEvent_window_1.csv",
+					"settings":
+					{
+						"buffer_size": 1480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -932,7 +1147,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 142.0
+		"height": 191.0
 	},
 	"replace":
 	{
@@ -987,6 +1202,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 200.0,
+	"side_bar_width": 220.0,
 	"status_bar_visible": true
 }

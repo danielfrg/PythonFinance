@@ -32,8 +32,9 @@ class MultipleEvents(object):
         self.dr_market_window = None
         self.dr_market_estimation = None
 
-        self.expected_returns = None
-        self.abnormal_returns = None
+        self.er = None
+        self.ar = None
+        self.car = None
 
     def run(self):
         '''
@@ -136,7 +137,7 @@ class MultipleEvents(object):
         # 3. Calculate the linear regression -> expected return
         self.reg_estimation = pd.DataFrame(index=self.dr_market_estimation.columns,
                                         columns=['Intercept', 'Slope', 'Std Error'])
-        self.expected_returns = pd.DataFrame(index=self.dr_market_window.index,
+        self.er = pd.DataFrame(index=self.dr_market_window.index,
                                         columns=self.dr_market_window.columns)
         # For each column (event) on the estimation period
         for col in self.dr_market_estimation.columns:
@@ -148,24 +149,33 @@ class MultipleEvents(object):
             self.reg_estimation['Intercept'][col] = intercept
             self.reg_estimation['Std Error'][col] = slope_std_error
             # 3.2 Calculate the expected return of each date using the regression
-            self.expected_returns[col] = intercept + self.dr_market_window[col] * slope
+            self.er[col] = intercept + self.dr_market_window[col] * slope
 
         # 4. Final results
-        self.mean_expected_return = self.expected_returns.mean(axis=1)
-        self.std_expected_return = self.expected_returns.std(axis=1)
+        self.er.columns.name = 'Expected return'
+        self.mean_er = self.er.mean(axis=1)
+        self.mean_er.name = 'Mean ER'
+        self.std_er = self.er.std(axis=1)
+        self.std_er.name = 'Std ER'
 
-        self.abnormal_returns = self.dr_equities_window - self.expected_returns
-        self.mean_abnormal_return = self.abnormal_returns.mean(axis=1)
-        self.std_abnormal_return = self.abnormal_returns.std(axis=1)
+        self.ar = self.dr_equities_window - self.er
+        self.ar.columns.name = 'Abnormal return'
+        self.mean_ar = self.ar.mean(axis=1)
+        self.mean_ar.name = 'Mean AR'
+        self.std_ar = self.ar.std(axis=1)
+        self.std_ar.name = 'Std AR'
 
-        self.cumulative_abnormal_returns = self.abnormal_returns.apply(np.cumsum)
-        self.mean_cumulative_abnormal_return = self.cumulative_abnormal_returns.mean(axis=1)
-        self.std_cumulative_abnormal_return = self.cumulative_abnormal_returns.std(axis=1)
+        self.car = self.ar.apply(np.cumsum)
+        self.car.columns.name = 'Cum Abnormal Return'
+        self.mean_car = self.car.mean(axis=1)
+        self.mean_car.name = 'Mean CAR'
+        self.std_car = self.car.std(axis=1)
+        self.mean_car.name = 'Mean CAR'
 
     def plot(self, which):
         plt.figure()
         if which == 'car':
-            x = self.mean_cumulative_abnormal_return.index
-            y = self.mean_cumulative_abnormal_return.values
+            x = self.mean_car.index
+            y = self.mean_car.values
             yerr = self.std_cumulative_abnormal_return.values
         plt.errorbar(x, y, yerr=yerr)

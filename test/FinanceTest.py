@@ -31,9 +31,9 @@ class FinanceTest(unittest.TestCase):
         elif type(ans) == pd.Series and type(sol) == pd.Series:
             self.assertSeriesEqual(ans, sol)
         elif type(ans) == pd.TimeSeries and type(sol) == pd.TimeSeries:
-            self.assertSeriesEqual(ans, sol)
+            self.assertSeriesEqual(ans, sol, digits)
         elif type(ans) == pd.DataFrame and type(sol) == pd.DataFrame:
-            self.assertFrameEqual(ans, sol)
+            self.assertFrameEqual(ans, sol, digits)
         else:
             if digits == 0:
                 super().assertEqual(ans, sol)
@@ -61,20 +61,26 @@ class FinanceTest(unittest.TestCase):
         else:
             self.assertIs(type(obj), pd.Series)
 
-    def assertSeriesEqual(self, ans, sol, testName=True):
+    def assertSeriesEqual(self, ans, sol, digits=0):
         self.assertSeries(ans)
         self.assertSeries(sol)
-        pd_test.assert_series_equal(ans, sol)
-        if testName:
-            self.assertEquals(ans.name, sol.name)
+        self.assertEquals(ans.name, sol.name)
+
+        if digits == 0:
+            pd_test.assert_series_equal(ans, sol, digits)
+        else:
+            np_test.assert_array_almost_equal(ans.values, sol.values, digits)
 
     def assertFrame(self, obj):
         self.assertIs(type(obj), pd.DataFrame)
 
-    def assertFrameEqual(self, ans, sol, testName=True):
+    def assertFrameEqual(self, ans, sol, digits=0):
         self.assertFrame(ans)
         self.assertFrame(sol)
-        pd_test.assert_frame_equal(ans, sol)
-        if testName:
-            self.assertEquals(ans.columns.name, sol.columns.name)
+        self.assertEquals(ans.columns.name, sol.columns.name)
+
+        if digits == 0:
+            pd_test.assert_frame_equal(ans, sol)
+        else:
+            np_test.assert_array_almost_equal(ans.values, sol.values, digits)
 
