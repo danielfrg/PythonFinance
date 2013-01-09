@@ -35,7 +35,7 @@ class CalculatorTypesTest(FinanceTest):
         # Input is numpy.ndarray of 2 dimmensions => np.ndarray
         ans = Calculator.ret(matrix)
         self.assertArray(ans)
-        self.assertArrayEqual(ans, np.array([4, -0.8]))
+        self.assertEqual(ans, np.array([4, -0.8]))
         # Input is pandas.Series => float
         ans = Calculator.ret(series)
         self.assertFloat(ans)
@@ -56,7 +56,7 @@ class CalculatorTypesTest(FinanceTest):
         ans = Calculator.ret(df)
         self.assertSeries(ans)
         sol = pd.Series([4, -0.8], index=['c1', 'c2'], name='Total Returns')
-        self.assertSeriesEqual(ans, sol)
+        self.assertEqual(ans, sol)
 
 
     def test_returns(self):
@@ -74,30 +74,30 @@ class CalculatorTypesTest(FinanceTest):
         # Input is numpy.array of 1 dimmension => np.ndarray
         ans = Calculator.returns(array_1)
         self.assertArray(ans)
-        self.assertArrayEqual(ans, sol_array_1, 5)
+        self.assertEqual(ans, sol_array_1, 5)
         # Input is numpy.ndarray of 2 dimmension 2 => np.ndarray
         ans = Calculator.returns(matrix) 
         self.assertArray(ans)
-        self.assertArrayEqual(ans, sol_matrix, 5)
+        self.assertEqual(ans, sol_matrix, 5)
         # Input is pandas.Series => pd.Series
         ans = Calculator.returns(ser)
         self.assertSeries(ans)
         sol = pd.Series(sol_array_1, index=ser.index, name='TEST Daily Returns')
-        self.assertSeriesEqual(ans, sol)
+        self.assertEqual(ans, sol)
         # Input is pandas.DataFrame with col parameter => pd.Series
         ans = Calculator.returns(df, col='c1')
         self.assertSeries(ans)
         sol = pd.Series(sol_array_1, index=df.index, name='c1 Daily Returns')
-        self.assertSeriesEqual(ans, sol)
+        self.assertEqual(ans, sol)
         # --
         ans = Calculator.returns(df, col='c2')
         self.assertSeries(ans)
         sol = pd.Series(sol_array_2, index=df.index, name='c2 Daily Returns')
-        self.assertSeriesEqual(ans, sol)
+        self.assertEqual(ans, sol)
         # Test: Input is pandas.DataFrame without col parameter => pd.DataFrame
         ans = Calculator.returns(df)
         sol = pd.DataFrame(sol_matrix, index=df.index, columns=df.columns)
-        self.assertFrameEqual(ans, sol)
+        self.assertEqual(ans, sol)
 
     def test_sharpe_ratio(self):
         array = np.array([1,1.5,3,4,4.3])
@@ -115,7 +115,7 @@ class CalculatorTypesTest(FinanceTest):
         ans = Calculator.sharpe_ratio(matrix)
         self.assertArray(ans)
         sol = np.array([2.38842482, -1.4708528])
-        self.assertArrayEqual(ans, sol, 5)
+        self.assertEqual(ans, sol, 5)
         # Input is pandas.Series => float
         ans = Calculator.sharpe_ratio(series)
         self.assertFloat(ans)
@@ -130,12 +130,13 @@ class CalculatorTypesTest(FinanceTest):
         self.assertAlmostEquals(ans, 2.38842, 5)
         # --
         ans = Calculator.sharpe_ratio(df, col='c2')
+        self.assertFloat(ans)
         self.assertAlmostEqual(ans, -1.4708528, 5)
         # Input is pandas.DataFrame without col parameter => pd.Series
         ans = Calculator.sharpe_ratio(df)
         self.assertSeries(ans)
         sol = pd.Series([2.38842482, -1.4708528], index=['c1', 'c2'], name='Sharpe Ratios')
-        self.assertSeriesEqual(ans, sol)
+        self.assertEqual(ans, sol)
 
 
 if __name__ == '__main__':

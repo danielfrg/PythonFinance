@@ -32,22 +32,22 @@ class CalculatorTestValues(FinanceTest):
         data = solution['Adj. Close']
         # Test 1
         simple_returns = Calculator.returns(data)
-        self.assertSeriesEqual(solution['R(t)'], simple_returns)
+        self.assertEqual(solution['R(t)'], simple_returns)
         # Test 2
         cc_returns = Calculator.returns(data, cc=True)
-        self.assertSeriesEqual(solution['r(t)'], cc_returns)
+        self.assertEqual(solution['r(t)'], cc_returns)
         # Test 3
         simple_returns_2 = Calculator.returns(data, basedOn=2)
-        self.assertSeriesEqual(solution['R2(t)'], simple_returns_2)
+        self.assertEqual(solution['R2(t)'], simple_returns_2)
         # Test 4
         cc_returns_2 = Calculator.returns(data, basedOn=2, cc=True)
-        self.assertSeriesEqual(solution['r2(t)'], cc_returns_2)
+        self.assertEqual(solution['r2(t)'], cc_returns_2)
         # Test 5
         fv = Calculator.FV(PV=1, R=simple_returns, ret_list=True)
-        self.assertSeriesEqual(solution['FV'], fv)
+        self.assertEqual(solution['FV'], fv)
         # Test 6
         pv = Calculator.PV(FV=fv[-1], R=simple_returns, ret_list=True)
-        self.assertSeriesEqual(solution['FV'], pv)
+        self.assertEqual(solution['FV'], pv)
 
     def test_tvm(self):
         '''

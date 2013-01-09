@@ -21,8 +21,8 @@ class MarketSimulator(object):
             2011,1,13,AAPL,Sell,1500
             2011,1,13,IBM,Buy,4000
             2011,1,26,GOOG,Buy,1000
-        3. Create trades from an event list:
-            TODO: example
+        3. Create trades from an event list: usually from EventFinder
+            
     '''
     def __init__(self):
         self.da = DataAccess()
@@ -120,7 +120,7 @@ class MarketSimulator(object):
         end_date = self.trades.index[-1].to_pydatetime()  # Convert from TimeStamp to datetime
         self.prices = self.da.get_data(symbols, start_date, end_date, self.field)
         # 0.2 Init DataFrames
-        self.cash = pd.DataFrame(index=self.prices.index, columns=['Cash'], dtype=np.float64)
+        self.cash = pd.Series(index=self.prices.index, name='Cash', dtype=np.float64)
         self.num_of_shares = pd.DataFrame(index=self.prices.index, columns=self.prices.columns, dtype=np.float64)
 
         # 1. Fill the DataFrames
@@ -156,10 +156,11 @@ class MarketSimulator(object):
         self.num_of_shares = self.num_of_shares.fillna(method='ffill').fillna(0)
 
         # 2. Get the value of the equitues
-        self.equities = self.num_of_shares * self.prices
-        self.equities = self.equities.sum(axis=1)
-        self.equities.columns = ['Equities']
-
+        self.equities = pd.Series(index=self.prices.index, name='Equities value')
+        equities = self.num_of_shares * self.prices
+        self.equities = equities.sum(axis=1)
+        self.equities.name = 'Equities value'
         # 3. Get the value of the porfolio = cash + equities_value
+        self.portfolio = pd.Series(index=self.prices.index, name='Portfolio value')
         self.portfolio = self.cash + self.equities
-        self.portfolio.columns = ['Portfolio']
+        self.portfolio.name = 'Portfolio value'

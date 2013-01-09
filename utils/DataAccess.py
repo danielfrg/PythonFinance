@@ -183,7 +183,6 @@ class DataAccess(object):
         for f, symbol in zip(files, symbols):
             # Create DataFrame from the csv
             new_data = pd.read_csv(os.path.join(self.dir, f))
-
             # Change the index of the DataFrame to be the date
             new_data = new_data.set_index(pd.to_datetime(new_data['Date']))
 

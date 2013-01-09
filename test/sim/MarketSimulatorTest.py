@@ -1,69 +1,49 @@
 import unittest
 import numpy as np
 import pandas as pd
-import pandas.util.testing as pd_test
 from datetime import datetime
+from finance.test import FinanceTest
+
 from finance.utils import DataAccess
 from finance.sim import MarketSimulator
 
 
-class MarketSimulatorTest(unittest.TestCase):
-
-    def setUp1(self):
-        DataAccess.path = 'data'
-        self.data_access = DataAccess()
-        self.data_access.empty_dirs()
-        
-        self.sim = MarketSimulator()
-        self.sim.initial_cash = 1000000
-        self.sim.load_trades("orders.csv")
-        self.sim.simulate()        
+class MarketSimulatorTest(FinanceTest):
 
     def suite(self):
         suite = unittest.TestSuite()
-        suite.addTest(MarketSimulatorTest('test_success'))
+        suite.addTest(MarketSimulatorTest('test_1'))
         return suite
 
-    def test_success(self):
-        self.setUp1()
+    def test_1(self):
+        '''
+        Loads solution from csv file and test the values
+        Tests
+        -----
+            1. Name of the solution Series: cash, equities, portfolio
+            2. Values of the solution Series: cash, equities, portfolio
+        '''
+        # Set up
+        self.setUpDataAccess(eraseData=False, eraseCache=True)
+        solution = pd.read_csv('docs/Test1.csv')
+        solution = solution.set_index(pd.to_datetime(solution['Date']))
 
-        # Test: Length of the DataFrame
-        self.assertEqual(len(self.sim.portfolio), 240)
-        self.assertEqual(len(self.sim.portfolio.columns), 1)
-        # Test: Name of columns
-        self.assertEqual(self.sim.portfolio.columns, 'Portfolio')
-        self.assertEqual(self.sim.portfolio.index.name, 'Date')
+        simulator = MarketSimulator()
+        simulator.initial_cash = 1000000
+        simulator.load_trades("orders.csv")
+        simulator.simulate()  
 
-        # Test: Values - Create a test DataFrame
-        testdf = pd.DataFrame([0.0, 0.0, 0.0, 0.0, 0.0])
-        testdf.index.name = 'Date'
-
-        # Test: Values: HEAD()
-        testdf.index = [datetime(2011, 1, 10), datetime(2011, 1, 11), datetime(2011, 1, 12),
-                        datetime(2011, 1, 13), datetime(2011, 1, 14)]
-        # Test: Values: HEAD(): portfolio
-        testdf.columns = ['Portfolio']
-        testdf['Portfolio'] = [1000000.0, 998785, 1002925, 1004800, 1009360]
-        pd_test.assert_frame_equal(testdf, self.sim.portfolio.head())
-        # Test: Values: HEAD(): cash
-        testdf.columns = ['Cash']
-        testdf['Cash'] = [490840.0, 490840, 490840, 429120, 429120]
-        pd_test.assert_frame_equal(testdf, self.sim.cash.head())
-
-        # Test: Values: TAIL()
-        testdf.index = [datetime(2011, 12, 14), datetime(2011, 12, 15), datetime(2011, 12, 16),
-                        datetime(2011, 12, 19), datetime(2011, 12, 20)]
-        # Test: Values: TAIL(): portfolio
-        testdf.columns = ['Portfolio']
-        testdf['Portfolio'] = [1114519.0, 1113031, 1115515, 1116931, 1133263]
-        pd_test.assert_frame_equal(testdf, self.sim.portfolio.tail())
-        # Test: Values: TAIL(): cash
-        testdf.columns = ['Cash']
-        testdf['Cash'] = [662311.0, 662311, 662311, 662311, 1133263]
-        pd_test.assert_frame_equal(testdf, self.sim.cash.tail())
+        # Test 1
+        self.assertEqual(simulator.cash.name, 'Cash')
+        self.assertEqual(simulator.equities.name, 'Equities value')
+        self.assertEqual(simulator.portfolio.name, 'Portfolio value')
+        # Test 2
+        self.assertEqual(simulator.cash, solution['Cash'])
+        self.assertEqual(simulator.equities, solution['Equities value'])
+        self.assertEqual(simulator.portfolio, solution['Portfolio value'])
 
 if __name__ == '__main__':
     suite = MarketSimulatorTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    DataAccess().empty_dirs()
+    # FinanceTest.delete_data()
