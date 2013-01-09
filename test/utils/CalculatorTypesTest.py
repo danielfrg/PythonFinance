@@ -134,7 +134,7 @@ class CalculatorTypesTest(FinanceTest):
         # Input is pandas.DataFrame without col parameter => pd.Series
         ans = Calculator.sharpe_ratio(df)
         self.assertSeries(ans)
-        sol = pd.Series([2.38842482, -1.4708528], index=['c1', 'c2'], name='Shape Ratios')
+        sol = pd.Series([2.38842482, -1.4708528], index=['c1', 'c2'], name='Sharpe Ratios')
         self.assertSeriesEqual(ans, sol)
 
 

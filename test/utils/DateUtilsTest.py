@@ -2,17 +2,17 @@ import unittest
 import pandas as pd
 from datetime import datetime
 
-from finance.utils import DataAccess
+from finance.test import FinanceTest
 from finance.utils import DateUtils
 
-class DateUtilsTest(unittest.TestCase):
+class DateUtilsTest(FinanceTest):
 
     def suite(self):
         suite = unittest.TestSuite()
         suite.addTest(DateUtilsTest('nyse_dates_basic'))
         suite.addTest(DateUtilsTest('nyse_dates_advanced'))
         suite.addTest(DateUtilsTest('nyse_dates_event'))
-        suite.addTest(DateUtilsTest('nyse_add_substract'))
+        suite.addTest(DateUtilsTest('nyse_add_and_substract'))
         return suite
 
     def nyse_dates_basic(self):
@@ -147,7 +147,7 @@ class DateUtilsTest(unittest.TestCase):
         self.assertEquals(dates[-1], datetime(2009, 1, 20))
         self.assertEquals(len(dates), 271)
 
-    def nyse_add_substract(self):
+    def nyse_add_and_substract(self):
         ans = DateUtils.nyse_add(datetime(2009, 4, 13), 5)
         self.assertEquals(ans, datetime(2009, 4, 20))
 

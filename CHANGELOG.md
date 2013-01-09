@@ -3,6 +3,7 @@ PythonFinance
 
 v0.04 - Dev
 -----------
+- new FinaceTest to easier testing
 - Rename BasicUtils to Calculator
 - Add more utils to the Calculator:
 	- Future Value

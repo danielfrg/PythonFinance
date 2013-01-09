@@ -1,14 +1,10 @@
 import unittest
 from datetime import datetime
 
+from finance.test import FinanceTest
 from finance.utils import DataAccess
 
-class DataAccessTest(unittest.TestCase):
-
-    def setUp1(self):
-        DataAccess.path = 'data'
-        self.data_access = DataAccess()
-        self.data_access.empty_dirs(delete=False)
+class DataAccessTest(FinanceTest):
 
     def suite(self):
         suite = unittest.TestSuite()
@@ -25,7 +21,7 @@ class DataAccessTest(unittest.TestCase):
                 Test for that on FileManagerTest.py
         Note 2: Other tests were done on the benchmark
         '''
-        self.setUp1()
+        self.setUpEmptyDataAccess()
 
         start_date = datetime(2008, 1, 1)
         end_date = datetime(2009, 12, 31)
@@ -68,13 +64,13 @@ class DataAccessTest(unittest.TestCase):
         self.assertEqual(list(df.columns), names)
 
     def test_save_load_custom_name(self):
-        self.setUp1()
+        self.setUpEmptyDataAccess()
 
         symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]
         start_date = datetime(2008, 1, 1)
         end_date = datetime(2009, 12, 31)
         fields = "Close"
-
+        
         close = self.data_access.get_data(symbols, start_date, end_date, fields, save=False)
         self.data_access.save(close, "customName", extension='.custom')
 
@@ -124,4 +120,4 @@ if __name__ == '__main__':
     unittest.TextTestRunner(verbosity=2).run(suite)
 
     # benchmark()
-    DataAccess().empty_dirs(delete=True)
+    FinanceTest.delete_data()

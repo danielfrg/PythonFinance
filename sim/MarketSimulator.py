@@ -163,38 +163,3 @@ class MarketSimulator(object):
         # 3. Get the value of the porfolio = cash + equities_value
         self.portfolio = self.cash + self.equities
         self.portfolio.columns = ['Portfolio']
-
-if __name__ == "__main__":
-    # from finance.evtstudy import EventFinder
-    # evtf = EventFinder('./data')
-    # evtf.symbols = ['AMD', 'CBG', 'AAPL']
-    # evtf.start_date = datetime(2008, 1, 1)
-    # evtf.end_date = datetime(2010, 12, 31)
-    # evtf.function = evtf.went_below(5)
-    # evtf.search(oneEventPerEquity=False)
-
-    # print(evtf.list)
-
-    sim = MarketSimulator('./data')
-    sim.field = "Adj Close"
-    sim.initial_cash = 1
-    # sim.create_trades_from_event(evtf.list)
-    sim.load_trades("./test/orders.csv")
-    print(sim.trades)
-    sim.simulate()
-
-    from finance.utils import BasicUtils
-    print(BasicUtils.total_return(sim.portfolio))
-    print(BasicUtils.total_return(sim.portfolio.values))
-
-    import matplotlib
-    matplotlib.use('Qt4Agg')
-
-    import matplotlib.pyplot as plt
-    sim.portfolio.plot()
-    plt.show()
-
-
-
-
-

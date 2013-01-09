@@ -11,7 +11,12 @@ class FinanceTest(unittest.TestCase):
     def setUpEmptyDataAccess(self):
         DataAccess.path = 'data'
         self.data_access = DataAccess()
-        self.data_access.empty_dirs()
+        self.data_access.empty_dirs(delete=False)
+
+    @staticmethod
+    def delete_data():
+        DataAccess.path = 'data'
+        DataAccess().empty_dirs()
 
     def assertFloat(self, obj):
         self.assertIs(type(obj), (np.float64))
@@ -30,16 +35,20 @@ class FinanceTest(unittest.TestCase):
     def assertSeries(self, obj):
         self.assertIs(type(obj), pd.Series)
 
-    def assertSeriesEqual(self, ans, sol):
+    def assertSeriesEqual(self, ans, sol, testName=True):
         self.assertSeries(ans)
         self.assertSeries(sol)
         pd_test.assert_series_equal(ans, sol)
+        if testName:
+            self.assertEquals(ans.name, sol.name)
 
     def assertFrame(self, obj):
         self.assertIs(type(obj), pd.DataFrame)
 
-    def assertFrameEqual(self, ans, sol):
+    def assertFrameEqual(self, ans, sol, testName=True):
         self.assertFrame(ans)
         self.assertFrame(sol)
         pd_test.assert_frame_equal(ans, sol)
+        if testName:
+            self.assertEquals(ans.columns.name, sol.columns.name)
 

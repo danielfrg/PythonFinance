@@ -1,9 +1,10 @@
 import unittest
 from datetime import datetime
 
+from finance.test import FinanceTest
 from finance.utils import FileManager
 
-class FileManagerTest(unittest.TestCase):
+class FileManagerTest(FinanceTest):
 
     def setUp1(self):
         self.file_manager = FileManager('./data')
@@ -88,4 +89,4 @@ if __name__ == '__main__':
     suite = FileManagerTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-    FileManager('./data').empty_dir(delete=True)
+    FinanceTest.delete_data()
