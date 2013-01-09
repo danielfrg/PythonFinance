@@ -35,7 +35,11 @@ class FinanceTest(unittest.TestCase):
         elif type(ans) == pd.DataFrame and type(sol) == pd.DataFrame:
             self.assertFrameEqual(ans, sol)
         else:
-            super().assertEqual(ans, sol)
+            if digits == 0:
+                super().assertEqual(ans, sol)
+            else:
+                super().assertAlmostEqual(ans, sol, digits)
+
 
     def assertFloat(self, obj):
         self.assertIs(type(obj), (np.float64))

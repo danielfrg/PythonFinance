@@ -40,7 +40,7 @@ def FV(PV=1, R=0.01, n=1, m=1, cc=False, ret_list=False):
     elif type(R) in (pd.Series, pd.TimeSeries):
         ans = FV(PV=PV, R=R.values, ret_list=ret_list)
         if ret_list:
-            return pd.Series(ans, index=R.index, name='Future Value')
+            return pd.Series(ans, index=R.index, name='Future value')
         return ans
 
 def PV(FV=1, R=0.01, n=1, m=1, cc=False, ret_list=True):
@@ -76,7 +76,7 @@ def PV(FV=1, R=0.01, n=1, m=1, cc=False, ret_list=True):
     elif type(R) in (pd.Series, pd.TimeSeries):
         ans = PV(FV=FV, R=R.values, ret_list=ret_list)
         if ret_list:
-            return pd.Series(ans, index=R.index, name='Present Value')
+            return pd.Series(ans, index=R.index, name='Present value')
         return ans
 
 def R(PV=1, FV=1, n=1, m=1, cc=False):
@@ -243,7 +243,13 @@ def returns(data, basedOn=1, cc=False, col=None):
 
     if type(data) is pd.Series or type(data) is pd.TimeSeries:
         ans = returns(data.values, cc=cc,  basedOn=basedOn)
-        return pd.Series(ans, index=data.index, name=data.name + ' Daily Returns')
+        name = data.name
+        if cc:
+            name = name + ' CC'
+        name = name + ' returns'
+        if basedOn != 1:
+            name = name + ' (' + str(basedOn) + ')'
+        return pd.Series(ans, index=data.index, name=name)
 
     if type(data) is pd.DataFrame:
         if col is not None:

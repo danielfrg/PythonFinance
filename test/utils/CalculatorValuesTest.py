@@ -28,26 +28,33 @@ class CalculatorTestValues(FinanceTest):
             6. Calculator.PV w/ R=list ret_list=True
         '''
         # Load Data
-        solution = pd.read_csv('CalculatorTest_Assets_1.csv').set_index('Date').fillna(value=0)
-        data = solution['Adj. Close']
-        # Test 1
-        simple_returns = Calculator.returns(data)
-        self.assertEqual(solution['R(t)'], simple_returns)
-        # Test 2
-        cc_returns = Calculator.returns(data, cc=True)
-        self.assertEqual(solution['r(t)'], cc_returns)
-        # Test 3
-        simple_returns_2 = Calculator.returns(data, basedOn=2)
-        self.assertEqual(solution['R2(t)'], simple_returns_2)
-        # Test 4
-        cc_returns_2 = Calculator.returns(data, basedOn=2, cc=True)
-        self.assertEqual(solution['r2(t)'], cc_returns_2)
-        # Test 5
-        fv = Calculator.FV(PV=1, R=simple_returns, ret_list=True)
-        self.assertEqual(solution['FV'], fv)
-        # Test 6
-        pv = Calculator.PV(FV=fv[-1], R=simple_returns, ret_list=True)
-        self.assertEqual(solution['FV'], pv)
+        tests = ['docs/CalculatorTest_Assets_1.csv']
+
+        for test_file in tests:
+            # Set up
+            solution = pd.read_csv(test_file).set_index('Date').fillna(value=0)
+            data = solution['Adj. Close']
+
+            # Test 1
+            simple_returns = Calculator.returns(data)
+            self.assertEqual(solution['Adj. Close returns'], simple_returns)
+            # Test 2
+            cc_returns = Calculator.returns(data, cc=True)
+            self.assertEqual(solution['Adj. Close CC returns'], cc_returns)
+            # Test 3
+            simple_returns_2 = Calculator.returns(data, basedOn=2)
+            self.assertEqual(solution['Adj. Close returns (2)'], simple_returns_2)
+            # Test 4
+            cc_returns_2 = Calculator.returns(data, basedOn=2, cc=True)
+            self.assertEqual(solution['Adj. Close CC returns (2)'], cc_returns_2)
+            # Test 5
+            fv = Calculator.FV(PV=1, R=simple_returns, ret_list=True)
+            self.assertEqual(solution['Future value'], fv)
+            # Test 6
+            pv = Calculator.PV(FV=fv[-1], R=simple_returns, ret_list=True)
+            pv_sol = solution['Future value']
+            pv_sol.name = 'Present value'
+            self.assertEqual(solution['Future value'], pv)
 
     def test_tvm(self):
         '''
@@ -59,11 +66,13 @@ class CalculatorTestValues(FinanceTest):
             4. n w/ PV, FV, R, m
             5. ear w/ R, m
         '''
-        tests = ['CalculatorTest_TVM_1.csv', 'CalculatorTest_TVM_2.csv', 
-                'CalculatorTest_TVM_3.csv'] #, 'CalculatorTest_TVM_4.csv']
+        tests = ['docs/CalculatorTest_TVM_1.csv', 'docs/CalculatorTest_TVM_2.csv', 
+                'docs/CalculatorTest_TVM_3.csv'] #, 'CalculatorTest_TVM_4.csv']
 
         for test_file in tests:
+            # Set up
             solution = pd.read_csv(test_file)
+
             for idx, row in solution.iterrows():
                 # Test 1
                 FV = Calculator.FV(PV=row['PV'], R=row['R'], n=row['n'], m=row['m'])
