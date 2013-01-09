@@ -2,43 +2,57 @@ import math
 import numpy as np
 import pandas as pd
 
-def FV(PV=1, R=0.01, n=1, m=1):
+''' ------------------------------------------------------------------------------------ '''
+'''                                TIME VALUE OF MONEY                                   '''
+''' ------------------------------------------------------------------------------------ '''
+
+def FV(PV=1, R=0.01, n=1, m=1, cc=False, ret_list=False):
     '''
     Future Value calculation
 
     Parameters
     ----------
         PV: int, Present Value
-        R: float or list, Rate(s)/Return(s) during each n period
+        R: float or list or pandas.Series, return(s) during each n period
         n: int, Number of compounding periods. No necesary if R is list
-        m: int, compounding frequency. For continiously compounding use m=float('inf')
+        m: int, compounding frequency. For continiously compounding use m='inf'
                 Example: If n is years then for compund quarterly: m=4
+        ret_list: boolean, if R is a list then return a list of each Future Value
 
     Returns
     -------
         Future Value: int
     '''
     if type(R) in [int, float, np.float64]:
-        if m == float('inf'):
+        if m == 'inf' or m == float('inf') or cc:
             return PV * math.exp(R * n)
         else:
             return PV * math.pow(1 + R / m, n * m)
-    elif type(R) == list:
-        ans = PV
-        for r in R:
-            ans = ans * math.pow(1 + r / m, m)
+    elif type(R) in (list, np.ndarray):
+        ans = [PV]
+        for (r, i) in zip(R, range(1, len(R) + 1)):
+            ans.append(FV(PV=ans[i-1], R=r, m=m))
+
+        if ret_list:
+            return ans[1:]
+        else:
+            return ans[-1]
+    elif type(R) in (pd.Series, pd.TimeSeries):
+        ans = FV(PV=PV, R=R.values, ret_list=ret_list)
+        if ret_list:
+            return pd.Series(ans, index=R.index, name='Future Value')
         return ans
 
-def PV(FV=1, R=0.01, n=1, m=1):
+def PV(FV=1, R=0.01, n=1, m=1, cc=False, ret_list=True):
     '''
     Present Value calculation
 
     Parameters
     ----------
         FV: int, Future Value
-        R: float or list, Rate(s)/Return(s) during each n period
+        R: float or list, return(s) during each n period
         n: int, Number of compounding periods. No necesary if R is list
-        m: int, compounding frequency. For continiously compounding use m=float('inf')
+        m: int, compounding frequency. For continiously compounding use m='inf'
                 Example: If n is years then for compund quarterly: m=4
 
     Returns
@@ -46,101 +60,122 @@ def PV(FV=1, R=0.01, n=1, m=1):
         Present Value: int
     '''
     if type(R) in [int, float, np.float64]:
-        if m == float('inf'):
+        if m == 'inf' or m == float('inf') or cc:
             return FV / math.exp(R * n)
         else:
             return FV / math.pow(1 + R / m, n * m)
-    elif type(R) == list:
-        ans = FV
-        for r in R:
-            ans = ans / math.pow(1 + r / m, m)
+    elif type(R) in (list, np.ndarray):
+        ans = [FV]
+        for (r, i) in zip(R[::-1], range(1, len(R) + 1)):
+            ans.append(PV(FV=ans[i-1], R=r, m=m))
+
+        if ret_list:
+            return ans[::-1][1:]
+        else:
+            return ans[-1]
+    elif type(R) in (pd.Series, pd.TimeSeries):
+        ans = PV(FV=FV, R=R.values, ret_list=ret_list)
+        if ret_list:
+            return pd.Series(ans, index=R.index, name='Present Value')
         return ans
 
-def R(PV=1, FV=1, n=1, m=1):
+def R(PV=1, FV=1, n=1, m=1, cc=False):
     '''
-    Rate/Return
+    Compound return of each n period; usually annual
+    Example: use it to calculate a Compound Annual Growth Return
 
     Parameters
     ----------
         FV: int, Future Value
         PV: int, Present Value
         n: int, Number of periods
-        m: int, compounding frequency. TODO: continiously compounding
+        m: int, compounding frequency. For continiously compounding use m='inf'
                 Example: If n is years then for compund quarterly: m=4
 
     Returns
     -------
-        Rate: float
+        Return: float
     '''
-    return m * ( math.pow(FV / PV , 1 / (m * n)) - 1 )
+    if m == 'inf' or m == float('inf') or cc:
+        return math.log(FV / PV) / n
+    else:
+        return m * ( math.pow(FV / PV , 1 / (m * n)) - 1 )
 
-def n(PV=1, FV=1, R=0.1, m=1):
+def n(PV=1, FV=1, R=0.1, m=1, cc=False):
     '''
-    Number of periods aka Investment horizon
+    Investment horizon: Number of periods (n)
 
     Parameters
     ----------
         FV: int, Future Value
         PV: int, Present Value
-        R: float, Rate
-        m: int, compounding frequency. TODO: continiously compounding
+        R: float, Return
+        m: int, compounding frequency. For continiously compounding use m='inf'
                 Example: If n is years then for compund quarterly: m=4
 
     Returns
     -------
         Investment horizon: int
     '''
-    return math.log(FV / PV) / (m * math.log(1 + R / m))
+    if m == 'inf' or m == float('inf') or cc:
+        return math.log(FV / PV) / R
+    else:
+        return math.log(FV / PV) / (m * math.log(1 + R / m))
 
-def ear(R=0.1, m=2):
+def eff_ret(R=0.01, m=2, cc=False):
     '''
-    Efective Annual Rate
+    Efective Return
+    Use for: What is the Annual rate that equates a rate R with a frequency of m
 
     Parameters
     ----------
-        R: float, Rate; for 10%% use 0.1
-        m: int, compounding frequency.
+        R: float, Return; for 10%% use 0.1
+        m: int, compounding frequency. For continiously compounding use m='inf'
                 Example: if R is annual, m=2 is semmiannual compounding
 
     Returns
     -------
-        Efective Annual Rate: float
+        Efective Annual Return: float
     '''
-    if m == float('inf'):
+    if m == 'inf' or m == float('inf') or cc:
         return math.exp(R) - 1
     else:
         return math.pow(1 + (R / m), m) - 1
 
-def ar(R=0.1, m=1, cc=False):
+def ann_ret(R=0.1, m=1, cc=False):
     '''
-    Annual Rate
-    Example: Convert a semmiannual rate to an annual rate
+    Annualize Return
+    Example: Convert a semmiannual return to an annual return
 
     Parameters
     ----------
-        R: float, Rate; for 10%% use 0.1
-        n: int, Number of periods
+        R: float, Return; for 10%% use 0.1
+        n: int, Number of periods. For continiously compounding use m='inf'
         m: int, compounding frequency
 
     Returns
     -------
-        Annual Rate: float
+        Annual Return: float
     '''
     if cc:
         return R * m
-    if m == float('inf'):
+    if m == 'inf':
         return math.exp(R) - 1
     else:
         return math.pow(1 + R, m) - 1
 
-def total_return(data, pos=-1, cc=False, col=None):
+''' ------------------------------------------------------------------------------------ '''
+'''                                      ASSET RETURNS                                   '''
+''' ------------------------------------------------------------------------------------ '''
+
+def ret(data, pos=-1, cc=False, col=None):
     '''
-    Calculates the total return of a list
+    Calculates the total return
 
     Parameters
     ----------
         data: numpy.array or pandas.Series or pandas.DataFrame
-        pos: int, calculate the return of that position (index): if -1 then calculates the total return
+        pos: int, calculate the return of that position (index): if 1 then calculates the total return
         cc: boolean, if want the continuously compounded return
         col=None: if data is pandas.DataFrame use this column to calculate the Total Return
 
@@ -160,18 +195,18 @@ def total_return(data, pos=-1, cc=False, col=None):
             return data[pos] / data[0] - 1
     
     if type(data) is pd.Series or type(data) is pd.TimeSeries:
-        return total_return(data.values, pos=pos, cc=cc)
+        return ret(data.values, pos=pos, cc=cc)
 
     if type(data) is pd.DataFrame:
         if col is None:
             if len(data.columns) == 1:
-                return total_return(data[data.columns[0]], pos=pos, cc=cc)
+                return ret(data[data.columns[0]], pos=pos, cc=cc)
             else:
-                series = data.apply(total_return, pos=pos, cc=cc)
+                series = data.apply(ret, pos=pos, cc=cc)
                 series.name = 'Total Returns'
                 return series
         else:
-            return total_return(data[col], pos=pos, cc=cc)
+            return ret(data[col], pos=pos, cc=cc)
 
 
 def returns(data, basedOn=1, cc=False, col=None):
@@ -198,14 +233,17 @@ def returns(data, basedOn=1, cc=False, col=None):
     if type(data) is np.ndarray:
         dr = np.zeros(shape=data.shape)
         if cc:
-            dr[basedOn:] = data[basedOn:] / data[0:-basedOn]
-            return np.log(dr)
+            # return np.log(data[basedOn:] / data[0:-basedOn])
+            dr[basedOn:] = np.log(data[basedOn:] / data[0:-basedOn])
+            return dr
         else:
+            # return data[basedOn:] / data[0:-basedOn] - 1
             dr[basedOn:] = data[basedOn:] / data[0:-basedOn] - 1
             return dr
 
     if type(data) is pd.Series or type(data) is pd.TimeSeries:
-        return pd.Series(returns(data.values, cc=cc,  basedOn=basedOn), index=data.index, name=data.name + ' Daily Returns')
+        ans = returns(data.values, cc=cc,  basedOn=basedOn)
+        return pd.Series(ans, index=data.index, name=data.name + ' Daily Returns')
 
     if type(data) is pd.DataFrame:
         if col is not None:

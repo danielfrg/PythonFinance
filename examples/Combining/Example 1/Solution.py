@@ -17,8 +17,8 @@ end of December 2004 and the end of January 2005?
 Ans: -13.40%
 '''
 q1 = Calculator.total_return(starbucks, pos=1)
+# q1 = Calculator.R(PV=data[0][1], FV=data[1][1]) # Other option
 print(1, q1)
-
 '''
 Question 2: If you invested $10,000 in Starbucks at the end of December 2004, how much 
 would the investment be worth at the end of January 2005?

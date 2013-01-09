@@ -3,6 +3,7 @@
 	[
 		{
 			"path": "/home/dfrodriguez/Documents/packages/finance",
+			"file_exclude_patterns": ["__init__.py"],
 			"folder_exclude_patterns": ["__pycache__"]
 		}
 	]

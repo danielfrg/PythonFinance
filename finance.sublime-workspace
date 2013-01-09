@@ -483,6 +483,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/dfrodriguez/.matplotlib/matplotlibrc",
+			"settings":
+			{
+				"buffer_size": 11526,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "examples/Basic/MarketSimulator.py",
+			"settings":
+			{
+				"buffer_size": 520,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -569,21 +585,29 @@
 	"file_history":
 	[
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Multiple.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 2/Solution.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Past.py",
+		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/MarketSimulator.py",
+		"/home/dfrodriguez/.matplotlib/matplotlibrc",
+		"/home/dfrodriguez/Documents/packages/finance/utils/test/CalculatorTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/sim/test/MarketSimulatorTest.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 1/Solution.py",
+		"/home/dfrodriguez/Dropbox/Documents/Coursera/Intro to Computational Finance/Week 1/returnCalculations.csv",
+		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/tsutil.py",
+		"/home/dfrodriguez/Documents/QSTK-master/Examples/EventProfiler/SP500port.csv",
+		"/home/dfrodriguez/Documents/QSTK-master/Tools/investors_report.py",
+		"/home/dfrodriguez/Documents/QSTK-master/Tools/Data_CSV.py",
+		"/home/dfrodriguez/Documents/QSTK-master/qstkstrat/strategies.py",
+		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/DataEvolved.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Past.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/DataAccess.py",
 		"/home/dfrodriguez/Documents/packages/finance/CHANGELOG.md",
 		"/home/dfrodriguez/Documents/packages/finance/events/PastEvent.py",
-		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/EventFinder.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/EventStudy.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/test/CalculatorTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/Calculator_FV.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/Calculator_FV_PV_R_n.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 1/Solution.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 2/Solution.py",
-		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/tsutil.py",
 		"/home/dfrodriguez/.bashrc",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/Documents/packages/finance/utils/DataAccess.py",
@@ -595,7 +619,6 @@
 		"/home/dfrodriguez/Documents/packages/finance/examples/Calculator/Solution.py",
 		"/home/dfrodriguez/Documents/packages/finance/README.md",
 		"/home/dfrodriguez/Documents/packages/finance/examples/MarketSimulator.py",
-		"/home/dfrodriguez/Documents/packages/finance/sim/test/MarketSimulatorTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/test/FileManagerTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/test/DataAccessTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/DateUtils.py",
@@ -688,14 +711,7 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_11-7-2008_31-1-2011.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_3-9-2008_20-1-2011.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/XOM_1-1-2009_1-1-2011.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/examples/EventStudy_finder.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/examples/EventStudy_Past.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkutil/DataAccess.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/EventProfiler.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/SimpleEventTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_11-1-2007_2-20-2009.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/events/SimpleEvent.py",
-		"/C/Users/Daniel/Documents/projects/QSTK/qstkstudy/__init__.py"
+		"/C/Users/Daniel/Documents/projects/packages/finance/examples/EventStudy_finder.py"
 	],
 	"find":
 	{
@@ -713,6 +729,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"grid",
+			"plt.grid(True)",
+			"grid",
+			"backend",
+			"rate",
+			"inf",
+			"daily_returns",
 			"daily",
 			"BasicUtils",
 			"Questio",
@@ -833,14 +856,7 @@
 			"self.fm",
 			",s",
 			".all()",
-			" sim.",
-			"(sim.",
-			"p1",
-			"self.equities_value",
-			"self.porfolio",
-			"porfolio_value",
-			"portfolio_value",
-			"ammount_each_stock"
+			" sim."
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -858,8 +874,63 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/dfrodriguez/.matplotlib/matplotlibrc",
+					"settings":
+					{
+						"buffer_size": 11526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5544,
+								5544
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1781.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "examples/Basic/MarketSimulator.py",
+					"settings":
+					{
+						"buffer_size": 520,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								509,
+								509
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

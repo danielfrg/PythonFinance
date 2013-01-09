@@ -24,42 +24,37 @@ q2 = Calculator.FV(PV=10000, R=total_return)
 print(2, q2)
 
 # Question 3
-q3 = Calculator.ar(R=total_return, m=1/15)
+q3 = Calculator.ann_ret(R=total_return, m=1/15)
 print(3, q3)
 
 # Question 4
 monthly_ln = monthly.apply(np.log)
 monthly_ln.plot()
 plt.title('Montly Natural Logarithm')
-plt.grid(True)
 plt.draw()
 
 # Question 5
 monthly_returns = Calculator.returns(monthly)
 monthly_returns.plot()
 plt.title('Montly Returns')
-plt.grid(True)
 plt.draw()
 
 # Question 7
 cc_monthly_returns = Calculator.returns(monthly, cc=True)
 cc_monthly_returns.plot()
 plt.title('Continuously compounded Montly Returns')
-plt.grid(True)
 plt.draw()
 
 # Question 6
 annual_returns = Calculator.returns(monthly, basedOn=12)
 annual_returns.plot()
 plt.title('Annual Returns')
-plt.grid(True)
 plt.draw()
 
 # Question 8
 cc_annual_returns = Calculator.returns(monthly, basedOn=12, cc=True)
 cc_annual_returns.plot()
 plt.title('Continuously compounded Annual Returns')
-plt.grid(True)
 plt.draw()
 
 # At the end for continous computation

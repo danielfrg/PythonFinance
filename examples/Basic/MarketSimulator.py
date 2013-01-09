@@ -18,4 +18,5 @@ print('Total Return:', Calculator.total_return(sim.portfolio))
 print(Calculator.sharpe_ratio(sim.portfolio))
 
 sim.portfolio.plot()
+# plt.grid(True)
 plt.show()
