@@ -21,7 +21,7 @@ class DataAccessTest(FinanceTest):
                 Test for that on FileManagerTest.py
         Note 2: Other tests were done on the benchmark
         '''
-        self.setUpEmptyDataAccess()
+        self.setUpDataAccess()
 
         start_date = datetime(2008, 1, 1)
         end_date = datetime(2009, 12, 31)
@@ -64,7 +64,7 @@ class DataAccessTest(FinanceTest):
         self.assertEqual(list(df.columns), names)
 
     def test_save_load_custom_name(self):
-        self.setUpEmptyDataAccess()
+        self.setUpDataAccess()
 
         symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]
         start_date = datetime(2008, 1, 1)

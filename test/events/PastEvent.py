@@ -1,4 +1,5 @@
 import unittest
+import os, inspect
 import numpy as np
 import pandas as pd
 from datetime import datetime
@@ -33,7 +34,9 @@ class PastEventTest(FinanceTest):
         evt.date = datetime(2009, 1, 5)
         evt.run()
 
-        tests = ['docs/PastEvent_window_1.csv']
+        self_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+        tests = ['PastEvent_window_1.csv']
+        tests = [os.path.join(self_dir, 'docs', test) for test in tests]
         
         for test_file in tests:
             # Set up

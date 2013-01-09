@@ -9,14 +9,13 @@ from finance.utils import DataAccess
 
 class FinanceTest(unittest.TestCase):
 
-    def setUpDataAccess(self, eraseData=True, eraseCache=True):
+    def setUpDataAccess(self, delete=False):
         self_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
         DataAccess.path = os.path.join(self_dir, 'data')
         self.data_access = DataAccess()
-        if eraseCache:
-            self.data_access.empty_cache()
-        if eraseData:
-            self.data_access.empty_dir()
+
+        self.data_access.empty_cache(delete=delete)
+        self.data_access.empty_dir(delete=delete)
 
     @staticmethod
     def delete_data():

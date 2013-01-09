@@ -143,5 +143,5 @@ class FileManager(object):
             localFile.close()
             return True
         except:
-            print(symbol, sys.exc_info()[1])
+            # print(symbol, sys.exc_info()[1])
             return False

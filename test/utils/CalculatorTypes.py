@@ -82,17 +82,17 @@ class CalculatorTypesTest(FinanceTest):
         # Input is pandas.Series => pd.Series
         ans = Calculator.returns(ser)
         self.assertSeries(ans)
-        sol = pd.Series(sol_array_1, index=ser.index, name='TEST Daily Returns')
+        sol = pd.Series(sol_array_1, index=ser.index, name='TEST returns')
         self.assertEqual(ans, sol)
         # Input is pandas.DataFrame with col parameter => pd.Series
         ans = Calculator.returns(df, col='c1')
         self.assertSeries(ans)
-        sol = pd.Series(sol_array_1, index=df.index, name='c1 Daily Returns')
+        sol = pd.Series(sol_array_1, index=df.index, name='c1 returns')
         self.assertEqual(ans, sol)
         # --
         ans = Calculator.returns(df, col='c2')
         self.assertSeries(ans)
-        sol = pd.Series(sol_array_2, index=df.index, name='c2 Daily Returns')
+        sol = pd.Series(sol_array_2, index=df.index, name='c2 returns')
         self.assertEqual(ans, sol)
         # Test: Input is pandas.DataFrame without col parameter => pd.DataFrame
         ans = Calculator.returns(df)

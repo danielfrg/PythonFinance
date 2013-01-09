@@ -1,4 +1,5 @@
 import unittest
+import os, inspect
 import numpy as np
 import pandas as pd
 from datetime import datetime
@@ -8,11 +9,11 @@ from finance.events import EventFinder
 from finance.events import SampleEvents
 from finance.events import MultipleEvents
 
-class MultipleEventTest(FinanceTest):
+class MultipleEventsTest(FinanceTest):
 
     def suite(self):
         suite = unittest.TestSuite()
-        suite.addTest(MultipleEventTest('test_window'))
+        suite.addTest(MultipleEventsTest('test_window'))
         return suite
 
     def test_window(self):
@@ -27,7 +28,7 @@ class MultipleEventTest(FinanceTest):
             4. Mean of ER, AR, CAR
         '''
         # Set Up
-        self.setUpDataAccess(eraseData=False, eraseCache=True)
+        self.setUpDataAccess()
 
         evt_fin = EventFinder()
         evt_fin.symbols = ['AMD', 'CBG']
@@ -44,7 +45,9 @@ class MultipleEventTest(FinanceTest):
         mul_evt.estimation_period = 200
         mul_evt.run()
 
-        tests = ['docs/MultipleEvents_window_1.csv']
+        self_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+        tests = ['MultipleEvents_window_1.csv']
+        tests = [os.path.join(self_dir, 'docs', test) for test in tests]
         
         for test_file in tests:
             # Set up
@@ -70,7 +73,7 @@ class MultipleEventTest(FinanceTest):
             self.assertEqual(mul_evt.mean_car, solution['Mean CAR'])
 
 if __name__ == '__main__':
-    suite = MultipleEventTest().suite()
+    suite = MultipleEventsTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
 
     # FinanceTest.delete_data()

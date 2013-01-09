@@ -1,19 +1,21 @@
 import unittest
+import os, inspect
 import numpy as np
 import pandas as pd
 from finance.test import FinanceTest
 
 from finance.utils import Calculator
 
-class CalculatorTestValues(FinanceTest):
+class CalculatorValuesTest(FinanceTest):
     '''
     Tests the values of the functions
     '''
 
     def suite(self):
+        
         suite = unittest.TestSuite()
-        suite.addTest(CalculatorTestValues('test_assets'))
-        suite.addTest(CalculatorTestValues('test_tvm'))
+        suite.addTest(CalculatorValuesTest('test_assets'))
+        suite.addTest(CalculatorValuesTest('test_tvm'))
         return suite
 
     def test_assets(self):
@@ -28,7 +30,9 @@ class CalculatorTestValues(FinanceTest):
             6. Calculator.PV w/ R=list ret_list=True
         '''
         # Load Data
-        tests = ['docs/CalculatorTest_Assets_1.csv']
+        self_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+        tests = ['Calculator_Assets_1.csv']
+        tests = [os.path.join(self_dir, 'docs', test) for test in tests]
 
         for test_file in tests:
             # Set up
@@ -66,8 +70,10 @@ class CalculatorTestValues(FinanceTest):
             4. n w/ PV, FV, R, m
             5. ear w/ R, m
         '''
-        tests = ['docs/CalculatorTest_TVM_1.csv', 'docs/CalculatorTest_TVM_2.csv', 
-                'docs/CalculatorTest_TVM_3.csv'] #, 'CalculatorTest_TVM_4.csv']
+        self_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+        tests = ['Calculator_TVM_1.csv', 'Calculator_TVM_2.csv', 
+                'Calculator_TVM_3.csv']
+        tests = [os.path.join(self_dir, 'docs',test) for test in tests]
 
         for test_file in tests:
             # Set up
@@ -91,5 +97,5 @@ class CalculatorTestValues(FinanceTest):
                 self.assertAlmostEquals(ear, row['EAR'], 4, "R(%s),m(%s)" % (row['R'], row['m']))
 
 if __name__ == '__main__':
-    suite = CalculatorTestValues().suite()
+    suite = CalculatorValuesTest().suite()
     unittest.TextTestRunner(verbosity=2).run(suite)
