@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 from finance.utils import DateUtils
 from finance.utils import DataAccess
+from finance.events import Event
 
 class EventFinder(object):
     def __init__(self):
@@ -13,16 +14,15 @@ class EventFinder(object):
         self.end_date = None
         self.field = 'Adj Close'
 
-        self.function = None
-        self.funcion_name = None
+        self.event = Event()
         self.matrix = None
         self.num_events = 0
 
         self.oneEventPerEquity = True
 
     def generate_filename(self):
-        return '%s%s%s%s%s%s' % (''.join(self.symbols), self.start_date.strftime('%m-%d-%Y'),
-                self.end_date.strftime('%m-%d-%Y'), self.field, self.funcion_name,
+        return '%s%s%s%s%s%s' % (''.join(self.symbols), self.start_date.strftime('%Y-%m-%d'),
+                self.end_date.strftime('%Y-%m-%d'), self.field, self.event.id,
                 str(self.oneEventPerEquity))
 
     def search(self, oneEventPerEquity=True, useCache=True, save=True):
@@ -48,7 +48,7 @@ class EventFinder(object):
             for symbol in self.symbols:
                 i = 0
                 for item in data[symbol][1:]:
-                    e = self.function(i, item, data[symbol][1:])
+                    e = self.event.function(i, item, data[symbol][1:])
                     if e:
                         self.matrix[symbol][i+1] = 1
                         if oneEventPerEquity == True:
@@ -70,18 +70,3 @@ class EventFinder(object):
         if save:
             self.data_access.save(self.matrix, self.generate_filename(), '.evt_matrix')
 
-    def decrease(self, decrease):
-        self.funcion_name = 'decrease_%d' % decrease
-        return lambda i, item, data: (data[i-1] - item > decrease)
-
-    def increase(self, increase):
-        self.funcion_name = 'increase_%d' % increase
-        return lambda i, item, data: (item - data[i-1] > increase)
-
-    def went_below(self, below):
-        self.funcion_name = 'below_%d' % below
-        return lambda i, item, data: (data[i-1] >= below and item < below)
-
-    def went_above(self, above):
-        self.funcion_name = 'above_%d' % above
-        return lambda i, item, data: (data[i-1] <= above and item > above)

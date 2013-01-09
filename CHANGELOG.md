@@ -13,6 +13,7 @@ v0.04 - Dev
 	- Improve total_return to give return by position
 	- Rename daily_returns to just returns
 	- Add Continusly compouding to total_return and returns
+- Calculator Tests based on CSV files
 - A lot of more examples
 
 v0.035
