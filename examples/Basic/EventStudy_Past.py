@@ -1,25 +1,23 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
-from finance.utils import DataAccess
 from finance.events import PastEvent
 
-DataAccess.path = 'data'
-da = DataAccess()
+# from finance.utils import DataAccess
+# DataAccess.path = 'data'
 
-pevt = PastEvent()
-pevt.symbol = 'AAPL'
-pevt.market = "^gspc"
-pevt.lookback_days = 10
-pevt.lookforward_days = 10
-pevt.estimation_period = 252
-pevt.date = datetime(2009, 1, 5)
-pevt.run()
+evt = PastEvent()
+evt.symbol = 'AAPL'
+evt.market = "^gspc"
+evt.lookback_days = 10
+evt.lookforward_days = 10
+evt.estimation_period = 252
+evt.date = datetime(2009, 1, 5)
+evt.run()
 
-#print(pevt.expected_return)
-#print(pevt.abnormal_return)
-print(pevt.cumulative_abnormal_return)
-#print(pevt.t_test)
+#print(evt.expected_return)
+#print(evt.abnormal_return)
+print(evt.car)
+#print(evt.t_test)
 
-
-pevt.abnormal_return.plot()
+evt.ar.plot()
 plt.show()

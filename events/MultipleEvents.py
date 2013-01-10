@@ -177,5 +177,5 @@ class MultipleEvents(object):
         if which == 'car':
             x = self.mean_car.index
             y = self.mean_car.values
-            yerr = self.std_cumulative_abnormal_return.values
+            yerr = self.std_car.values
         plt.errorbar(x, y, yerr=yerr)

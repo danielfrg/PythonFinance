@@ -212,4 +212,6 @@ class DataAccess(object):
         if save == True:
             self.save(data, filename_id)
         return data
-        
+    
+    def download(self, symbols, start, end):
+        self.get_data(symbols, start, end, useCache=False, save=False)

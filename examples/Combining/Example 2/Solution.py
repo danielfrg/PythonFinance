@@ -19,7 +19,7 @@ plt.title('Montly Data')
 plt.draw()
 
 # Question 2 and 3
-total_return = Calculator.total_return(data)
+total_return = Calculator.ret(data)
 q2 = Calculator.FV(PV=10000, R=total_return)
 print(2, q2)
 
