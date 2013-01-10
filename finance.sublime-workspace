@@ -519,22 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/etc/fonts/conf.d/90-fonts-nanum.conf",
-			"settings":
-			{
-				"buffer_size": 1958,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/etc/fonts/conf.d/65-droid-sans-fonts.conf",
-			"settings":
-			{
-				"buffer_size": 3226,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
@@ -620,9 +604,13 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Multiple.py",
+		"/home/dfrodriguez/Documents/packages/finance/README.md",
+		"/home/dfrodriguez/Documents/packages/finance/CHANGELOG.md",
+		"/etc/fonts/conf.d/90-fonts-nanum.conf",
+		"/etc/fonts/conf.d/65-droid-sans-fonts.conf",
 		"/home/dfrodriguez/Documents/packages/finance/plots/errorfill.py",
 		"/home/dfrodriguez/Documents/packages/finance/events/MultipleEvents.py",
-		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Multiple.py",
 		"/home/dfrodriguez/Documents/packages/finance/plots/__init__.py",
 		"/home/dfrodriguez/.matplotlib/matplotlibrc",
 		"/home/dfrodriguez/Documents/packages/finance/test/AllTets.py",
@@ -633,7 +621,6 @@
 		"/home/dfrodriguez/Documents/packages/finance/events/SampleConditions.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Finder.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/FileManager.py",
-		"/home/dfrodriguez/Documents/packages/finance/CHANGELOG.md",
 		"/home/dfrodriguez/Documents/packages/finance/utils/DataAccess.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 2/Solution.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 1/Solution.py",
@@ -697,7 +684,6 @@
 		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/fundutil.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/DataManagement.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Calculator/Solution.py",
-		"/home/dfrodriguez/Documents/packages/finance/README.md",
 		"/home/dfrodriguez/Documents/packages/finance/examples/MarketSimulator.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/test/FileManagerTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/utils/test/DataAccessTest.py",
@@ -745,9 +731,7 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AMD_2007-10-5_2010-1-15.csv",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-14.csv",
 		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/data/AMD_2008-1-1_2011-1-1.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/FileManager.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/test/DataAccessTest.py"
+		"/C/Users/Daniel/Documents/projects/packages/finance/utils/data/AMD_2008-1-1_2011-1-1.csv"
 	],
 	"find":
 	{
@@ -910,65 +894,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/etc/fonts/conf.d/90-fonts-nanum.conf",
-					"settings":
-					{
-						"buffer_size": 1958,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								588,
-								588
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/etc/fonts/conf.d/65-droid-sans-fonts.conf",
-					"settings":
-					{
-						"buffer_size": 3226,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1991,
-								1991
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1404.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1005,7 +932,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 191.0
+		"height": 177.0
 	},
 	"replace":
 	{

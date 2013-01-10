@@ -188,7 +188,7 @@ def ret(data, pos=-1, cc=False, col=None):
         if data is pandas.DataFrame and col is None and columns > 1: pandas.DataFrame with the total return of each column
         if data is pandas.DataFrame and col is not None: int with the total return
     '''
-    if type(data) is np.ndarray:
+    if type(data) is np.ndarray or type(data) is list:
         if cc:
             return math.log(data[pos] / data[0])
         else:
@@ -230,7 +230,7 @@ def returns(data, basedOn=1, cc=False, col=None):
         if data is pandas.DataFrame and col is not None: pandas.Series with the daily returns
     '''
 
-    if type(data) is np.ndarray:
+    if type(data) is np.ndarray or type(data) is list:
         dr = np.zeros(shape=data.shape)
         if cc:
             # return np.log(data[basedOn:] / data[0:-basedOn])
@@ -274,7 +274,7 @@ def sharpe_ratio(data, col=None, cc=False):
         if data is pandas.DataFrame: pandas.DataFrame with the sharpe ratio of each column
         if data is pandas.DataFrame and col!=None: int with the sharpe ratio
     '''
-    if type(data) is np.ndarray:
+    if type(data) is np.ndarray or type(data) is list:
         dr = returns(data)
         mean = dr.mean(0)
         std = dr.std(0)
