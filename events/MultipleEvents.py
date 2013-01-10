@@ -3,6 +3,7 @@ import pandas as pd
 from scipy import stats
 from datetime import datetime
 import matplotlib.pyplot as plt
+from finance.plots.errorfill import *
 
 from finance.utils import DateUtils
 from finance.utils import DataAccess
@@ -173,9 +174,42 @@ class MultipleEvents(object):
         self.mean_car.name = 'Mean CAR'
 
     def plot(self, which):
-        plt.figure()
+        x = self.mean_car.index.values
         if which == 'car':
-            x = self.mean_car.index
             y = self.mean_car.values
             yerr = self.std_car.values
-        plt.errorbar(x, y, yerr=yerr)
+            label = self.mean_car.name
+        elif which == 'ar':
+            y = self.mean_ar.values
+            yerr = self.std_ar.values
+            label = self.mean_ar.name
+        elif which == 'er':
+            y = self.mean_er.values
+            yerr = self.std_er.values
+            label = self.mean_er.name
+        errorfill(x, y, yerr, label=label)
+
+if __name__ == '__main__':
+    from datetime import datetime
+    import matplotlib.pyplot as plt
+    from finance.events import EventFinder
+    from finance.events import SampleConditions
+
+    evtf = EventFinder()
+    evtf.symbols = ['AMD', 'CBG']
+    evtf.start_date = datetime(2008, 1, 1)
+    evtf.end_date = datetime(2009, 12, 31)
+    evtf.condition = SampleConditions.went_below(3)
+    evtf.search()
+
+    mevt = MultipleEvents()
+    mevt.list = evtf.list
+    mevt.market = 'SPY'
+    mevt.lookback_days = 20
+    mevt.lookforward_days = 20
+    mevt.estimation_period = 200
+    mevt.run()
+
+    mevt.plot('car')
+    plt.legend()
+    plt.show()

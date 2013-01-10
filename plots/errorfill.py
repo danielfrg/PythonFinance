@@ -1,7 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-__all__ = ['errorfill']
+# __all__ = ['errorfill']
+
+'''
+Heavily based on the errorfill from mpltools:
+Updated to python 3
+https://github.com/tonysyu/mpltools
+'''
 
 def errorfill(x, y, yerr=None, xerr=None, color=None, ls=None, lw=None,
               alpha=1, alpha_fill=0.3, label='', label_fill='', ax=None):
@@ -43,36 +49,29 @@ def errorfill(x, y, yerr=None, xerr=None, color=None, ls=None, lw=None,
     if lw is None:
         lw = plt.rcParams['lines.linewidth']
 
+    # Regular plot
     ax.plot(x, y, color, linestyle=ls, linewidth=lw, alpha=alpha, label=label)
 
+    # Fill
     kwargs_fill = dict(color=color, alpha=alpha_fill, label=label_fill)
-    if yerr is not None:
-        ymin, ymax = extrema_from_error_input(y, yerr)
-        fill_between(x, ymax, ymin, ax=ax, **kwargs_fill)
-    elif xerr is not None:
-        xmin, xmax = extrema_from_error_input(x, xerr)
-        fill_between_x(y, xmax, xmin, ax=ax, **kwargs_fill)
 
-def extrema_from_error_input(z, zerr):
+    if yerr is not None:
+        z, zerr = y, yerr
+    elif xerr is not None:
+        z, zerr = x, xerr
+
     if np.isscalar(zerr) or len(zerr) == len(z):
         zmin = z - zerr
         zmax = z + zerr
     elif len(zerr) == 2:
         zmin, zmax = z - zerr[0], z + zerr[1]
-    return zmin, zmax
 
-# Wrappers around `fill_between` and `fill_between_x` that create proxy artists
-# so that filled regions show up correctly legends.
-
-def fill_between(x, y1, y2=0, ax=None, **kwargs):
-    ax = ax if ax is not None else plt.gca()
-    ax.fill_between(x, y1, y2, **kwargs)
-    ax.add_patch(plt.Rectangle((0, 0), 0, 0, **kwargs))
-
-def fill_between_x(x, y1, y2=0, ax=None, **kwargs):
-    ax = ax if ax is not None else plt.gca()
-    ax.fill_betweenx(x, y1, y2, **kwargs)
-    ax.add_patch(plt.Rectangle((0, 0), 0, 0, **kwargs))
+    if yerr is not None:
+        ax.fill_between(x, zmax, zmin, **kwargs_fill)
+    elif xerr is not None:
+        ax.fill_betweenx(z, zmax, zmin, **kwargs_fill)
+    
+    ax.add_patch(plt.Rectangle((0, 0), 0, 0, **kwargs_fill))
 
 if __name__ == '__main__':
     x = np.linspace(0, 2 * np.pi)
