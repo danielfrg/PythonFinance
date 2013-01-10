@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 from finance.utils import DateUtils
 from finance.utils import DataAccess
-from finance.events import Event
+from finance.events import Condition
 
 class EventFinder(object):
     def __init__(self):
@@ -14,7 +14,7 @@ class EventFinder(object):
         self.end_date = None
         self.field = 'Adj Close'
 
-        self.event = Event()
+        self.condition = Condition()
         self.matrix = None
         self.num_events = 0
 
@@ -22,7 +22,7 @@ class EventFinder(object):
 
     def generate_filename(self):
         return '%s%s%s%s%s%s' % (''.join(self.symbols), self.start_date.strftime('%Y-%m-%d'),
-                self.end_date.strftime('%Y-%m-%d'), self.field, self.event.id,
+                self.end_date.strftime('%Y-%m-%d'), self.field, self.condition.id,
                 str(self.oneEventPerEquity))
 
     def search(self, oneEventPerEquity=True, useCache=True, save=True):
@@ -48,7 +48,7 @@ class EventFinder(object):
             for symbol in self.symbols:
                 i = 0
                 for item in data[symbol][1:]:
-                    e = self.event.function(i, item, data[symbol][1:])
+                    e = self.condition.function(i, item, data[symbol][1:])
                     if e:
                         self.matrix[symbol][i+1] = 1
                         if oneEventPerEquity == True:

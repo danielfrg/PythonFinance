@@ -3,6 +3,7 @@ PythonFinance
 
 v0.04 - Dev
 -----------
+- new Condition class to mark events on the Finder
 - new FinaceTest to easier testing
 - Rename BasicUtils to Calculator
 - Add more utils to the Calculator:

@@ -1,7 +1,8 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
-from finance.events import SampleEvents
-from finance.events import EventFinder, MultipleEvents
+from finance.events import EventFinder
+from finance.events import MultipleEvents
+from finance.events import SampleConditions
 
 # from finance.utils import DataAccess
 # DataAccess.path = 'data'
@@ -10,7 +11,7 @@ evtf = EventFinder()
 evtf.symbols = ['AMD', 'CBG']
 evtf.start_date = datetime(2008, 1, 1)
 evtf.end_date = datetime(2009, 12, 31)
-evtf.event = SampleEvents.went_below(3)
+evtf.condition = SampleConditions.went_below(3)
 evtf.search()
 
 mevt = MultipleEvents()

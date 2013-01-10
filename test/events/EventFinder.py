@@ -7,7 +7,7 @@ from datetime import datetime
 
 from finance.test import FinanceTest
 from finance.events import EventFinder
-from finance.events import SampleEvents
+from finance.events import SampleConditions
 
 class EventFinderTest(FinanceTest):
 
@@ -30,7 +30,7 @@ class EventFinderTest(FinanceTest):
         evtf.symbols = ['AMD']
         evtf.start_date = datetime(2008, 1, 1)
         evtf.end_date = datetime(2009, 12, 31)
-        evtf.event = SampleEvents.went_below(3)
+        evtf.condition = SampleConditions.went_below(3)
         evtf.search(oneEventPerEquity=True)
         # Test: number of events found = 1
         self.assertEqual(evtf.num_events, 1)

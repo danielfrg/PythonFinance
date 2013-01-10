@@ -6,7 +6,7 @@ from datetime import datetime
 
 from finance.test import FinanceTest
 from finance.events import EventFinder
-from finance.events import SampleEvents
+from finance.events import SampleConditions
 from finance.events import MultipleEvents
 
 class MultipleEventsTest(FinanceTest):
@@ -34,7 +34,7 @@ class MultipleEventsTest(FinanceTest):
         evt_fin.symbols = ['AMD', 'CBG']
         evt_fin.start_date = datetime(2008, 1, 1)
         evt_fin.end_date = datetime(2009, 12, 31)
-        evt_fin.event = SampleEvents.went_below(3)
+        evt_fin.condition = SampleConditions.went_below(3)
         evt_fin.search()
         
         mul_evt = MultipleEvents()
