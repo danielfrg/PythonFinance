@@ -168,7 +168,7 @@ def ann_ret(R=0.1, m=1, cc=False):
 '''                                      ASSET RETURNS                                   '''
 ''' ------------------------------------------------------------------------------------ '''
 
-def ret(data, pos=-1, cc=False, col=None):
+def ret(data, pos=-1, cc=False, col=None, dividends=None):
     '''
     Calculates the total return
 
@@ -189,10 +189,14 @@ def ret(data, pos=-1, cc=False, col=None):
         if data is pandas.DataFrame and col is not None: int with the total return
     '''
     if type(data) is np.ndarray or type(data) is list:
-        if cc:
-            return math.log(data[pos] / data[0])
+        if dividends is not None:
+            _data = np.array(data) + np.array(dividends)
         else:
-            return data[pos] / data[0] - 1
+            _data = data
+        if cc:
+            return math.log(_data[pos] / _data[0])
+        else:
+            return _data[pos] / _data[0] - 1
     
     if type(data) is pd.Series or type(data) is pd.TimeSeries:
         return ret(data.values, pos=pos, cc=cc)

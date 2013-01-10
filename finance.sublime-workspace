@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"q15",
+				"q15_cost"
+			],
+			[
+				"q11_",
+				"q11_cost"
+			],
+			[
+				"q",
+				"q15_amzn"
+			],
+			[
+				"q12_",
+				"q12_amzn"
+			],
+			[
+				"X",
+				"X"
+			],
+			[
 				"x",
 				"x"
 			],
@@ -494,26 +514,6 @@
 			[
 				"cum",
 				"cumulative_return"
-			],
-			[
-				"op",
-				"open_val"
-			],
-			[
-				"mos",
-				"most_recent"
-			],
-			[
-				"debu",
-				"debugWinners"
-			],
-			[
-				"debug",
-				"debugWinners"
-			],
-			[
-				"yahoo",
-				"yahoo_pull"
 			]
 		]
 	},
@@ -604,6 +604,9 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 3/Solution.py",
+		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 3/solution.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/EventStudy_Multiple.py",
 		"/home/dfrodriguez/Documents/packages/finance/README.md",
 		"/home/dfrodriguez/Documents/packages/finance/CHANGELOG.md",
@@ -644,7 +647,6 @@
 		"/home/dfrodriguez/Documents/packages/finance/events/EventStudy.py",
 		"/home/dfrodriguez/Documents/packages/finance/test/events/docs/PastEvent_window_1.csv",
 		"/home/dfrodriguez/Documents/packages/finance/test/events/EventFinderTest.py",
-		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorValuesTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/test/utils/CalculatorTypesTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/sim/MarketSimulator.py",
@@ -729,9 +731,7 @@
 		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/PastEventTest.py",
 		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AMD_2007-10-5_2010-1-15.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-14.csv",
-		"/C/Users/Daniel/Documents/projects/comp-investing/assignment2/events.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/data/AMD_2008-1-1_2011-1-1.csv"
+		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-14.csv"
 	],
 	"find":
 	{
@@ -749,6 +749,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"amzn",
+			"cost",
 			"test",
 			"<string>나눔고딕</string>",
 			"7",
@@ -874,9 +876,7 @@
 			"data_window",
 			"daily return",
 			"3.91",
-			"get_nyse_dates",
-			"get_idx_nyse_date",
-			"get_nyse_dates("
+			"get_nyse_dates"
 		],
 		"highlight": true,
 		"in_selection": false,
