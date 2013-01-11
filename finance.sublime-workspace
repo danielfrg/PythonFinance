@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"it",
+				"it"
+			],
+			[
+				"p",
+				"p_XY"
+			],
+			[
+				"Y",
+				"Y_Ey"
+			],
+			[
+				"E",
+				"X_Ex"
+			],
+			[
+				"X",
+				"X_Ex"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
 				"q15",
 				"q15_cost"
 			],
@@ -18,14 +42,6 @@
 			[
 				"q12_",
 				"q12_amzn"
-			],
-			[
-				"X",
-				"X"
-			],
-			[
-				"x",
-				"x"
 			],
 			[
 				"err",
@@ -498,29 +514,21 @@
 			[
 				"perce",
 				"Percentage"
-			],
-			[
-				"wei",
-				"weight"
-			],
-			[
-				"we",
-				"weight"
-			],
-			[
-				"prin",
-				"printPercentValue"
-			],
-			[
-				"cum",
-				"cumulative_return"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "examples/ItCFaFE/Assignment 3 - Computations/Solution.py",
+			"settings":
+			{
+				"buffer_size": 1269,
+				"line_ending": "Unix"
+			}
+		}
 	],
-	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system": "Python Virtual env",
 	"command_palette":
 	{
 		"height": 217.0,
@@ -604,7 +612,16 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/projects/packages/finance/examples/ItCFaFE/README.md",
+		"/home/dfrodriguez/projects/packages/finance/examples/Combining/Example 5/Solution.py",
+		"/home/dfrodriguez/projects/packages/finance/examples/Combining/Example 3/Solution.py",
+		"/home/dfrodriguez/projects/packages/finance/examples/Basic/EventStudy_Multiple.py",
+		"/home/dfrodriguez/.virtualenvs/finance/lib/python3.2/site-packages/matplotlib/mpl-data/matplotlibrc",
+		"//usr/lib/python3.2/tkinter/__init__.py",
+		"/home/dfrodriguez/.virtualenvs/finance/lib/python3.2/site-packages/matplotlib/backends/tkagg.py",
+		"/home/dfrodriguez/projects/packages/finance/finance.sublime-project",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
+		"/home/dfrodriguez/.virtualenvs/finance/bin/activate",
 		"/home/dfrodriguez/.bashrc",
 		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 3/Solution.py",
@@ -722,16 +739,7 @@
 		"/home/dfrodriguez/Documents/packages/finance/examples/EventFinder.py",
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/SimpleEvent.py",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
-		"/home/dfrodriguez/.profile",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/MultipleEventTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/MultipleEvents.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/EventFinder.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/utils/DataAccess.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/test/PastEventTest.py",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AMD_2007-10-5_2010-1-15.csv",
-		"/C/Users/Daniel/Documents/projects/packages/finance/evtstudy/data/AAPL_2008-10-7_2011-1-14.csv"
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
 	],
 	"find":
 	{
@@ -749,6 +757,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"X_Ex",
+			"var",
+			"ev",
 			"amzn",
 			"cost",
 			"test",
@@ -873,10 +884,7 @@
 			"53",
 			"]]\n",
 			"data_estimation",
-			"data_window",
-			"daily return",
-			"3.91",
-			"get_nyse_dates"
+			"data_window"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -894,8 +902,35 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "examples/ItCFaFE/Assignment 3 - Computations/Solution.py",
+					"settings":
+					{
+						"buffer_size": 1269,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								877,
+								877
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 738.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -932,7 +967,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 177.0
+		"height": 154.0
 	},
 	"replace":
 	{
