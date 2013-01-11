@@ -15,7 +15,8 @@
     "folders":
     [
         {
-            "path": "/home/dfrodriguez/projects/packages/finance"
+            "path": "/home/dfrodriguez/projects/packages/finance",
+            "folder_exclude_patterns": ["__pycache__"]
         }
     ]
 }

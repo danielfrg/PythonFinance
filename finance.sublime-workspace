@@ -519,14 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "examples/ItCFaFE/Assignment 3 - Computations/Solution.py",
-			"settings":
-			{
-				"buffer_size": 1269,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Python Virtual env",
 	"command_palette":
@@ -612,6 +604,9 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/projects/packages/finance/finance.sublime-workspace",
+		"/home/dfrodriguez/projects/packages/finance/finance.sublime-project",
+		"/home/dfrodriguez/projects/packages/finance/examples/ItCFaFE/Assignment 3 - Computations/Solution.py",
 		"/home/dfrodriguez/projects/packages/finance/examples/ItCFaFE/README.md",
 		"/home/dfrodriguez/projects/packages/finance/examples/Combining/Example 5/Solution.py",
 		"/home/dfrodriguez/projects/packages/finance/examples/Combining/Example 3/Solution.py",
@@ -619,7 +614,6 @@
 		"/home/dfrodriguez/.virtualenvs/finance/lib/python3.2/site-packages/matplotlib/mpl-data/matplotlibrc",
 		"//usr/lib/python3.2/tkinter/__init__.py",
 		"/home/dfrodriguez/.virtualenvs/finance/lib/python3.2/site-packages/matplotlib/backends/tkagg.py",
-		"/home/dfrodriguez/projects/packages/finance/finance.sublime-project",
 		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/.virtualenvs/finance/bin/activate",
 		"/home/dfrodriguez/.bashrc",
@@ -737,9 +731,7 @@
 		"/home/dfrodriguez/Documents/packages/finance/utils/SP500_2008.py",
 		"/home/dfrodriguez/Documents/packages/finance/evtstudy/test/EventFinderTest.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/EventFinder.py",
-		"/home/dfrodriguez/Documents/packages/finance/evtstudy/SimpleEvent.py",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+		"/home/dfrodriguez/Documents/packages/finance/evtstudy/SimpleEvent.py"
 	],
 	"find":
 	{
@@ -902,35 +894,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "examples/ItCFaFE/Assignment 3 - Computations/Solution.py",
-					"settings":
-					{
-						"buffer_size": 1269,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								877,
-								877
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 738.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
