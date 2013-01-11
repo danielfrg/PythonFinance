@@ -1,10 +1,21 @@
 {
-	"folders":
-	[
-		{
-			"path": "/home/dfrodriguez/Documents/packages/finance",
-			"file_exclude_patterns": ["__init__.py"],
-			"folder_exclude_patterns": ["__pycache__"]
-		}
-	]
+
+    "build_systems":
+    [
+        {
+            "name": "Python Virtual env",
+            "env":
+            {
+                "PYTHONPATH":"/home/dfrodriguez/projects/packages/",
+                "FINANCEPATH":"/home/dfrodriguez/projects/packages/finance/data"
+            },
+            "cmd": ["/home/dfrodriguez/.virtualenvs/finance/bin/python", "-u", "$file"]
+        }
+    ],
+    "folders":
+    [
+        {
+            "path": "/home/dfrodriguez/projects/packages/finance"
+        }
+    ]
 }

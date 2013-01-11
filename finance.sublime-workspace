@@ -604,6 +604,8 @@
 	},
 	"file_history":
 	[
+		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
+		"/home/dfrodriguez/.bashrc",
 		"/home/dfrodriguez/Documents/packages/finance/utils/Calculator.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 3/Solution.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Combining/Example 3/solution.py",
@@ -678,8 +680,6 @@
 		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/DataEvolved.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/Calculator_FV.py",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Basic/Calculator_FV_PV_R_n.py",
-		"/home/dfrodriguez/.bashrc",
-		"/home/dfrodriguez/.config/sublime-text-2/Packages/Python/Python.sublime-build",
 		"/home/dfrodriguez/Documents/packages/finance/examples/Example 2/Solution.py",
 		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/qsdateutil.py",
 		"/home/dfrodriguez/Documents/QSTK-master/qstkutil/utils.py",
