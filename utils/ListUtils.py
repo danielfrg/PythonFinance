@@ -7,7 +7,7 @@ def NYSE(complete=False):
         from datetime import datetime
         self_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
         filename = os.path.join(self_dir, './lists/NYSE_dates.txt')
-        return [datetime.strptime(x ,"b'%m/%d/%Y'") for x in np.loadtxt(filename,dtype=str)]
+        return [datetime.strptime(x, "%m/%d/%Y") for x in np.loadtxt(filename, dtype=str)]
     else:
         from finance.utils.lists import NYSE_dates
         return NYSE_dates.all_dates

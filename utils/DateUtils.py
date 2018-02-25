@@ -60,7 +60,7 @@ def nyse_dates(start=datetime(2007,1,1), end=datetime.today(),
     dates = dates[idx_start:idx_end+1]
 
     if series:
-        return pd.TimeSeries(index=dates, data=dates)
+        return pd.Series(index=dates, data=dates)
     else:
         return dates
 
@@ -107,7 +107,7 @@ def search_closer_date(date, dates, exact=False, searchBack=True, maxDistance=10
         maxDistance: int, maximum distance (on days) to look for the date
     '''
     # 0. Diferent type of parameters
-    if type(dates) == pd.tseries.index.DatetimeIndex:
+    if type(dates) == pd.DatetimeIndex:
         dates = dates.to_pydatetime()
     if type(dates) == np.ndarray:
         dates = dates.tolist()

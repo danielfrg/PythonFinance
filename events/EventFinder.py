@@ -12,7 +12,7 @@ class EventFinder(object):
         self.symbols = []
         self.start_date = None
         self.end_date = None
-        self.field = 'Adj Close'
+        self.field = 'adjusted_close'
 
         self.condition = Condition()
         self.matrix = None

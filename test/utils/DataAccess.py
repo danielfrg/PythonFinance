@@ -28,7 +28,7 @@ class DataAccessTest(FinanceTest):
 
         # Single symbol, single field
         symbols = "AAPL"
-        fields = "Close"
+        fields = 'close'
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
         self.assertEqual(len(df), 505)
         self.assertEqual(len(df.columns), 1)
@@ -37,7 +37,7 @@ class DataAccessTest(FinanceTest):
 
         # Multiple symbols, single field
         symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-        fields = "Close"
+        fields = 'close'
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
         self.assertEqual(len(df), 505)
         self.assertEqual(len(df.columns), 5)
@@ -46,7 +46,7 @@ class DataAccessTest(FinanceTest):
 
         # Single symbol, multiple fields
         symbols = "AAPL"
-        fields = ["Close", "Volume"]
+        fields = ['close', "Volume"]
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
         self.assertEqual(len(df), 505)
         self.assertEqual(len(df.columns), 2)
@@ -55,7 +55,7 @@ class DataAccessTest(FinanceTest):
 
         # Multiple symbol, multiple fields
         symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-        fields = ["Close", "Volume"]
+        fields = ['close', "Volume"]
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
         self.assertEqual(len(df), 505)
         self.assertEqual(len(df.columns), 10)
@@ -69,7 +69,7 @@ class DataAccessTest(FinanceTest):
         symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]
         start_date = datetime(2008, 1, 1)
         end_date = datetime(2009, 12, 31)
-        fields = "Close"
+        fields = 'close'
         
         close = self.data_access.get_data(symbols, start_date, end_date, fields, save=False)
         self.data_access.save(close, "customName", extension='.custom')
@@ -90,7 +90,7 @@ def benchmark():
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
     start_date = datetime(2008, 1, 1)
     end_date = datetime(2009, 12, 31)
-    fields = "Close"
+    fields = 'close'
     da.get_data(symbols, start_date, end_date, fields)
     t1_f, t2_f = clock(), time()
     print ("   ", t1_f - t1, t2_f - t2)
@@ -100,7 +100,7 @@ def benchmark():
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
     start_date = datetime(2008, 1, 1)
     end_date = datetime(2009, 12, 31)
-    fields = "Close"
+    fields = 'close'
     da.get_data(symbols, start_date, end_date, fields, useCache=False)
     t1_f, t2_f = clock(), time()
     print ("   ", t1_f - t1, t2_f - t2)
@@ -110,7 +110,7 @@ def benchmark():
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
     start_date = datetime(2008, 1, 1)
     end_date = datetime(2009, 12, 31)
-    fields = "Close"
+    fields = 'close'
     da.get_data(symbols, start_date, end_date, fields, useCache=True)
     t1_f, t2_f = clock(), time()
     print ("   ", t1_f - t1, t2_f - t2)

@@ -28,7 +28,7 @@ class MarketSimulator(object):
         self.da = DataAccess()
 
         self.initial_cash = 0
-        self.field = "Adj Close"
+        self.field = 'adjusted_close'
 
         self.trades = None
         self.prices = None
@@ -68,7 +68,7 @@ class MarketSimulator(object):
         self.trades = self.trades[['symbol', 'action', 'num_of_shares']]
         
         # 4. Sort the DataFrame by the index (dates)
-        self.trades = self.trades.sort()
+        self.trades = self.trades.sort_index()
 
     def create_trades_from_event(self, eventList, 
                                 eventDayAction='Buy', eventDayShares=100,

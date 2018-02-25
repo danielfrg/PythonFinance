@@ -29,7 +29,7 @@ class FinanceTest(unittest.TestCase):
             self.assertArrayEqual(ans, sol, digits)
         elif type(ans) == pd.Series and type(sol) == pd.Series:
             self.assertSeriesEqual(ans, sol)
-        elif type(ans) == pd.TimeSeries and type(sol) == pd.TimeSeries:
+        elif type(ans) == pd.Series and type(sol) == pd.Series:
             self.assertSeriesEqual(ans, sol, digits)
         elif type(ans) == pd.DataFrame and type(sol) == pd.DataFrame:
             self.assertFrameEqual(ans, sol, digits)
@@ -55,7 +55,7 @@ class FinanceTest(unittest.TestCase):
             np_test.assert_array_almost_equal(ans, sol, digits)
     
     def assertSeries(self, obj):
-        if type(obj) is pd.Series or type(obj) is pd.TimeSeries:
+        if type(obj) is pd.Series or type(obj) is pd.Series:
             return
         else:
             self.assertIs(type(obj), pd.Series)
@@ -63,7 +63,7 @@ class FinanceTest(unittest.TestCase):
     def assertSeriesEqual(self, ans, sol, digits=0):
         self.assertSeries(ans)
         self.assertSeries(sol)
-        self.assertEquals(ans.name, sol.name)
+        self.assertEqual(ans.name, sol.name)
 
         if digits == 0:
             pd_test.assert_series_equal(ans, sol, digits)

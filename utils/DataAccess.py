@@ -107,7 +107,7 @@ class DataAccess(object):
         filename = h.hexdigest() + extension
 
         f = os.path.join(self.cache_dir, filename)
-        data.save(f)
+        data.to_csv(f)
 
     def load(self, name, extension='.data'):
         '''
@@ -128,10 +128,10 @@ class DataAccess(object):
 
         f = os.path.join(self.cache_dir, filename)
         if os.access(f, os.F_OK):
-            return pd.load(f)
+            return pd.read_csv(f, parse_dates=True, index_col='timestamp')
 
 
-    def get_data(self, symbols, start, end, fields='Adj Close', save=True, useCache=True,
+    def get_data(self, symbols, start, end, fields='adjusted_close', save=True, useCache=True,
                     downloadMissing=True, ignoreMissing=True):
         '''
         Returns a pandas DataFrame with the data of the symbols and field
@@ -184,7 +184,7 @@ class DataAccess(object):
             # Create DataFrame from the csv
             new_data = pd.read_csv(os.path.join(self.dir, f))
             # Change the index of the DataFrame to be the date
-            new_data = new_data.set_index(pd.to_datetime(new_data['Date']))
+            new_data = pd.read_csv(os.path.join(self.dir, f), parse_dates=True, index_col='timestamp')
 
             for field in fields:
                 # For each field in fields, creates a new column
@@ -206,7 +206,7 @@ class DataAccess(object):
 
         # 1.4. Create, slice and sort the data
         data = pd.DataFrame(data_dic)
-        data = data.sort()[start:end] # Sort because Yahoo Finance data comes reverse
+        data = data.sort_index()
 
         # Save a cache version if requested
         if save == True:

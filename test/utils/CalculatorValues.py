@@ -82,19 +82,19 @@ class CalculatorValuesTest(FinanceTest):
             for idx, row in solution.iterrows():
                 # Test 1
                 FV = Calculator.FV(PV=row['PV'], R=row['R'], n=row['n'], m=row['m'])
-                self.assertAlmostEquals(FV, row['FV'], 4)
+                self.assertAlmostEqual(FV, row['FV'], 4)
                 # Test 2
                 PV = Calculator.PV(FV=row['FV'], R=row['R'], n=row['n'], m=row['m'])
-                self.assertAlmostEquals(PV, row['PV'], 4)
+                self.assertAlmostEqual(PV, row['PV'], 4)
                 # Test 3
                 R = Calculator.R(PV=row['PV'], FV=row['FV'], n=row['n'], m=row['m'])
-                self.assertAlmostEquals(R, row['R'], 4)
+                self.assertAlmostEqual(R, row['R'], 4)
                 # Test 4
                 n = Calculator.n(PV=row['PV'], FV=row['FV'], R=row['R'], m=row['m'])
-                self.assertAlmostEquals(n, row['n'], 4)
+                self.assertAlmostEqual(n, row['n'], 4)
                 # Test 5
                 ear = Calculator.eff_ret(R=row['R'], m=row['m'])
-                self.assertAlmostEquals(ear, row['EAR'], 4, "R(%s),m(%s)" % (row['R'], row['m']))
+                self.assertAlmostEqual(ear, row['EAR'], 4, "R(%s),m(%s)" % (row['R'], row['m']))
 
 if __name__ == '__main__':
     suite = CalculatorValuesTest().suite()

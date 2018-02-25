@@ -10,7 +10,7 @@ da = DataAccess()
 symbols = ['SBUX']
 start_date = datetime(1993, 3, 31)
 end_date = datetime(2008, 3, 31)
-fields = "Adj Close"
+fields = 'adjusted_close'
 data = da.get_data(symbols, start_date, end_date, fields)
 monthly = data.asfreq('M', method='ffill')
 

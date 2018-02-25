@@ -4,7 +4,7 @@ from finance.utils import DateUtils
 all_dates = DateUtils.nyse_dates()
 print(all_dates)
 
-print(DateUtils.nyse_dates(start=datetime(2008,1,1)))
+print(DateUtils.nyse_dates(start=datetime(2015,1,1)))
 
-index = DateUtils.search_closer_date(datetime(2009,1,1), all_dates)
+index = DateUtils.search_closer_date(datetime(2017,1,1), all_dates)
 print(index, all_dates[index])
