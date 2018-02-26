@@ -15,9 +15,9 @@ evt.date = datetime(2009, 1, 5)
 evt.run()
 
 #print("Expected Return: {0}".format(evt.er))
-print("Abnormal Return: {0}".format(evt.ar))
+#print("Abnormal Return: {0}".format(evt.ar))
 print(evt.car)
-print("T Test: {0}".format(evt.t_test))
+#print("T Test: {0}".format(evt.t_test))
 
 evt.ar.plot()
 plt.show()
