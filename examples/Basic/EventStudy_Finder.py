@@ -12,5 +12,5 @@ evtf.end_date = datetime(2010, 12, 31)
 evtf.condition = SampleConditions.went_below(10)
 evtf.search(useCache=False)
 
-print(evtf.num_events)
+print("Number of events: {0}".format(evtf.num_events))
 print(evtf.list)

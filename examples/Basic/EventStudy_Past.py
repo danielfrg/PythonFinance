@@ -14,10 +14,10 @@ evt.estimation_period = 252
 evt.date = datetime(2009, 1, 5)
 evt.run()
 
-#print(evt.expected_return)
-#print(evt.abnormal_return)
+#print("Expected Return: {0}".format(evt.er))
+print("Abnormal Return: {0}".format(evt.ar))
 print(evt.car)
-#print(evt.t_test)
+print("T Test: {0}".format(evt.t_test))
 
 evt.ar.plot()
 plt.show()

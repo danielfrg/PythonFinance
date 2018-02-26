@@ -55,13 +55,14 @@ class EventFinder(object):
                             break
                     i = i + 1
 
+
         # 3. Calculate other results and save if requested
         # Reduce Matrix: Sum each row and columns: if is greater than 0 there is an event
         self.matrix = self.matrix[self.matrix.fillna(value=0).sum(axis=1) > 0]
         valid_cols = self.matrix.columns[self.matrix.fillna(value=0).sum(axis=0) > 0].values
         self.matrix = self.matrix[valid_cols]
         # 3.2 Create list of events
-        self.list = pd.Series(index=self.matrix.index, name='Equity', dtype=str)
+        self.list = pd.Series(index=self.matrix.index, name='Equity')
         for idx, row in self.matrix.iterrows():
             equity = row[row == 1].index[0]
             self.list.ix[idx] = equity
