@@ -13,6 +13,7 @@ evtf.start_date = datetime(2008, 1, 1)
 evtf.end_date = datetime(2009, 12, 31)
 evtf.condition = SampleConditions.went_below(3)
 evtf.search()
+print(evtf.list)
 
 mevt = MultipleEvents()
 mevt.list = evtf.list

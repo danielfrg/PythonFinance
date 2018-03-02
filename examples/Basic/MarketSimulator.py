@@ -11,11 +11,11 @@ sim.initial_cash = 1000000
 sim.load_trades("MarketSimulator_orders.csv")
 sim.simulate()
 
-print(sim.portfolio[0:10])
+print(sim.portfolio.tail())
 
 print('Total Return:', Calculator.ret(sim.portfolio))
-print(Calculator.sharpe_ratio(sim.portfolio))
+print('Sharpe Ratio:', Calculator.sharpe_ratio(sim.portfolio))
 
 sim.portfolio.plot()
-# plt.grid(True)
+plt.grid(True)
 plt.show()

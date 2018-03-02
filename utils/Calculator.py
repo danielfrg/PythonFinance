@@ -37,7 +37,7 @@ def FV(PV=1, R=0.01, n=1, m=1, cc=False, ret_list=False):
             return ans[1:]
         else:
             return ans[-1]
-    elif type(R) in (pd.Series, pd.TimeSeries):
+    elif type(R) in (pd.Series, pd.Series):
         ans = FV(PV=PV, R=R.values, ret_list=ret_list)
         if ret_list:
             return pd.Series(ans, index=R.index, name='Future value')
@@ -73,7 +73,7 @@ def PV(FV=1, R=0.01, n=1, m=1, cc=False, ret_list=True):
             return ans[::-1][1:]
         else:
             return ans[-1]
-    elif type(R) in (pd.Series, pd.TimeSeries):
+    elif type(R) in (pd.Series, pd.Series):
         ans = PV(FV=FV, R=R.values, ret_list=ret_list)
         if ret_list:
             return pd.Series(ans, index=R.index, name='Present value')
@@ -198,7 +198,7 @@ def ret(data, pos=-1, cc=False, col=None, dividends=None):
         else:
             return _data[pos] / _data[0] - 1
     
-    if type(data) is pd.Series or type(data) is pd.TimeSeries:
+    if type(data) is pd.Series or type(data) is pd.Series:
         return ret(data.values, pos=pos, cc=cc)
 
     if type(data) is pd.DataFrame:
@@ -245,7 +245,7 @@ def returns(data, basedOn=1, cc=False, col=None):
             dr[basedOn:] = data[basedOn:] / data[0:-basedOn] - 1
             return dr
 
-    if type(data) is pd.Series or type(data) is pd.TimeSeries:
+    if type(data) is pd.Series or type(data) is pd.Series:
         ans = returns(data.values, cc=cc,  basedOn=basedOn)
         name = data.name
         if cc:
@@ -284,7 +284,7 @@ def sharpe_ratio(data, col=None, cc=False):
         std = dr.std(0)
         return math.sqrt(len(data)) * mean / std
 
-    if type(data) is pd.Series or type(data) is pd.TimeSeries:
+    if type(data) is pd.Series or type(data) is pd.Series:
         return sharpe_ratio(data.values, cc=cc)
 
     if type(data) is pd.DataFrame:

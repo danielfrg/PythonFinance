@@ -18,7 +18,7 @@ class MultipleEvents(object):
         self.lookback_days = 20
         self.lookforward_days = 20
         self.estimation_period = 200
-        self.field = 'Adj Close'
+        self.field = 'adjusted_close'
 
         # Result
         self.equities_window = None
@@ -51,7 +51,7 @@ class MultipleEvents(object):
             self.lookback_days = 20
             self.lookforward_days = 20
             self.estimation_period = 200
-            self.field = 'Adj Close'
+            self.field = 'adjusted_close'
         '''
         # 0. Get the dates and Download/Import the data
         symbols = list(set(self.list))
@@ -209,7 +209,8 @@ if __name__ == '__main__':
     mevt.lookforward_days = 20
     mevt.estimation_period = 200
     mevt.run()
+    print(mevt.mean_car)
 
-    mevt.plot('car')
-    plt.legend()
-    plt.show()
+    #mevt.plot('car')
+    #plt.legend()
+    #plt.show()

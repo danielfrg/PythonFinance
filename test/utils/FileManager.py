@@ -61,28 +61,28 @@ class FileManagerTest(FinanceTest):
         self.assertEqual(ans, "AAPL_2007-1-1_2010-6-6.csv")
 
         # Test: Download multiple files
-        start_date = datetime(2005, 1, 1)
-        end_date = datetime(2010, 1, 1)
+        start_date = datetime(2015, 1, 1)
+        end_date = datetime(2017, 1, 1)
         ans = self.file_manager.get_filenames(symbols, start_date, end_date, downloadMissing=True)
-        sol = ["AAPL_2005-1-1_2010-1-1.csv", "GLD_2005-1-1_2010-1-1.csv",
-                "GOOG_2005-1-1_2010-1-1.csv", "SPY_2005-1-1_2010-1-1.csv",
-                "XOM_2005-1-1_2010-1-1.csv"]
+        sol = ["AAPL_2015-1-1_2017-1-1.csv", "GLD_2015-1-1_2017-1-1.csv",
+                "GOOG_2015-1-1_2017-1-1.csv", "SPY_2015-1-1_2017-1-1.csv",
+                "XOM_2015-1-1_2017-1-1.csv"]
         self.assertEqual(ans, sol)
 
         # Test: do not return missing filenames
         symbols = ["AAPL","FAKE1","GLD","FAKE1","GOOG","SPY","XOM","FAKE1"]
         ans = self.file_manager.get_filenames(symbols, start_date, end_date, downloadMissing=True)
-        sol = ["AAPL_2005-1-1_2010-1-1.csv", "GLD_2005-1-1_2010-1-1.csv",
-                "GOOG_2005-1-1_2010-1-1.csv", "SPY_2005-1-1_2010-1-1.csv",
-                "XOM_2005-1-1_2010-1-1.csv"]
+        sol = ["AAPL_2015-1-1_2017-1-1.csv", "GLD_2015-1-1_2017-1-1.csv",
+                "GOOG_2015-1-1_2017-1-1.csv", "SPY_2015-1-1_2017-1-1.csv",
+                "XOM_2015-1-1_2017-1-1.csv"]
         self.assertEqual(ans, sol)
 
         # Test: Return missing filenames if requested
         symbols = ["AAPL","FAKE1","GLD","FAKE1","GOOG","SPY","XOM","FAKE1"]
         ans = self.file_manager.get_filenames(symbols, start_date, end_date, downloadMissing=True, ignoreMissing=False)
-        sol = ["AAPL_2005-1-1_2010-1-1.csv", None, "GLD_2005-1-1_2010-1-1.csv",
-                None, "GOOG_2005-1-1_2010-1-1.csv", "SPY_2005-1-1_2010-1-1.csv",
-                "XOM_2005-1-1_2010-1-1.csv", None]
+        sol = ["AAPL_2015-1-1_2017-1-1.csv", None, "GLD_2015-1-1_2017-1-1.csv",
+                None, "GOOG_2015-1-1_2017-1-1.csv", "SPY_2015-1-1_2017-1-1.csv",
+                "XOM_2015-1-1_2017-1-1.csv", None]
         self.assertEqual(ans, sol)
 
 if __name__ == '__main__':

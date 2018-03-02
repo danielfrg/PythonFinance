@@ -43,7 +43,7 @@ def errorfill(x, y, yerr=None, xerr=None, color=None, ls=None, lw=None,
     alpha_fill *= alpha
 
     if color is None:
-        color = next(ax._get_lines.color_cycle)
+        color = next(ax._get_lines.prop_cycler)['color']
     if ls is None:
         ls = plt.rcParams['lines.linestyle']
     if lw is None:

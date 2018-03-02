@@ -32,7 +32,7 @@ class PastEvent(EventStudy):
         # Variables
         self.date = None # Date of the event
         self.symbol = None
-        self.field = 'Adj Close'
+        self.field = 'adjusted_close'
         self.lookback_days = 20
         self.lookforward_days = 20
         self.estimation_period = 255

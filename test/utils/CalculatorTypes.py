@@ -25,7 +25,7 @@ class CalculatorTypesTest(FinanceTest):
         array_2 = np.array([5,4,3,2,1])
         matrix = np.array([array, array_2]).T
         series = pd.Series(array, index=[5,7,8,10,11])
-        time_series = pd.TimeSeries(array)
+        time_series = pd.Series(array)
         df = pd.DataFrame(matrix, columns=['c1', 'c2'], index=[5,7,8,10,11])
 
         # Input is numpy.ndarray of 1 dimmension => float
@@ -104,7 +104,7 @@ class CalculatorTypesTest(FinanceTest):
         array_2 = np.array([5,4.3,3,3.5,1])
         matrix = np.array([array, array_2]).T
         series = pd.Series(array)
-        time_series = pd.TimeSeries(array_2)
+        time_series = pd.Series(array_2)
         df = pd.DataFrame(matrix, columns=['c1', 'c2'])
 
         # Input is np.array of 1 dimmension => float

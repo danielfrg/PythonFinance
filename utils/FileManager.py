@@ -3,14 +3,23 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime
+import pandas as pd
+import time
 
 class FileManager(object):
     '''
     Class to manage the files from:
         - Yahoo Finance
+        - Alpha Vantage
     '''
     def __init__(self, dir_path='./data/'):
         self.set_dir(dir_path)
+
+        env_var_key = os.getenv("ALPHAVANTAGEKEY")
+        if env_var_key is not None:
+            self.alpha_vantage_key = env_var_key
+        else:
+            raise Exception('ALPHAVANTAGEKEY not defined')
 
     def set_dir(self, dir_path):
         '''
@@ -87,7 +96,7 @@ class FileManager(object):
                         f = file_name
 
             if f is None and downloadMissing:
-                success = self.yahoo_download(symbol, start_date, end_date)
+                success = self.alphavantage_download(symbol, start_date, end_date)
                 if success:
                     # If download was susccesfull add the path to the new file
                     f = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.year, start_date.month,
@@ -144,4 +153,61 @@ class FileManager(object):
             return True
         except:
             # print(symbol, sys.exc_info()[1])
+            return False
+
+    def alphavantage_download(self, symbol, start_date, end_date):
+        """
+        Downloads and saves the equitiy information from Yahoo! Finance between
+        the specified dates.
+        Saves the csv file with the name: SYMBOL_start_date_end_date.csv
+            e.g: AAPL_2009-1-1_2010-1-1.csv
+
+        Parameters
+        ----------
+            symbol: str
+            start_date: datetime
+            end_date: datetime
+
+        Returns
+        -------
+            boolean: True if was able to download the symbol, False otherwise
+        """
+        try:
+            params = urllib.parse.urlencode(
+                {
+                    'function': 'TIME_SERIES_DAILY_ADJUSTED',
+                    'symbol': symbol,
+                    'outputsize': 'full',
+                    'datatype': 'csv',
+                    'apikey': self.alpha_vantage_key
+                })
+            sourceURL = "https://www.alphavantage.co/query?{0}".format(params)
+            webFile = urllib.request.urlopen(sourceURL)
+            # print(webFile.read().decode('utf-8'))
+            #print("start_date: {0}".format(start_date))
+            #print("end_date: {0}".format(end_date))
+
+            # extract start date and end date from webfile
+            csvData = pd.read_csv(webFile, parse_dates=True, index_col='timestamp')
+            # Sort so earliest comes first
+            csvData = csvData.sort_index()
+            csvData = csvData.truncate(before=start_date)
+            csvData = csvData.truncate(after=end_date)
+            #print(csvData.head())
+            #print(csvData.tail())
+            data_start_date = csvData.index.tolist()[0]
+            #print("data start_date: {0}".format(data_start_date))
+
+            data_end_date = csvData.index.tolist()[-1]
+            #print("data end_date: {0}".format(data_end_date))
+
+            filename = "%s_%d-%d-%d_%d-%d-%d.csv" % (symbol, start_date.year, start_date.month,
+                                                     start_date.day, end_date.year, end_date.month, end_date.day)
+            localFile = open(os.path.join(self.dir, filename), 'w')
+            csvData.to_csv(localFile)
+            webFile.close()
+            localFile.close()
+            return True
+        except:
+            print("FileManager::alphaVantageDownload: {0}, {1}".format(symbol, sys.exc_info()[1]))
             return False

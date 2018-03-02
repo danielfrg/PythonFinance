@@ -6,9 +6,9 @@ from finance.utils import DataAccess
 os.environ["FINANCEPATH"] = './data'
 da = DataAccess()
 symbols = ["GOOG", "SPY", "XOM"]
-start_date = datetime(2008, 1, 1)
-end_date = datetime(2009, 12, 31)
-fields = "Close"
+start_date = datetime(2015, 1, 1)
+end_date = datetime(2017, 12, 31)
+fields = 'close'
 close = da.get_data(symbols, start_date, end_date, fields)
 print(close)
 
@@ -18,9 +18,9 @@ DataAccess.path = 'data2'
 da = DataAccess()
 
 symbols = ["AAPL", "GLD"]
-start_date = datetime(2008, 1, 1)
-end_date = datetime(2009, 12, 31)
-fields = "Close"
+start_date = datetime(2015, 1, 1)
+end_date = datetime(2017, 12, 31)
+fields = 'close'
 close = da.get_data(symbols, start_date, end_date, fields)
 print(close)
 

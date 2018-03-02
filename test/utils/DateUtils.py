@@ -31,7 +31,7 @@ class DateUtilsTest(FinanceTest):
         self.assertEquals(type(dates), list)
         # Test: Returns a pd.Series if requested
         dates = DateUtils.nyse_dates(series=True)
-        self.assertEquals(type(dates), pd.TimeSeries)
+        self.assertEquals(type(dates), pd.Series)
 
         # Test: Default startdate is 2007-1-1
         dates = DateUtils.nyse_dates()
@@ -50,7 +50,7 @@ class DateUtilsTest(FinanceTest):
         self.assertEquals(dates[-1], today)
         # Test: returns pd.Series
         dates = DateUtils.nyse_dates(start=start, series=True)
-        self.assertEquals(type(dates), pd.TimeSeries)
+        self.assertEquals(type(dates), pd.Series)
         self.assertEquals(dates[0], datetime(2008, 1, 2))
         self.assertEquals(dates[-1], today)
 
@@ -63,7 +63,7 @@ class DateUtilsTest(FinanceTest):
         self.assertEquals(dates[-1], today)
         # Test: with pd.Series
         dates = DateUtils.nyse_dates(start=start, series=True)
-        self.assertEquals(type(dates), pd.TimeSeries)
+        self.assertEquals(type(dates), pd.Series)
         self.assertEquals(dates[0], datetime(1995, 1, 3))
         self.assertEquals(dates[-1], today)
 
@@ -92,7 +92,7 @@ class DateUtilsTest(FinanceTest):
         self.assertEquals(len(dates), 500)
         # Test: with pd.Series
         dates = DateUtils.nyse_dates(start=start, end=end, series=True)
-        self.assertEquals(type(dates), pd.TimeSeries)
+        self.assertEquals(type(dates), pd.Series)
         self.assertEquals(dates[0], datetime(2000, 1, 3))
         self.assertEquals(dates[-1], datetime(2001, 12, 31))
         self.assertEquals(len(dates), 500)
@@ -108,7 +108,7 @@ class DateUtilsTest(FinanceTest):
         self.assertEquals(len(dates), 504)
         # Test: Lenght: Section - pd.Series
         dates = DateUtils.nyse_dates(start=start, end=end, series=True)
-        self.assertEquals(type(dates), pd.TimeSeries)
+        self.assertEquals(type(dates), pd.Series)
         self.assertEquals(dates[0], datetime(2009, 1, 2))
         self.assertEquals(dates[-1], datetime(2010, 12, 31))
         self.assertEquals(len(dates), 504)

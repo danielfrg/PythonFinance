@@ -55,11 +55,6 @@ Features
 How to use it
 -------------
 
-### iPython notebook examples ###
-
-1. [Future value, Present value, Rates return](http://nbviewer.ipython.org/urls/raw.github.com/dfrodriguez143/PythonFinance/master/examples/Basic/FV_PV_R_n.ipynb)
-2. [EventFinder + Market Simulator](http://nbviewer.ipython.org/urls/raw.github.com/dfrodriguez143/PythonFinance/master/examples/Combining/Events%2520and%2520Simulator.ipynb)
-
-More examples as .py files on the examples folder. Also note that the most most updated examples are the test of each module which I try to keep very undestandable and documented as well as the main code.
-
-For more information (but possible un-updated) can see my blog: [ctrl68.wordpress.com](http://ctrl68.wordpress.com/category/python/pythonfinance/)
+Set the envvars:
+`FINANCEPATH` to where you want the data to live.
+`ALPHAVANTAGEKEY` to the Alpha Vantage API Key.

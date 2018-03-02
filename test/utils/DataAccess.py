@@ -23,53 +23,53 @@ class DataAccessTest(FinanceTest):
         '''
         self.setUpDataAccess()
 
-        start_date = datetime(2008, 1, 1)
-        end_date = datetime(2009, 12, 31)
+        start_date = datetime(2015, 1, 1)
+        end_date = datetime(2017, 12, 31)
 
         # Single symbol, single field
         symbols = "AAPL"
-        fields = "Close"
+        fields = 'close'
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
-        self.assertEqual(len(df), 505)
+        self.assertEqual(len(df), 755)
         self.assertEqual(len(df.columns), 1)
         names = [fields]
         self.assertEqual(list(df.columns), names)
 
         # Multiple symbols, single field
         symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-        fields = "Close"
+        fields = 'close'
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
-        self.assertEqual(len(df), 505)
+        self.assertEqual(len(df), 755)
         self.assertEqual(len(df.columns), 5)
         names = symbols
         self.assertEqual(list(df.columns), names)
 
         # Single symbol, multiple fields
         symbols = "AAPL"
-        fields = ["Close", "Volume"]
+        fields = ['close', 'volume']
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
-        self.assertEqual(len(df), 505)
+        self.assertEqual(len(df), 755)
         self.assertEqual(len(df.columns), 2)
-        names = ['Close', 'Volume']
+        names = ['close', 'volume']
         self.assertEqual(list(df.columns), names)
 
         # Multiple symbol, multiple fields
         symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-        fields = ["Close", "Volume"]
+        fields = ['close', 'volume']
         df = self.data_access.get_data(symbols, start_date, end_date, fields)
-        self.assertEqual(len(df), 505)
+        self.assertEqual(len(df), 755)
         self.assertEqual(len(df.columns), 10)
-        names = ['AAPL Close', 'AAPL Volume', 'GLD Close', 'GLD Volume', 'GOOG Close',
-                    'GOOG Volume', 'SPY Close', 'SPY Volume', 'XOM Close', 'XOM Volume']
+        names = ['AAPL close', 'AAPL volume', 'GLD close', 'GLD volume', 'GOOG close',
+                    'GOOG volume', 'SPY close', 'SPY volume', 'XOM close', 'XOM volume']
         self.assertEqual(list(df.columns), names)
 
     def test_save_load_custom_name(self):
         self.setUpDataAccess()
 
         symbols = ["AAPL", "GLD", "GOOG", "SPY", "XOM"]
-        start_date = datetime(2008, 1, 1)
-        end_date = datetime(2009, 12, 31)
-        fields = "Close"
+        start_date = datetime(2015, 1, 1)
+        end_date = datetime(2017, 12, 31)
+        fields = 'close'
         
         close = self.data_access.get_data(symbols, start_date, end_date, fields, save=False)
         self.data_access.save(close, "customName", extension='.custom')
@@ -88,9 +88,9 @@ def benchmark():
     print ('Directory empty: Download and save 5 stocks')
     t1, t2 = clock(), time()
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-    start_date = datetime(2008, 1, 1)
-    end_date = datetime(2009, 12, 31)
-    fields = "Close"
+    start_date = datetime(2015, 1, 1)
+    end_date = datetime(2017, 12, 31)
+    fields = 'close'
     da.get_data(symbols, start_date, end_date, fields)
     t1_f, t2_f = clock(), time()
     print ("   ", t1_f - t1, t2_f - t2)
@@ -98,9 +98,9 @@ def benchmark():
     print ('Load 5 stocks from .csv')
     t1, t2 = clock(), time()
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-    start_date = datetime(2008, 1, 1)
-    end_date = datetime(2009, 12, 31)
-    fields = "Close"
+    start_date = datetime(2015, 1, 1)
+    end_date = datetime(2017, 12, 31)
+    fields = 'close'
     da.get_data(symbols, start_date, end_date, fields, useCache=False)
     t1_f, t2_f = clock(), time()
     print ("   ", t1_f - t1, t2_f - t2)
@@ -108,9 +108,9 @@ def benchmark():
     print ('Load 5 stocks from serialized')
     t1, t2 = clock(), time()
     symbols = ["AAPL","GLD","GOOG","SPY","XOM"]
-    start_date = datetime(2008, 1, 1)
-    end_date = datetime(2009, 12, 31)
-    fields = "Close"
+    start_date = datetime(2015, 1, 1)
+    end_date = datetime(2017, 12, 31)
+    fields = 'close'
     da.get_data(symbols, start_date, end_date, fields, useCache=True)
     t1_f, t2_f = clock(), time()
     print ("   ", t1_f - t1, t2_f - t2)
