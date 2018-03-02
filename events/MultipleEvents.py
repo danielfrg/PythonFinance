@@ -209,7 +209,8 @@ if __name__ == '__main__':
     mevt.lookforward_days = 20
     mevt.estimation_period = 200
     mevt.run()
+    print(mevt.mean_car)
 
-    mevt.plot('car')
-    plt.legend()
-    plt.show()
+    #mevt.plot('car')
+    #plt.legend()
+    #plt.show()

@@ -4,6 +4,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime
 import pandas as pd
+import time
 
 class FileManager(object):
     '''

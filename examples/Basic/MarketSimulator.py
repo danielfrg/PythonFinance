@@ -11,7 +11,6 @@ sim.initial_cash = 1000000
 sim.load_trades("MarketSimulator_orders.csv")
 sim.simulate()
 
-#print(sim.portfolio[:10])
 print(sim.portfolio.tail())
 
 print('Total Return:', Calculator.ret(sim.portfolio))

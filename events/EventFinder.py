@@ -65,7 +65,7 @@ class EventFinder(object):
         self.list = pd.Series(index=self.matrix.index, name='Equity')
         for idx, row in self.matrix.iterrows():
             equity = row[row == 1].index[0]
-            self.list.ix[idx] = equity
+            self.list.loc[idx] = equity
         # 3.3 Save
         self.num_events = len(self.list)
         if save:
